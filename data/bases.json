@@ -1,0 +1,12 @@
+{
+  "_notes": "Common traveler accommodation hubs used as default 'where are you staying?' presets.",
+  "bases": [
+    {"id": "cancun_zh",   "label_en": "Cancún Hotel Zone", "label_es": "Zona Hotelera Cancún", "coords": [21.1357, -86.7615]},
+    {"id": "puerto_morelos", "label_en": "Puerto Morelos", "label_es": "Puerto Morelos", "coords": [20.8478, -86.8754]},
+    {"id": "playa_centro", "label_en": "Playa del Carmen (Centro)", "label_es": "Playa del Carmen (Centro)", "coords": [20.6296, -87.0739]},
+    {"id": "puerto_aventuras", "label_en": "Puerto Aventuras", "label_es": "Puerto Aventuras", "coords": [20.4942, -87.2270]},
+    {"id": "akumal",      "label_en": "Akumal",            "label_es": "Akumal",            "coords": [20.3955, -87.3116]},
+    {"id": "tulum_centro", "label_en": "Tulum (Centro)",    "label_es": "Tulum (Centro)",    "coords": [20.2114, -87.4654]},
+    {"id": "tulum_hotel", "label_en": "Tulum Hotel Zone",  "label_es": "Zona Hotelera Tulum", "coords": [20.1525, -87.4451]}
+  ]
+}

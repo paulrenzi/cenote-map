@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="A trip planner for the cenotes of the Riviera Maya — open swim, snorkel, cavern dives. Filter by activity, distance from where you're staying, and skill level. Honest current prices, hours, and access notes."
+    />
+    <title>Riviera Maya Cenotes — Trip Planner</title>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>💧</text></svg>" />
+    <link rel="canonical" href="https://cenotemap.com/" />
+    <link rel="manifest" href="manifest.webmanifest" />
+    <meta name="theme-color" content="#0a8a9e" />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Riviera Maya Cenotes" />
+    <meta property="og:title" content="Riviera Maya Cenotes — Trip Planner" />
+    <meta property="og:description" content="Plan cenote days from Cancún, Playa, Akumal, or Tulum. Activity-correct filtering, current prices, honest access notes." />
+    <meta property="og:url" content="https://cenotemap.com/" />
+    <meta property="og:image" content="https://cenotemap.com/images/hero.webp" />
+    <meta property="og:locale" content="en_US" />
+    <meta property="og:locale:alternate" content="es_MX" />
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Riviera Maya Cenotes — Trip Planner" />
+    <meta name="twitter:description" content="Plan cenote days from Cancún, Playa, Akumal, or Tulum. Activity-correct filtering, current prices, honest access notes." />
+    <meta name="twitter:image" content="https://cenotemap.com/images/hero.webp" />
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebSite",
+      "name": "Riviera Maya Cenotes",
+      "url": "https://cenotemap.com/",
+      "description": "Trip planner for cenotes in the Riviera Maya, Quintana Roo — Cancún to Tulum.",
+      "about": {
+        "@type": "Place",
+        "name": "Riviera Maya",
+        "geo": {
+          "@type": "GeoCoordinates",
+          "latitude": 20.3,
+          "longitude": -87.4
+        }
+      }
+    }
+    </script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="dns-prefetch" href="https://tiles.openfreemap.org" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700;9..144,800&family=Manrope:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+
+    <section class="hero" aria-label="Site introduction">
+      <div class="hero-bg hero-bg--painted" aria-hidden="true"></div>
+      <div class="hero-overlay" aria-hidden="true"></div>
+      <div class="hero-content">
+        <p class="hero-eyebrow">
+          <span class="eyebrow-dot" aria-hidden="true"></span>
+          <span data-i18n="hero.eyebrow">Riviera Maya · Quintana Roo</span>
+        </p>
+        <h1 data-i18n="hero.title">Riviera Maya<br />Cenotes</h1>
+        <p class="hero-tagline" data-i18n="hero.tagline">
+          A trip planner for the open swims, snorkel caverns, and dive sites that ring
+          Cancún, Playa, Akumal, and Tulum. Filter by what you want to do, sort by
+          distance from where you&rsquo;re staying, and trust the current price &amp; hours.
+        </p>
+        <div class="hero-langswitch">
+          <a href="?lang=en" class="lang-link" id="lang-en" aria-label="English">EN</a>
+          <span aria-hidden="true">·</span>
+          <a href="?lang=es" class="lang-link" id="lang-es" aria-label="Español">ES</a>
+        </div>
+      </div>
+    </section>
+
+    <div class="strip" aria-label="Plan your cenote day">
+      <div class="strip-inner">
+        <label class="strip-field">
+          <span class="strip-label" data-i18n="strip.base">Staying in</span>
+          <select id="base-select" class="strip-select"></select>
+        </label>
+        <label class="strip-field">
+          <span class="strip-label" data-i18n="strip.activity">I want to</span>
+          <select id="activity-select" class="strip-select">
+            <option value="" data-i18n="activity.any">Anything</option>
+            <option value="swim" data-i18n="activity.swim">Swim</option>
+            <option value="snorkel" data-i18n="activity.snorkel">Snorkel</option>
+            <option value="cavern_dive" data-i18n="activity.cavern_dive">Cavern dive</option>
+            <option value="cave_dive" data-i18n="activity.cave_dive">Cave dive (cert)</option>
+            <option value="cliff_jump" data-i18n="activity.cliff_jump">Cliff jump</option>
+          </select>
+        </label>
+        <label class="strip-field strip-toggle">
+          <input type="checkbox" id="kid-toggle" />
+          <span data-i18n="strip.kids">Kid-friendly only</span>
+        </label>
+      </div>
+    </div>
+
+    <main class="shell">
+
+      <div class="section-header">
+        <p class="section-kicker" id="result-count">Loading…</p>
+        <h2 class="section-headline" data-i18n="results.headline">Cenotes near you</h2>
+      </div>
+
+      <div id="map" class="map" aria-label="Map of cenotes"></div>
+
+      <div id="cards" class="cards" aria-live="polite"></div>
+
+    </main>
+
+    <section class="support-band" aria-label="Local partners">
+      <div class="support-inner">
+        <p class="support-eyebrow" data-i18n="support.eyebrow">Plan the day</p>
+        <p class="support-body" data-i18n="support.body">
+          Cenote Map is a free, independent planner built by Akumal locals. Booking
+          with our partner businesses keeps it online and ad-free.
+        </p>
+        <ul class="support-links">
+          <li><a href="https://akumalscooters.com" target="_blank" rel="noreferrer">Rent a scooter for the day — Akumal Scooters</a></li>
+          <li><a href="https://akumalwildlife.com" target="_blank" rel="noreferrer">Spot the reef &amp; jungle wildlife — Akumal Wildlife</a></li>
+        </ul>
+      </div>
+    </section>
+
+    <footer class="footer">
+      <p data-i18n="footer.text">
+        Cenotes are sacred to the Maya and fragile freshwater systems —
+        skip the sunscreen, take your trash with you, and tip the local crew.
+      </p>
+    </footer>
+
+    <button class="back-to-top" id="back-to-top" aria-label="Back to top">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+        <polyline points="18 15 12 9 6 15"/>
+      </svg>
+    </button>
+
+    <script src="app.js" defer></script>
+  </body>
+</html>
