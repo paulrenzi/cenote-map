@@ -42,9 +42,27 @@ python -m http.server 8000
 ```
 Then open http://localhost:8000.
 
+## Conditions backend (optional)
+
+The `worker/` directory holds a Cloudflare Worker + D1 backend for live
+"how was it today" reports. The frontend degrades gracefully if it isn't
+deployed — the Report button just doesn't render.
+
+To turn it on:
+1. Follow `worker/README.md` to deploy and get the workers.dev URL.
+2. Create a Turnstile site at dash.cloudflare.com → Turnstile (free).
+3. In `app.js`, fill in:
+   ```js
+   const CONFIG = {
+     API_BASE: "https://cenote-conditions.<acct>.workers.dev",
+     TURNSTILE_SITE_KEY: "0x4AAA..."
+   };
+   ```
+4. Commit — GitHub Pages picks it up on push.
+
 ## Roadmap (Phase 2+)
 - Multi-day trip planner (TSP over selected cenotes with hours-of-operation windows)
 - Light-beam timing widget per cenote (SunCalc.js + opening orientation)
-- Conditions submissions (Cloudflare Worker + D1 backend)
+- Per-cenote detail pages with photos + amenities
 - Trusted-contributor accounts for dive shops
 - Embeddable "latest conditions" widget for partner sites

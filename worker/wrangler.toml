@@ -1,0 +1,19 @@
+name = "cenote-conditions"
+main = "src/index.js"
+compatibility_date = "2025-01-01"
+
+# CORS allow-list — add your production domain(s) and any preview origins.
+[vars]
+ALLOWED_ORIGINS = "https://cenotemap.com,https://paulrenzi.github.io,http://localhost:8765,http://localhost:8000"
+
+# D1 binding — create with:
+#   wrangler d1 create cenote-conditions
+# Then paste the returned database_id below.
+[[d1_databases]]
+binding = "DB"
+database_name = "cenote-conditions"
+database_id = "REPLACE_WITH_D1_DATABASE_ID"
+
+# Turnstile secret — set with:
+#   wrangler secret put TURNSTILE_SECRET
+# (Site key is public, lives in the frontend.)

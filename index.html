@@ -137,6 +137,61 @@
       </p>
     </footer>
 
+    <div class="modal" id="report-modal" aria-hidden="true" role="dialog" aria-labelledby="report-title">
+      <div class="modal-backdrop" data-close-modal></div>
+      <form class="modal-panel" id="report-form" novalidate>
+        <button type="button" class="modal-close" data-close-modal aria-label="Close">×</button>
+        <p class="modal-eyebrow" data-i18n="report.eyebrow">Report conditions</p>
+        <h3 class="modal-title" id="report-title">
+          <span data-i18n="report.titlePrefix">Conditions at</span>
+          <span id="report-cenote-name"></span>
+        </h3>
+
+        <label class="field">
+          <span data-i18n="report.crowd">Crowd level</span>
+          <select name="crowd_level" required>
+            <option value="" data-i18n="report.crowd.pick">Pick one…</option>
+            <option value="low" data-i18n="report.crowd.low">Low — mostly empty</option>
+            <option value="medium" data-i18n="report.crowd.medium">Medium — busy but OK</option>
+            <option value="high" data-i18n="report.crowd.high">High — packed</option>
+          </select>
+        </label>
+
+        <label class="field">
+          <span data-i18n="report.visibility">Visibility (m, optional)</span>
+          <input type="number" name="visibility_m" min="0" max="60" step="1" inputmode="numeric" />
+        </label>
+
+        <label class="field">
+          <span data-i18n="report.clarity">Water clarity (optional)</span>
+          <select name="water_clarity">
+            <option value="" data-i18n="report.clarity.none">Not sure</option>
+            <option value="clear" data-i18n="report.clarity.clear">Clear</option>
+            <option value="cloudy" data-i18n="report.clarity.cloudy">Cloudy</option>
+          </select>
+        </label>
+
+        <label class="field">
+          <span data-i18n="report.notes">Notes (optional, 200 chars)</span>
+          <textarea name="notes" maxlength="200" rows="2"></textarea>
+        </label>
+
+        <label class="field">
+          <span data-i18n="report.name">Your name (optional)</span>
+          <input type="text" name="contributor_name" maxlength="40" autocomplete="name" />
+        </label>
+
+        <div class="field" id="turnstile-slot"></div>
+
+        <div class="modal-actions">
+          <button type="button" class="btn btn-ghost" data-close-modal data-i18n="report.cancel">Cancel</button>
+          <button type="submit" class="btn btn-primary" data-i18n="report.submit">Submit report</button>
+        </div>
+
+        <p class="modal-status" id="report-status" role="status"></p>
+      </form>
+    </div>
+
     <button class="back-to-top" id="back-to-top" aria-label="Back to top">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
         <polyline points="18 15 12 9 6 15"/>
