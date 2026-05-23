@@ -1,17 +1,18 @@
-// Bump CACHE on every deploy that changes app.js / index.html / styles.css.
+// CACHE name MUST be bumped on every release that changes any shell file.
 // The activate handler deletes every cache whose name doesn't match, so a
-// stale shell can't outlive a release.
-const CACHE = "cenote-map-v3";
+// stale shell can't outlive a release. The ?v= query strings on the URLs
+// below also force the browser HTTP cache to miss for those URLs.
+const CACHE = "cenote-map-v4";
 const SHELL = [
   "/cenote-map/",
   "/cenote-map/index.html",
-  "/cenote-map/styles.css",
-  "/cenote-map/app.js",
+  "/cenote-map/styles.css?v=4",
+  "/cenote-map/app.js?v=4",
   "/cenote-map/data/cenotes.json",
   "/cenote-map/data/bases.json",
   "/cenote-map/data/photos.json",
   "/cenote-map/images/hero.webp",
-  "/cenote-map/manifest.webmanifest"
+  "/cenote-map/manifest.webmanifest?v=4"
 ];
 
 self.addEventListener("install", (e) => {
@@ -39,14 +40,16 @@ self.addEventListener("fetch", (e) => {
 
   if (url.origin !== location.origin) return;
 
-  // Network-first for HTML / JS / CSS / JSON so deploys propagate immediately.
-  // Cache-first for binary assets (images, manifest icons) since they're stable.
   const path = url.pathname;
   const isAppShell = /\.(html|js|css|json|webmanifest)$/.test(path) || path.endsWith("/");
 
   if (isAppShell) {
+    // Network-first with no-cache so the SW bypasses the browser HTTP cache
+    // (this is critical — without {cache:"no-cache"}, fetch() can return a
+    // stale version that the browser cached previously, even though our
+    // intent is to always reach the server for shell files).
     e.respondWith(
-      fetch(req)
+      fetch(req, { cache: "no-cache" })
         .then((res) => {
           if (res.ok) {
             const clone = res.clone();
