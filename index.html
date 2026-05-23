@@ -46,6 +46,7 @@
     }
     </script>
 
+    <link rel="preload" as="image" href="images/hero.webp" fetchpriority="high" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link rel="dns-prefetch" href="https://tiles.openfreemap.org" />
@@ -58,7 +59,14 @@
   <body>
 
     <section class="hero" aria-label="Site introduction">
-      <div class="hero-bg hero-bg--painted" aria-hidden="true"></div>
+      <img
+        class="hero-bg"
+        src="images/hero.webp"
+        alt="Vines hanging from the open ceiling of Cenote Ik Kil into turquoise water"
+        fetchpriority="high"
+        width="1600"
+        height="1067"
+      />
       <div class="hero-overlay" aria-hidden="true"></div>
       <div class="hero-content">
         <p class="hero-eyebrow">
@@ -134,6 +142,12 @@
       <p data-i18n="footer.text">
         Cenotes are sacred to the Maya and fragile freshwater systems —
         skip the sunscreen, take your trash with you, and tip the local crew.
+      </p>
+      <p class="footer-credit">
+        Hero: Cenote Ik Kil by
+        <a href="https://www.flickr.com/people/shinyasuzuki/" target="_blank" rel="noreferrer">Shinya Suzuki</a>,
+        <a href="https://creativecommons.org/licenses/by/2.0/" target="_blank" rel="noreferrer">CC BY 2.0</a>,
+        via <a href="https://commons.wikimedia.org/wiki/File:Cenote_Ik_Kil,_Yucatan,_Dec_2011_-_06.jpg" target="_blank" rel="noreferrer">Wikimedia Commons</a>.
       </p>
     </footer>
 

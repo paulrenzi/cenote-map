@@ -55,13 +55,6 @@ button { font: inherit; cursor: pointer; }
   object-position: center 42%;
 }
 
-/* CSS-painted fallback until a real hero photo lands in images/hero.webp */
-.hero-bg--painted {
-  background:
-    radial-gradient(ellipse 90% 70% at 30% 25%, rgba(120, 220, 230, 0.35) 0%, transparent 60%),
-    radial-gradient(ellipse 70% 90% at 80% 80%, rgba(10, 80, 100, 0.55) 0%, transparent 65%),
-    linear-gradient(135deg, #0a2733 0%, #0e4858 45%, #115a6e 100%);
-}
 
 .hero-overlay {
   position: absolute;
@@ -512,6 +505,14 @@ button { font: inherit; cursor: pointer; }
 }
 
 .footer a { color: var(--accent-deep); font-weight: 700; }
+
+.footer-credit {
+  margin: 1.1rem auto 0;
+  max-width: 56ch;
+  font-size: 0.74rem;
+  color: var(--subtle);
+  opacity: 0.85;
+}
 
 /* ─── Back to top ──────────────────────────────────────────────── */
 

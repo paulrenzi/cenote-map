@@ -7,4 +7,3 @@ node_modules/
 images/*.jpg
 images/*.jpeg
 images/*.png
-!images/hero.webp
