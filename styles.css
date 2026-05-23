@@ -316,11 +316,42 @@ button { font: inherit; cursor: pointer; }
   border: 1px solid var(--border);
   border-radius: var(--radius);
   box-shadow: var(--shadow-sm);
-  padding: 1.4rem 1.5rem 1.3rem;
+  overflow: hidden;
   display: flex;
   flex-direction: column;
-  gap: 0.85rem;
   transition: transform 0.22s ease, box-shadow 0.22s ease;
+}
+
+.card-media {
+  display: block;
+  position: relative;
+  aspect-ratio: 16 / 10;
+  overflow: hidden;
+  background: rgba(15, 42, 52, 0.06);
+}
+
+.card-media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
+
+.cenote-card:hover .card-media img { transform: scale(1.04); }
+
+.card-media--painted {
+  background:
+    radial-gradient(ellipse 90% 70% at 30% 30%, rgba(120, 220, 230, 0.45) 0%, transparent 60%),
+    radial-gradient(ellipse 70% 90% at 80% 80%, rgba(10, 80, 100, 0.55) 0%, transparent 65%),
+    linear-gradient(135deg, #0a2733 0%, #0e4858 45%, #115a6e 100%);
+}
+
+.card-body {
+  padding: 1.2rem 1.4rem 1.2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.7rem;
+  flex: 1;
 }
 
 @media (hover: hover) and (pointer: fine) {

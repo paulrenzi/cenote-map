@@ -22,6 +22,8 @@
       "activity.cavern_dive": "Cavern dive",
       "activity.cave_dive": "Cave dive (cert)",
       "activity.cliff_jump": "Cliff jump",
+      "activity.zip_line": "Zip line",
+      "activity.rappel": "Rappel",
       "results.headline": "Cenotes near you",
       "results.count": (n) => `${n} cenote${n === 1 ? "" : "s"} · sorted by drive time`,
       "results.empty": "No cenotes match those filters. Try widening the activity or turning off kid-friendly.",
@@ -75,6 +77,8 @@
       "activity.cavern_dive": "Buceo de caverna",
       "activity.cave_dive": "Buceo de cueva (cert)",
       "activity.cliff_jump": "Saltar de altura",
+      "activity.zip_line": "Tirolesa",
+      "activity.rappel": "Rappel",
       "results.headline": "Cenotes cerca de ti",
       "results.count": (n) => `${n} cenote${n === 1 ? "" : "s"} · ordenados por tiempo`,
       "results.empty": "Ningún cenote coincide. Prueba ampliando la actividad o quitando «solo para niños».",
@@ -161,18 +165,21 @@
     map: null,
     markers: [],
     conditions: {},        // slug -> latest condition record
+    photos: {},            // slug -> { file, credit, license, source }
     turnstileLoaded: false,
     turnstileWidgetId: null
   };
 
   // ── Data load ──────────────────────────────────────────────────
   async function loadData() {
-    const [cRes, bRes] = await Promise.all([
+    const [cRes, bRes, pRes] = await Promise.all([
       fetch("data/cenotes.json"),
-      fetch("data/bases.json")
+      fetch("data/bases.json"),
+      fetch("data/photos.json").catch(() => null)
     ]);
     state.cenotes = (await cRes.json()).cenotes;
     state.bases = (await bRes.json()).bases;
+    if (pRes && pRes.ok) state.photos = await pRes.json();
   }
 
   async function loadConditions() {
@@ -286,21 +293,30 @@
         const reportBtn = CONFIG.API_BASE
           ? `<button type="button" class="report-btn" data-report-slug="${escapeHtml(c.slug)}" data-report-name="${escapeHtml(name)}">${t("card.report")}</button>`
           : "";
+        const photo = state.photos[c.slug];
+        const media = photo
+          ? `<a class="card-media" href="${escapeHtml(photo.source || photo.file)}" target="_blank" rel="noreferrer">
+               <img loading="lazy" decoding="async" src="${escapeHtml(photo.file)}" alt="${escapeHtml(name)}" />
+             </a>`
+          : `<div class="card-media card-media--painted" aria-hidden="true"></div>`;
         return `
           <article class="cenote-card">
-            <div class="card-top">
-              <h3 class="card-name">${escapeHtml(name)}</h3>
-              ${dist}
+            ${media}
+            <div class="card-body">
+              <div class="card-top">
+                <h3 class="card-name">${escapeHtml(name)}</h3>
+                ${dist}
+              </div>
+              <p class="card-summary">${escapeHtml(summary)}</p>
+              <div class="card-meta">
+                ${conditionPill(c.slug)}
+                ${activities}
+                ${skillPill(c)}
+                ${kids}
+                <span class="meta-pill cost">${costLabel(c)}</span>
+              </div>
+              <div class="card-foot">${verified}${reportBtn}</div>
             </div>
-            <p class="card-summary">${escapeHtml(summary)}</p>
-            <div class="card-meta">
-              ${conditionPill(c.slug)}
-              ${activities}
-              ${skillPill(c)}
-              ${kids}
-              <span class="meta-pill cost">${costLabel(c)}</span>
-            </div>
-            <div class="card-foot">${verified}${reportBtn}</div>
           </article>`;
       }).join("");
 
@@ -337,8 +353,10 @@
       state.map = new maplibregl.Map({
         container,
         style: "https://tiles.openfreemap.org/styles/positron",
-        center: [-87.4, 20.4],
-        zoom: 9.2,
+        // Wide default that frames the whole Riviera Maya corridor
+        // (Cancún → Tulum → Cobá → Chichén Itzá) until first render fits bounds
+        bounds: [[-88.7, 20.0], [-86.7, 21.2]],
+        fitBoundsOptions: { padding: 36 },
         attributionControl: { compact: true }
       });
       state.map.addControl(new maplibregl.NavigationControl({ showCompass: false }), "top-right");
@@ -353,6 +371,8 @@
     state.markers.forEach((m) => m.remove());
     state.markers = [];
 
+    const pts = [];
+
     list.forEach((c) => {
       const el = document.createElement("div");
       el.style.cssText = `
@@ -361,12 +381,14 @@
         box-shadow:0 2px 8px rgba(10,28,38,0.35);cursor:pointer;`;
       const name = langPref === "es" ? c.name_es : c.name_en;
       const popup = new window.maplibregl.Popup({ offset: 14, closeButton: false })
-        .setHTML(`<strong>${name}</strong>${costLabel(c)}`);
+        .setHTML(`<strong>${escapeHtml(name)}</strong>${costLabel(c)}`);
+      const lngLat = [c.coords[1], c.coords[0]];
       const marker = new window.maplibregl.Marker({ element: el })
-        .setLngLat([c.coords[1], c.coords[0]])
+        .setLngLat(lngLat)
         .setPopup(popup)
         .addTo(state.map);
       state.markers.push(marker);
+      pts.push(lngLat);
     });
 
     const base = state.bases.find((b) => b.id === state.baseId);
@@ -376,10 +398,23 @@
         width:14px;height:14px;border-radius:50%;
         background:#fff;border:3px solid #b14a3b;
         box-shadow:0 2px 6px rgba(10,28,38,0.4);`;
+      const lngLat = [base.coords[1], base.coords[0]];
       const baseMarker = new window.maplibregl.Marker({ element: el })
-        .setLngLat([base.coords[1], base.coords[0]])
+        .setLngLat(lngLat)
         .addTo(state.map);
       state.markers.push(baseMarker);
+      pts.push(lngLat);
+    }
+
+    if (pts.length >= 2) {
+      const lngs = pts.map((p) => p[0]);
+      const lats = pts.map((p) => p[1]);
+      state.map.fitBounds(
+        [[Math.min(...lngs), Math.min(...lats)], [Math.max(...lngs), Math.max(...lats)]],
+        { padding: 48, maxZoom: 12, duration: 600 }
+      );
+    } else if (pts.length === 1) {
+      state.map.flyTo({ center: pts[0], zoom: 12, duration: 600 });
     }
   }
 

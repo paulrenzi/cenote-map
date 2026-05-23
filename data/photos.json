@@ -1,0 +1,86 @@
+{
+  "gran-cenote": {
+    "file": "images/cenotes/gran-cenote.webp",
+    "credit": "dronepicr",
+    "license": "CC BY 2.0",
+    "source": "https://commons.wikimedia.org/wiki/File:Gran_cenote_Tulum_(20767214144).jpg",
+    "wikimedia_title": "File:Gran cenote Tulum (20767214144).jpg"
+  },
+  "dos-ojos": {
+    "file": "images/cenotes/dos-ojos.webp",
+    "credit": "diego_cue",
+    "license": "CC BY-SA 3.0",
+    "source": "https://commons.wikimedia.org/wiki/File:Cenote_Dos_Ojos,_M%C3%A9xico_-_panoramio.jpg",
+    "wikimedia_title": "File:Cenote Dos Ojos, México - panoramio.jpg"
+  },
+  "casa-cenote": {
+    "file": "images/cenotes/casa-cenote.webp",
+    "credit": "dronepicr",
+    "license": "CC BY 2.0",
+    "source": "https://commons.wikimedia.org/wiki/File:Casa_Cenote_in_Mexico_(42877772324).jpg",
+    "wikimedia_title": "File:Casa Cenote in Mexico (42877772324).jpg"
+  },
+  "carwash-aktun-ha": {
+    "file": "images/cenotes/carwash-aktun-ha.webp",
+    "credit": "Offthebeatonpath",
+    "license": "CC BY-SA 4.0",
+    "source": "https://commons.wikimedia.org/wiki/File:Cenote_Car_Wash.jpg",
+    "wikimedia_title": "File:Cenote Car Wash.jpg"
+  },
+  "zacil-ha": {
+    "file": "images/cenotes/zacil-ha.webp",
+    "credit": "ROberto Carlos Román Don",
+    "license": "CC BY-SA 4.0",
+    "source": "https://commons.wikimedia.org/wiki/File:Cenote_Zacil-Ha.jpg",
+    "wikimedia_title": "File:Cenote Zacil-Ha.jpg"
+  },
+  "yal-ku": {
+    "file": "images/cenotes/yal-ku.webp",
+    "credit": "Laura from Mexico",
+    "license": "CC BY 2.0",
+    "source": "https://commons.wikimedia.org/wiki/File:Yal-Ku_Lagoon,_Akumal_(8182528258).jpg",
+    "wikimedia_title": "File:Yal-Ku Lagoon, Akumal (8182528258).jpg"
+  },
+  "aktun-chen": {
+    "file": "images/cenotes/aktun-chen.webp",
+    "credit": "martin_vmorris",
+    "license": "CC BY-SA 2.0",
+    "source": "https://commons.wikimedia.org/wiki/File:Aktun_Chen_nature_park,_Quintana_Roo,_Mexico_2022_-_Cenote.jpg",
+    "wikimedia_title": "File:Aktun Chen nature park, Quintana Roo, Mexico 2022 - Cenote.jpg"
+  },
+  "choo-ha": {
+    "file": "images/cenotes/choo-ha.webp",
+    "credit": "Luis Miguel Bugallo Sánchez",
+    "license": "CC BY-SA 3.0",
+    "source": "https://commons.wikimedia.org/wiki/File:Cenote_Choo-Ha_-_Cob%C3%A1-7.jpg",
+    "wikimedia_title": "File:Cenote Choo-Ha - Cobá-7.jpg"
+  },
+  "ik-kil": {
+    "file": "images/cenotes/ik-kil.webp",
+    "credit": "Shinya Suzuki",
+    "license": "CC BY 2.0",
+    "source": "https://commons.wikimedia.org/wiki/File:Cenote_Ik_Kil,_Yucatan,_Dec_2011_-_01.jpg",
+    "wikimedia_title": "File:Cenote Ik Kil, Yucatan, Dec 2011 - 01.jpg"
+  },
+  "suytun": {
+    "file": "images/cenotes/suytun.webp",
+    "credit": "David Stanley from Nanaimo, Canada",
+    "license": "CC BY 2.0",
+    "source": "https://commons.wikimedia.org/wiki/File:Cenote_Suytun_(13158193355).jpg",
+    "wikimedia_title": "File:Cenote Suytun (13158193355).jpg"
+  },
+  "angelita": {
+    "file": "images/cenotes/angelita.webp",
+    "credit": "Serge Melki from Indianapolis, USA",
+    "license": "CC BY 2.0",
+    "source": "https://commons.wikimedia.org/wiki/File:Angelita_Cenote_-_Tulum_(5495663441).jpg",
+    "wikimedia_title": "File:Angelita Cenote - Tulum (5495663441).jpg"
+  },
+  "calavera": {
+    "file": "images/cenotes/calavera.webp",
+    "credit": "Offthebeatonpath",
+    "license": "CC BY-SA 4.0",
+    "source": "https://commons.wikimedia.org/wiki/File:Cenote_Calavera.jpg",
+    "wikimedia_title": "File:Cenote Calavera.jpg"
+  }
+}
