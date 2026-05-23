@@ -294,17 +294,18 @@
           ? `<button type="button" class="report-btn" data-report-slug="${escapeHtml(c.slug)}" data-report-name="${escapeHtml(name)}">${t("card.report")}</button>`
           : "";
         const photo = state.photos[c.slug];
+        const detailHref = `cenotes/${encodeURIComponent(c.slug)}.html${langPref === "es" ? "?lang=es" : ""}`;
         const media = photo
-          ? `<a class="card-media" href="${escapeHtml(photo.source || photo.file)}" target="_blank" rel="noreferrer">
+          ? `<a class="card-media" href="${detailHref}" aria-label="${escapeHtml(name)}">
                <img loading="lazy" decoding="async" src="${escapeHtml(photo.file)}" alt="${escapeHtml(name)}" />
              </a>`
-          : `<div class="card-media card-media--painted" aria-hidden="true"></div>`;
+          : `<a class="card-media card-media--painted" href="${detailHref}" aria-label="${escapeHtml(name)}"></a>`;
         return `
           <article class="cenote-card">
             ${media}
             <div class="card-body">
               <div class="card-top">
-                <h3 class="card-name">${escapeHtml(name)}</h3>
+                <h3 class="card-name"><a href="${detailHref}" class="card-name-link">${escapeHtml(name)}</a></h3>
                 ${dist}
               </div>
               <p class="card-summary">${escapeHtml(summary)}</p>
