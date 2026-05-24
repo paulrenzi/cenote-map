@@ -37,6 +37,7 @@
       "card.kids": "Kid-friendly",
       "card.verified": (d) => `Verified ${d}`,
       "card.report": "Report",
+      "card.photoSoon": "Photo coming soon",
       "card.cond.low":    (d) => `Quiet · ${d}d ago`,
       "card.cond.medium": (d) => `Busy · ${d}d ago`,
       "card.cond.high":   (d) => `Packed · ${d}d ago`,
@@ -92,6 +93,7 @@
       "card.kids": "Para niños",
       "card.verified": (d) => `Verificado ${d}`,
       "card.report": "Reportar",
+      "card.photoSoon": "Foto próximamente",
       "card.cond.low":    (d) => `Tranquilo · hace ${d}d`,
       "card.cond.medium": (d) => `Concurrido · hace ${d}d`,
       "card.cond.high":   (d) => `Lleno · hace ${d}d`,
@@ -268,6 +270,14 @@
     }[m]));
   }
 
+  // Deterministic per-slug hue shift so cenotes without photos get a
+  // visually distinct (but still on-brand) painted placeholder.
+  function hueFromSlug(s) {
+    let h = 0;
+    for (let i = 0; i < s.length; i++) h = (h * 31 + s.charCodeAt(i)) & 0xffff;
+    return (h % 70) - 35;
+  }
+
   function renderCards() {
     const list = visibleCenotes();
     const wrap = document.getElementById("cards");
@@ -299,7 +309,10 @@
           ? `<a class="card-media" href="${detailHref}" aria-label="${escapeHtml(name)}">
                <img loading="lazy" decoding="async" src="${escapeHtml(photo.file)}" alt="${escapeHtml(name)}" />
              </a>`
-          : `<a class="card-media card-media--painted" href="${detailHref}" aria-label="${escapeHtml(name)}"></a>`;
+          : `<a class="card-media card-media--painted" href="${detailHref}" aria-label="${escapeHtml(name)}" style="--hue-shift:${hueFromSlug(c.slug)}deg">
+               <span class="placeholder-name">${escapeHtml(name)}</span>
+               <span class="placeholder-note">${t("card.photoSoon")}</span>
+             </a>`;
         return `
           <article class="cenote-card">
             ${media}
@@ -590,7 +603,7 @@
     loadConditions().then(() => renderCards());
 
     if ("serviceWorker" in navigator && location.protocol === "https:") {
-      navigator.serviceWorker.register("sw.js?v=4").catch(() => {});
+      navigator.serviceWorker.register("sw.js?v=5").catch(() => {});
     }
   }
 

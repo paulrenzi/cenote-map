@@ -19,6 +19,7 @@ credit will be regenerated here.
 - **Cenote Calavera (Temple of Doom)** (`images/cenotes/calavera.webp`) — Offthebeatonpath, CC BY-SA 4.0 · [source](https://commons.wikimedia.org/wiki/File:Cenote_Calavera.jpg)
 - **Cenote Carwash (Aktun-Ha)** (`images/cenotes/carwash-aktun-ha.webp`) — Offthebeatonpath, CC BY-SA 4.0 · [source](https://commons.wikimedia.org/wiki/File:Cenote_Car_Wash.jpg)
 - **Casa Cenote** (`images/cenotes/casa-cenote.webp`) — dronepicr, CC BY 2.0 · [source](https://commons.wikimedia.org/wiki/File:Casa_Cenote_in_Mexico_(42877772324).jpg)
+- **Cenote Azul** (`images/cenotes/cenote-azul.webp`) — Gen. BaTBaiLeyS, CC BY 4.0 · [source](https://commons.wikimedia.org/wiki/File:Cenote_azul_mirror.jpg)
 - **Cenote Choo-Ha** (`images/cenotes/choo-ha.webp`) — Luis Miguel Bugallo Sánchez, CC BY-SA 3.0 · [source](https://commons.wikimedia.org/wiki/File:Cenote_Choo-Ha_-_Cob%C3%A1-7.jpg)
 - **Dos Ojos** (`images/cenotes/dos-ojos.webp`) — diego_cue, CC BY-SA 3.0 · [source](https://commons.wikimedia.org/wiki/File:Cenote_Dos_Ojos,_M%C3%A9xico_-_panoramio.jpg)
 - **Gran Cenote** (`images/cenotes/gran-cenote.webp`) — dronepicr, CC BY 2.0 · [source](https://commons.wikimedia.org/wiki/File:Gran_cenote_Tulum_(20767214144).jpg)
@@ -30,10 +31,10 @@ credit will be regenerated here.
 ## Without photos (yet)
 
 These cenotes do not currently have a Wikimedia Commons photo with a
-compatible CC license — the cards show a styled placeholder until a
-first-party photo is added to `images/cenotes/<slug>.webp`.
+compatible CC license — the cards show a painted placeholder with the
+cenote name until a first-party photo is added to
+`images/cenotes/<slug>.webp`.
 
-- Cenote Azul (`cenote-azul`)
 - Cenote Cristal & Escondido (`cristal-escondido`)
 - Cenote Cristalino (`cristalino`)
 - Cenote Jardín del Edén (Ponderosa) (`jardin-del-eden`)

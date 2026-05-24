@@ -82,5 +82,12 @@
     "license": "CC BY-SA 4.0",
     "source": "https://commons.wikimedia.org/wiki/File:Cenote_Calavera.jpg",
     "wikimedia_title": "File:Cenote Calavera.jpg"
+  },
+  "cenote-azul": {
+    "file": "images/cenotes/cenote-azul.webp",
+    "credit": "Gen. BaTBaiLeyS",
+    "license": "CC BY 4.0",
+    "source": "https://commons.wikimedia.org/wiki/File:Cenote_azul_mirror.jpg",
+    "wikimedia_title": "File:Cenote azul mirror.jpg"
   }
 }
