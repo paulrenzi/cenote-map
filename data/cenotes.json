@@ -15,9 +15,16 @@
       "slug": "gran-cenote",
       "name_en": "Gran Cenote",
       "name_es": "Gran Cenote",
-      "coords": [20.2167, -87.4711],
+      "coords": [
+        20.2167,
+        -87.4711
+      ],
       "region": "tulum",
-      "activities": ["swim", "snorkel", "cavern_dive"],
+      "activities": [
+        "swim",
+        "snorkel",
+        "cavern_dive"
+      ],
       "skill_min": "swimmer",
       "kid_friendly": true,
       "wheelchair": false,
@@ -27,10 +34,24 @@
       "opening_orientation_deg": 180,
       "hours": "08:10-16:45",
       "cost_mxn": 500,
-      "access": {"road": "paved", "parking": true, "collectivo_stops": true, "four_wd_needed": false},
-      "amenities": ["showers", "lockers", "restrooms", "life_vest_rental", "snorkel_rental"],
+      "access": {
+        "road": "paved",
+        "parking": true,
+        "collectivo_stops": true,
+        "four_wd_needed": false
+      },
+      "amenities": [
+        "showers",
+        "lockers",
+        "restrooms",
+        "life_vest_rental",
+        "snorkel_rental"
+      ],
       "ownership": "private_mx",
-      "eco": {"sunscreen_rule": "biodegradable_only", "crowd_pressure": "high"},
+      "eco": {
+        "sunscreen_rule": "biodegradable_only",
+        "crowd_pressure": "high"
+      },
       "verified": "2026-04-01",
       "summary_en": "One of the most famous cenotes — turquoise water, swim-through cavern arches, friendly turtles. Crowded by 10am; go right at opening.",
       "summary_es": "Uno de los cenotes más famosos — agua turquesa, arcos de caverna para nadar, tortugas amistosas. Lleno para las 10am; llega al abrir."
@@ -39,9 +60,17 @@
       "slug": "dos-ojos",
       "name_en": "Dos Ojos",
       "name_es": "Dos Ojos",
-      "coords": [20.3236, -87.3895],
+      "coords": [
+        20.3236,
+        -87.3895
+      ],
       "region": "tulum",
-      "activities": ["swim", "snorkel", "cavern_dive", "cave_dive"],
+      "activities": [
+        "swim",
+        "snorkel",
+        "cavern_dive",
+        "cave_dive"
+      ],
       "skill_min": "swimmer",
       "kid_friendly": true,
       "wheelchair": false,
@@ -51,10 +80,25 @@
       "opening_orientation_deg": 90,
       "hours": "08:00-17:00",
       "cost_mxn": 600,
-      "access": {"road": "dirt_easy", "parking": true, "collectivo_stops": true, "four_wd_needed": false},
-      "amenities": ["showers", "lockers", "restrooms", "restaurant", "snorkel_rental", "guide_available"],
+      "access": {
+        "road": "dirt_easy",
+        "parking": true,
+        "collectivo_stops": true,
+        "four_wd_needed": false
+      },
+      "amenities": [
+        "showers",
+        "lockers",
+        "restrooms",
+        "restaurant",
+        "snorkel_rental",
+        "guide_available"
+      ],
       "ownership": "ejido",
-      "eco": {"sunscreen_rule": "none_allowed", "crowd_pressure": "high"},
+      "eco": {
+        "sunscreen_rule": "none_allowed",
+        "crowd_pressure": "high"
+      },
       "verified": "2026-04-01",
       "summary_en": "Two connected sinkholes feeding a vast underwater cave system. World-class snorkel with light beams in the morning; the cavern dive is legendary.",
       "summary_es": "Dos cenotes conectados que alimentan un enorme sistema de cuevas. Snorkel de clase mundial con rayos de luz por la mañana; el buceo de caverna es legendario."
@@ -63,9 +107,16 @@
       "slug": "casa-cenote",
       "name_en": "Casa Cenote",
       "name_es": "Casa Cenote",
-      "coords": [20.2706, -87.4239],
+      "coords": [
+        20.2706,
+        -87.4239
+      ],
       "region": "tulum",
-      "activities": ["swim", "snorkel", "cavern_dive"],
+      "activities": [
+        "swim",
+        "snorkel",
+        "cavern_dive"
+      ],
       "skill_min": "none",
       "kid_friendly": true,
       "wheelchair": true,
@@ -75,10 +126,25 @@
       "opening_orientation_deg": null,
       "hours": "09:00-17:00",
       "cost_mxn": 250,
-      "access": {"road": "paved", "parking": true, "collectivo_stops": true, "four_wd_needed": false},
-      "amenities": ["showers", "lockers", "restrooms", "restaurant", "kayak_rental", "snorkel_rental"],
+      "access": {
+        "road": "paved",
+        "parking": true,
+        "collectivo_stops": true,
+        "four_wd_needed": false
+      },
+      "amenities": [
+        "showers",
+        "lockers",
+        "restrooms",
+        "restaurant",
+        "kayak_rental",
+        "snorkel_rental"
+      ],
       "ownership": "private_mx",
-      "eco": {"sunscreen_rule": "biodegradable_only", "crowd_pressure": "medium"},
+      "eco": {
+        "sunscreen_rule": "biodegradable_only",
+        "crowd_pressure": "medium"
+      },
       "verified": "2026-04-01",
       "summary_en": "Open mangrove-lined channel where fresh and salt water meet — easy floating, mangrove tunnels, occasional resident crocodile Panchito. Great for beginners and families.",
       "summary_es": "Canal abierto bordeado de manglares donde se encuentran agua dulce y salada — flotación fácil, túneles de manglar, ocasionalmente el cocodrilo Panchito. Ideal para principiantes y familias."
@@ -87,9 +153,17 @@
       "slug": "carwash-aktun-ha",
       "name_en": "Cenote Carwash (Aktun-Ha)",
       "name_es": "Cenote Carwash (Aktun-Ha)",
-      "coords": [20.2278, -87.4517],
+      "coords": [
+        20.2278,
+        -87.4517
+      ],
       "region": "tulum",
-      "activities": ["swim", "snorkel", "cavern_dive", "cave_dive"],
+      "activities": [
+        "swim",
+        "snorkel",
+        "cavern_dive",
+        "cave_dive"
+      ],
       "skill_min": "swimmer",
       "kid_friendly": true,
       "wheelchair": false,
@@ -99,10 +173,22 @@
       "opening_orientation_deg": 0,
       "hours": "09:00-17:00",
       "cost_mxn": 300,
-      "access": {"road": "paved", "parking": true, "collectivo_stops": true, "four_wd_needed": false},
-      "amenities": ["restrooms", "snorkel_rental", "picnic_area"],
+      "access": {
+        "road": "paved",
+        "parking": true,
+        "collectivo_stops": true,
+        "four_wd_needed": false
+      },
+      "amenities": [
+        "restrooms",
+        "snorkel_rental",
+        "picnic_area"
+      ],
       "ownership": "ejido",
-      "eco": {"sunscreen_rule": "none_allowed", "crowd_pressure": "low"},
+      "eco": {
+        "sunscreen_rule": "none_allowed",
+        "crowd_pressure": "low"
+      },
       "verified": "2026-04-01",
       "summary_en": "Named because taxi drivers once washed their cars here. Lily-pad surface, turtles, and a cavern entrance for divers. Quieter than the headliners.",
       "summary_es": "Llamado así porque los taxistas lavaban sus autos aquí. Superficie con nenúfares, tortugas y entrada de caverna para buceadores. Más tranquilo que los cenotes famosos."
@@ -111,9 +197,16 @@
       "slug": "calavera",
       "name_en": "Cenote Calavera (Temple of Doom)",
       "name_es": "Cenote Calavera (Templo de la Perdición)",
-      "coords": [20.2233, -87.4536],
+      "coords": [
+        20.2233,
+        -87.4536
+      ],
       "region": "tulum",
-      "activities": ["swim", "cliff_jump", "cavern_dive"],
+      "activities": [
+        "swim",
+        "cliff_jump",
+        "cavern_dive"
+      ],
       "skill_min": "swimmer",
       "kid_friendly": false,
       "wheelchair": false,
@@ -123,10 +216,22 @@
       "opening_orientation_deg": 0,
       "hours": "09:00-17:00",
       "cost_mxn": 250,
-      "access": {"road": "paved", "parking": true, "collectivo_stops": false, "four_wd_needed": false},
-      "amenities": ["restrooms", "rope_swing", "ladder"],
+      "access": {
+        "road": "paved",
+        "parking": true,
+        "collectivo_stops": false,
+        "four_wd_needed": false
+      },
+      "amenities": [
+        "restrooms",
+        "rope_swing",
+        "ladder"
+      ],
       "ownership": "ejido",
-      "eco": {"sunscreen_rule": "none_allowed", "crowd_pressure": "medium"},
+      "eco": {
+        "sunscreen_rule": "none_allowed",
+        "crowd_pressure": "medium"
+      },
       "verified": "2026-04-01",
       "summary_en": "Three skull-shaped openings in the jungle floor. Jump 3m into clear water below or descend by ladder. Stunning halocline visible to divers.",
       "summary_es": "Tres aberturas con forma de calavera en el suelo de la selva. Salta 3m al agua clara o baja por la escalera. Haloclina impresionante visible para buceadores."
@@ -135,9 +240,16 @@
       "slug": "zacil-ha",
       "name_en": "Cenote Zacil-Há",
       "name_es": "Cenote Zacil-Há",
-      "coords": [20.2200, -87.4569],
+      "coords": [
+        20.22,
+        -87.4569
+      ],
       "region": "tulum",
-      "activities": ["swim", "snorkel", "zip_line"],
+      "activities": [
+        "swim",
+        "snorkel",
+        "zip_line"
+      ],
       "skill_min": "none",
       "kid_friendly": true,
       "wheelchair": false,
@@ -147,10 +259,23 @@
       "opening_orientation_deg": null,
       "hours": "10:00-17:00",
       "cost_mxn": 200,
-      "access": {"road": "paved", "parking": true, "collectivo_stops": true, "four_wd_needed": false},
-      "amenities": ["restrooms", "restaurant", "zip_line", "picnic_area"],
+      "access": {
+        "road": "paved",
+        "parking": true,
+        "collectivo_stops": true,
+        "four_wd_needed": false
+      },
+      "amenities": [
+        "restrooms",
+        "restaurant",
+        "zip_line",
+        "picnic_area"
+      ],
       "ownership": "ejido",
-      "eco": {"sunscreen_rule": "biodegradable_only", "crowd_pressure": "medium"},
+      "eco": {
+        "sunscreen_rule": "biodegradable_only",
+        "crowd_pressure": "medium"
+      },
       "verified": "2026-04-01",
       "summary_en": "Shallow open-air pool with a zip line over the water — easy family stop. Often combined with neighboring Carwash and Calavera in a half-day loop.",
       "summary_es": "Piscina abierta y poco profunda con tirolesa sobre el agua — parada familiar fácil. A menudo se combina con Carwash y Calavera en un recorrido de medio día."
@@ -159,9 +284,16 @@
       "slug": "cristal-escondido",
       "name_en": "Cenote Cristal & Escondido",
       "name_es": "Cenotes Cristal y Escondido",
-      "coords": [20.1903, -87.4675],
+      "coords": [
+        20.1903,
+        -87.4675
+      ],
       "region": "tulum",
-      "activities": ["swim", "snorkel", "cliff_jump"],
+      "activities": [
+        "swim",
+        "snorkel",
+        "cliff_jump"
+      ],
       "skill_min": "swimmer",
       "kid_friendly": true,
       "wheelchair": false,
@@ -171,10 +303,22 @@
       "opening_orientation_deg": null,
       "hours": "10:00-17:00",
       "cost_mxn": 250,
-      "access": {"road": "paved", "parking": true, "collectivo_stops": true, "four_wd_needed": false},
-      "amenities": ["restrooms", "picnic_area", "diving_platform"],
+      "access": {
+        "road": "paved",
+        "parking": true,
+        "collectivo_stops": true,
+        "four_wd_needed": false
+      },
+      "amenities": [
+        "restrooms",
+        "picnic_area",
+        "diving_platform"
+      ],
       "ownership": "ejido",
-      "eco": {"sunscreen_rule": "none_allowed", "crowd_pressure": "low"},
+      "eco": {
+        "sunscreen_rule": "none_allowed",
+        "crowd_pressure": "low"
+      },
       "verified": "2026-04-01",
       "summary_en": "Two open cenotes across the highway from each other — one ticket gets you both. Wooden jump platforms; clear shallow water; locals' favorite for an afternoon dip.",
       "summary_es": "Dos cenotes abiertos a ambos lados de la carretera — un boleto incluye los dos. Plataformas de salto de madera; agua clara y poco profunda; favorito de los locales para un chapuzón."
@@ -183,9 +327,14 @@
       "slug": "yal-ku",
       "name_en": "Yal-Kú Lagoon",
       "name_es": "Laguna Yal-Kú",
-      "coords": [20.4055, -87.3094],
+      "coords": [
+        20.4055,
+        -87.3094
+      ],
       "region": "akumal",
-      "activities": ["snorkel"],
+      "activities": [
+        "snorkel"
+      ],
       "skill_min": "swimmer",
       "kid_friendly": true,
       "wheelchair": false,
@@ -195,10 +344,24 @@
       "opening_orientation_deg": null,
       "hours": "08:00-17:30",
       "cost_mxn": 350,
-      "access": {"road": "paved", "parking": true, "collectivo_stops": false, "four_wd_needed": false},
-      "amenities": ["showers", "lockers", "restrooms", "snorkel_rental", "life_vest_rental"],
+      "access": {
+        "road": "paved",
+        "parking": true,
+        "collectivo_stops": false,
+        "four_wd_needed": false
+      },
+      "amenities": [
+        "showers",
+        "lockers",
+        "restrooms",
+        "snorkel_rental",
+        "life_vest_rental"
+      ],
       "ownership": "community",
-      "eco": {"sunscreen_rule": "none_allowed", "crowd_pressure": "medium"},
+      "eco": {
+        "sunscreen_rule": "none_allowed",
+        "crowd_pressure": "medium"
+      },
       "verified": "2026-04-01",
       "summary_en": "Open brackish lagoon where Akumal's underground rivers meet the sea. Calm snorkeling, parrotfish and angelfish, no boats. A short walk from Akumal village.",
       "summary_es": "Laguna salobre abierta donde los ríos subterráneos de Akumal se encuentran con el mar. Snorkel tranquilo, peces loro y ángel, sin lanchas. A poca distancia caminando del pueblo de Akumal."
@@ -207,9 +370,16 @@
       "slug": "cenote-azul",
       "name_en": "Cenote Azul",
       "name_es": "Cenote Azul",
-      "coords": [20.4584, -87.2329],
+      "coords": [
+        20.4584,
+        -87.2329
+      ],
       "region": "riviera_central",
-      "activities": ["swim", "snorkel", "cliff_jump"],
+      "activities": [
+        "swim",
+        "snorkel",
+        "cliff_jump"
+      ],
       "skill_min": "swimmer",
       "kid_friendly": true,
       "wheelchair": false,
@@ -219,10 +389,25 @@
       "opening_orientation_deg": null,
       "hours": "09:00-17:30",
       "cost_mxn": 200,
-      "access": {"road": "paved", "parking": true, "collectivo_stops": true, "four_wd_needed": false},
-      "amenities": ["restrooms", "snorkel_rental", "life_vest_rental", "shallow_kids_area", "picnic_area", "restaurant"],
+      "access": {
+        "road": "paved",
+        "parking": true,
+        "collectivo_stops": true,
+        "four_wd_needed": false
+      },
+      "amenities": [
+        "restrooms",
+        "snorkel_rental",
+        "life_vest_rental",
+        "shallow_kids_area",
+        "picnic_area",
+        "restaurant"
+      ],
       "ownership": "ejido",
-      "eco": {"sunscreen_rule": "biodegradable_only", "crowd_pressure": "high"},
+      "eco": {
+        "sunscreen_rule": "biodegradable_only",
+        "crowd_pressure": "high"
+      },
       "verified": null,
       "summary_en": "Iconic open-air cenote between Akumal and Playa — shallow kids' pool, deeper swim area with a small cliff jump, schools of tiny fish that nibble your feet. The most family-friendly stop on Federal 307.",
       "summary_es": "Cenote abierto icónico entre Akumal y Playa — alberca poco profunda para niños, zona honda con un pequeño salto, cardúmenes de peces que pellizcan los pies. La parada más familiar de la Federal 307."
@@ -231,9 +416,17 @@
       "slug": "cristalino",
       "name_en": "Cenote Cristalino",
       "name_es": "Cenote Cristalino",
-      "coords": [20.4554, -87.2331],
+      "coords": [
+        20.4554,
+        -87.2331
+      ],
       "region": "riviera_central",
-      "activities": ["swim", "snorkel", "cliff_jump", "cavern_dive"],
+      "activities": [
+        "swim",
+        "snorkel",
+        "cliff_jump",
+        "cavern_dive"
+      ],
       "skill_min": "swimmer",
       "kid_friendly": true,
       "wheelchair": false,
@@ -243,10 +436,22 @@
       "opening_orientation_deg": null,
       "hours": "09:00-17:00",
       "cost_mxn": 150,
-      "access": {"road": "paved", "parking": true, "collectivo_stops": true, "four_wd_needed": false},
-      "amenities": ["restrooms", "picnic_area", "snorkel_rental"],
+      "access": {
+        "road": "paved",
+        "parking": true,
+        "collectivo_stops": true,
+        "four_wd_needed": false
+      },
+      "amenities": [
+        "restrooms",
+        "picnic_area",
+        "snorkel_rental"
+      ],
       "ownership": "ejido",
-      "eco": {"sunscreen_rule": "biodegradable_only", "crowd_pressure": "medium"},
+      "eco": {
+        "sunscreen_rule": "biodegradable_only",
+        "crowd_pressure": "medium"
+      },
       "verified": null,
       "summary_en": "Quieter sibling of Cenote Azul, walking distance away. Wooden jump platforms, cavern entrance for divers, fewer tour buses. Easy combine with Azul + Edén in one stop.",
       "summary_es": "Hermano más tranquilo del Cenote Azul, a poca distancia caminando. Plataformas de salto, entrada de caverna para buzos, menos tours. Fácil combinarlo con Azul y Edén en una parada."
@@ -255,9 +460,18 @@
       "slug": "jardin-del-eden",
       "name_en": "Cenote Jardín del Edén (Ponderosa)",
       "name_es": "Cenote Jardín del Edén (Ponderosa)",
-      "coords": [20.4505, -87.2272],
+      "coords": [
+        20.4505,
+        -87.2272
+      ],
       "region": "riviera_central",
-      "activities": ["swim", "snorkel", "cliff_jump", "cavern_dive", "cave_dive"],
+      "activities": [
+        "swim",
+        "snorkel",
+        "cliff_jump",
+        "cavern_dive",
+        "cave_dive"
+      ],
       "skill_min": "swimmer",
       "kid_friendly": true,
       "wheelchair": false,
@@ -267,10 +481,23 @@
       "opening_orientation_deg": null,
       "hours": "09:00-17:00",
       "cost_mxn": 200,
-      "access": {"road": "paved", "parking": true, "collectivo_stops": true, "four_wd_needed": false},
-      "amenities": ["restrooms", "picnic_area", "snorkel_rental", "lockers"],
+      "access": {
+        "road": "paved",
+        "parking": true,
+        "collectivo_stops": true,
+        "four_wd_needed": false
+      },
+      "amenities": [
+        "restrooms",
+        "picnic_area",
+        "snorkel_rental",
+        "lockers"
+      ],
       "ownership": "ejido",
-      "eco": {"sunscreen_rule": "none_allowed", "crowd_pressure": "medium"},
+      "eco": {
+        "sunscreen_rule": "none_allowed",
+        "crowd_pressure": "medium"
+      },
       "verified": null,
       "summary_en": "Largest of the Azul-cluster cenotes — wide open pool with cliff jumps, halocline at depth, and one of the friendliest cavern dives in the area. Bring snorkel gear.",
       "summary_es": "El más grande del grupo Azul — alberca abierta amplia con saltos, haloclina en lo hondo y uno de los buceos de caverna más amistosos del área. Trae equipo de snorkel."
@@ -279,9 +506,16 @@
       "slug": "manati",
       "name_en": "Cenote Manatí",
       "name_es": "Cenote Manatí",
-      "coords": [20.2828, -87.4239],
+      "coords": [
+        20.2828,
+        -87.4239
+      ],
       "region": "tulum",
-      "activities": ["swim", "snorkel", "cavern_dive"],
+      "activities": [
+        "swim",
+        "snorkel",
+        "cavern_dive"
+      ],
       "skill_min": "swimmer",
       "kid_friendly": true,
       "wheelchair": false,
@@ -291,10 +525,22 @@
       "opening_orientation_deg": null,
       "hours": "09:00-17:00",
       "cost_mxn": 200,
-      "access": {"road": "paved", "parking": true, "collectivo_stops": true, "four_wd_needed": false},
-      "amenities": ["restrooms", "kayak_rental", "snorkel_rental"],
+      "access": {
+        "road": "paved",
+        "parking": true,
+        "collectivo_stops": true,
+        "four_wd_needed": false
+      },
+      "amenities": [
+        "restrooms",
+        "kayak_rental",
+        "snorkel_rental"
+      ],
       "ownership": "community",
-      "eco": {"sunscreen_rule": "none_allowed", "crowd_pressure": "low"},
+      "eco": {
+        "sunscreen_rule": "none_allowed",
+        "crowd_pressure": "low"
+      },
       "verified": null,
       "summary_en": "Quieter cousin of Casa Cenote on the same Tankah lagoon system — shaded mangrove channels, occasional manatee sightings (rare), and no crocodile lore to keep crowds away.",
       "summary_es": "Primo tranquilo de Casa Cenote en el mismo sistema lagunar de Tankah — canales de manglar sombreados, manatíes ocasionales (raros) y sin la fama de cocodrilo que aleja gente."
@@ -303,9 +549,17 @@
       "slug": "aktun-chen",
       "name_en": "Aktun Chen",
       "name_es": "Aktun Chen",
-      "coords": [20.3593, -87.3719],
+      "coords": [
+        20.3593,
+        -87.3719
+      ],
       "region": "akumal",
-      "activities": ["swim", "snorkel", "zip_line", "rappel"],
+      "activities": [
+        "swim",
+        "snorkel",
+        "zip_line",
+        "rappel"
+      ],
       "skill_min": "swimmer",
       "kid_friendly": true,
       "wheelchair": false,
@@ -315,10 +569,26 @@
       "opening_orientation_deg": null,
       "hours": "09:00-16:00",
       "cost_mxn": 1100,
-      "access": {"road": "paved", "parking": true, "collectivo_stops": false, "four_wd_needed": false},
-      "amenities": ["restrooms", "restaurant", "lockers", "zip_line", "rappel", "guided_only", "spider_monkey_sanctuary"],
+      "access": {
+        "road": "paved",
+        "parking": true,
+        "collectivo_stops": false,
+        "four_wd_needed": false
+      },
+      "amenities": [
+        "restrooms",
+        "restaurant",
+        "lockers",
+        "zip_line",
+        "rappel",
+        "guided_only",
+        "spider_monkey_sanctuary"
+      ],
       "ownership": "private_mx",
-      "eco": {"sunscreen_rule": "none_allowed", "crowd_pressure": "medium"},
+      "eco": {
+        "sunscreen_rule": "none_allowed",
+        "crowd_pressure": "medium"
+      },
       "verified": null,
       "summary_en": "Eco park between Akumal and Tulum — guided cave walk with a cenote at the end, plus zip lines and a small spider monkey rescue. Pricier than ejido cenotes but a half-day with kids.",
       "summary_es": "Parque ecológico entre Akumal y Tulum — recorrido guiado por la cueva con un cenote al final, tirolesa y rescate de monos araña. Más caro que los ejidales pero medio día con niños."
@@ -327,9 +597,17 @@
       "slug": "verde-lucero",
       "name_en": "Cenote Verde Lucero",
       "name_es": "Cenote Verde Lucero",
-      "coords": [20.8156, -87.0383],
+      "coords": [
+        20.8156,
+        -87.0383
+      ],
       "region": "puerto_morelos",
-      "activities": ["swim", "snorkel", "cliff_jump", "zip_line"],
+      "activities": [
+        "swim",
+        "snorkel",
+        "cliff_jump",
+        "zip_line"
+      ],
       "skill_min": "swimmer",
       "kid_friendly": false,
       "wheelchair": false,
@@ -339,10 +617,23 @@
       "opening_orientation_deg": null,
       "hours": "09:00-17:00",
       "cost_mxn": 250,
-      "access": {"road": "dirt_easy", "parking": true, "collectivo_stops": false, "four_wd_needed": false},
-      "amenities": ["restrooms", "zip_line", "rope_swing", "snorkel_rental"],
+      "access": {
+        "road": "dirt_easy",
+        "parking": true,
+        "collectivo_stops": false,
+        "four_wd_needed": false
+      },
+      "amenities": [
+        "restrooms",
+        "zip_line",
+        "rope_swing",
+        "snorkel_rental"
+      ],
       "ownership": "ejido",
-      "eco": {"sunscreen_rule": "none_allowed", "crowd_pressure": "low"},
+      "eco": {
+        "sunscreen_rule": "none_allowed",
+        "crowd_pressure": "low"
+      },
       "verified": null,
       "summary_en": "On the Puerto Morelos jungle road — open pool with a long zip line that drops you in. Adventure-leaning crowd, fewer families. Pair with neighbouring Siete Bocas for a half-day.",
       "summary_es": "En la ruta de los cenotes de Puerto Morelos — alberca abierta con tirolesa larga que termina en el agua. Público más aventurero, menos familiar. Combínalo con Siete Bocas."
@@ -351,9 +642,17 @@
       "slug": "siete-bocas",
       "name_en": "Cenote Siete Bocas",
       "name_es": "Cenote Siete Bocas",
-      "coords": [20.8164, -87.0386],
+      "coords": [
+        20.8164,
+        -87.0386
+      ],
       "region": "puerto_morelos",
-      "activities": ["swim", "snorkel", "cliff_jump", "cavern_dive"],
+      "activities": [
+        "swim",
+        "snorkel",
+        "cliff_jump",
+        "cavern_dive"
+      ],
       "skill_min": "swimmer",
       "kid_friendly": false,
       "wheelchair": false,
@@ -363,10 +662,22 @@
       "opening_orientation_deg": 0,
       "hours": "09:00-17:00",
       "cost_mxn": 350,
-      "access": {"road": "dirt_easy", "parking": true, "collectivo_stops": false, "four_wd_needed": false},
-      "amenities": ["restrooms", "rope_swing", "snorkel_rental"],
+      "access": {
+        "road": "dirt_easy",
+        "parking": true,
+        "collectivo_stops": false,
+        "four_wd_needed": false
+      },
+      "amenities": [
+        "restrooms",
+        "rope_swing",
+        "snorkel_rental"
+      ],
       "ownership": "ejido",
-      "eco": {"sunscreen_rule": "none_allowed", "crowd_pressure": "low"},
+      "eco": {
+        "sunscreen_rule": "none_allowed",
+        "crowd_pressure": "low"
+      },
       "verified": null,
       "summary_en": "Seven small openings in the limestone ceiling, jump between them or swim under the arches. Spectacular underwater light beams late morning. Cool, dark, and quiet.",
       "summary_es": "Siete pequeñas aberturas en el techo de piedra caliza, saltas entre ellas o nadas bajo los arcos. Rayos de luz espectaculares a media mañana. Fresco, oscuro y tranquilo."
@@ -375,9 +686,14 @@
       "slug": "choo-ha",
       "name_en": "Cenote Choo-Ha",
       "name_es": "Cenote Choo-Ha",
-      "coords": [20.4986, -87.7236],
+      "coords": [
+        20.4986,
+        -87.7236
+      ],
       "region": "coba",
-      "activities": ["swim"],
+      "activities": [
+        "swim"
+      ],
       "skill_min": "none",
       "kid_friendly": true,
       "wheelchair": false,
@@ -387,10 +703,23 @@
       "opening_orientation_deg": null,
       "hours": "09:00-17:00",
       "cost_mxn": 100,
-      "access": {"road": "paved", "parking": true, "collectivo_stops": false, "four_wd_needed": false},
-      "amenities": ["restrooms", "showers", "life_vest_rental", "stairs"],
+      "access": {
+        "road": "paved",
+        "parking": true,
+        "collectivo_stops": false,
+        "four_wd_needed": false
+      },
+      "amenities": [
+        "restrooms",
+        "showers",
+        "life_vest_rental",
+        "stairs"
+      ],
       "ownership": "ejido",
-      "eco": {"sunscreen_rule": "none_allowed", "crowd_pressure": "low"},
+      "eco": {
+        "sunscreen_rule": "none_allowed",
+        "crowd_pressure": "low"
+      },
       "verified": null,
       "summary_en": "Shallow enclosed cave cenote near Cobá — dramatic stalactites overhead, knee-to-chest depth, life vests mandatory. One of three Cobá cenotes on a single circuit ticket.",
       "summary_es": "Cenote cavernoso poco profundo cerca de Cobá — estalactitas dramáticas arriba, agua de rodilla a pecho, chalecos obligatorios. Uno de tres cenotes de Cobá en un solo boleto."
@@ -399,9 +728,15 @@
       "slug": "tamcach-ha",
       "name_en": "Cenote Tamcach-Ha",
       "name_es": "Cenote Tamcach-Ha",
-      "coords": [20.4953, -87.7264],
+      "coords": [
+        20.4953,
+        -87.7264
+      ],
       "region": "coba",
-      "activities": ["swim", "cliff_jump"],
+      "activities": [
+        "swim",
+        "cliff_jump"
+      ],
       "skill_min": "swimmer",
       "kid_friendly": false,
       "wheelchair": false,
@@ -411,10 +746,23 @@
       "opening_orientation_deg": null,
       "hours": "09:00-17:00",
       "cost_mxn": 100,
-      "access": {"road": "paved", "parking": true, "collectivo_stops": false, "four_wd_needed": false},
-      "amenities": ["restrooms", "showers", "life_vest_rental", "jump_platforms"],
+      "access": {
+        "road": "paved",
+        "parking": true,
+        "collectivo_stops": false,
+        "four_wd_needed": false
+      },
+      "amenities": [
+        "restrooms",
+        "showers",
+        "life_vest_rental",
+        "jump_platforms"
+      ],
       "ownership": "ejido",
-      "eco": {"sunscreen_rule": "none_allowed", "crowd_pressure": "low"},
+      "eco": {
+        "sunscreen_rule": "none_allowed",
+        "crowd_pressure": "low"
+      },
       "verified": null,
       "summary_en": "Deep enclosed cenote in the Cobá circuit — two cliff-jump platforms (5m and 10m), echoing chamber. Pair with Choo-Ha and Multun-Ha on the same circuit ticket.",
       "summary_es": "Cenote cerrado y profundo del circuito de Cobá — dos plataformas de salto (5m y 10m), cámara con eco. Combínalo con Choo-Ha y Multun-Ha en el mismo boleto."
@@ -423,9 +771,15 @@
       "slug": "multun-ha",
       "name_en": "Cenote Multun-Ha",
       "name_es": "Cenote Multun-Ha",
-      "coords": [20.4894, -87.7475],
+      "coords": [
+        20.4894,
+        -87.7475
+      ],
       "region": "coba",
-      "activities": ["swim", "snorkel"],
+      "activities": [
+        "swim",
+        "snorkel"
+      ],
       "skill_min": "swimmer",
       "kid_friendly": true,
       "wheelchair": false,
@@ -435,10 +789,23 @@
       "opening_orientation_deg": null,
       "hours": "09:00-17:00",
       "cost_mxn": 100,
-      "access": {"road": "paved", "parking": true, "collectivo_stops": false, "four_wd_needed": false},
-      "amenities": ["restrooms", "showers", "life_vest_rental", "wooden_walkway"],
+      "access": {
+        "road": "paved",
+        "parking": true,
+        "collectivo_stops": false,
+        "four_wd_needed": false
+      },
+      "amenities": [
+        "restrooms",
+        "showers",
+        "life_vest_rental",
+        "wooden_walkway"
+      ],
       "ownership": "ejido",
-      "eco": {"sunscreen_rule": "none_allowed", "crowd_pressure": "low"},
+      "eco": {
+        "sunscreen_rule": "none_allowed",
+        "crowd_pressure": "low"
+      },
       "verified": null,
       "summary_en": "Quietest of the three Cobá cenotes — long wooden ramp descends to clear water, fish visible from above, soft underwater lighting. End on this one.",
       "summary_es": "El más tranquilo de los tres cenotes de Cobá — rampa larga de madera baja al agua clara, peces visibles desde arriba, iluminación suave bajo el agua. Termina aquí."
@@ -447,9 +814,15 @@
       "slug": "ik-kil",
       "name_en": "Cenote Ik Kil",
       "name_es": "Cenote Ik Kil",
-      "coords": [20.6294, -88.5675],
+      "coords": [
+        20.6294,
+        -88.5675
+      ],
       "region": "chichen",
-      "activities": ["swim", "cliff_jump"],
+      "activities": [
+        "swim",
+        "cliff_jump"
+      ],
       "skill_min": "swimmer",
       "kid_friendly": true,
       "wheelchair": false,
@@ -459,10 +832,24 @@
       "opening_orientation_deg": 0,
       "hours": "09:00-17:00",
       "cost_mxn": 180,
-      "access": {"road": "paved", "parking": true, "collectivo_stops": false, "four_wd_needed": false},
-      "amenities": ["restrooms", "showers", "lockers", "restaurant", "life_vest_rental"],
+      "access": {
+        "road": "paved",
+        "parking": true,
+        "collectivo_stops": false,
+        "four_wd_needed": false
+      },
+      "amenities": [
+        "restrooms",
+        "showers",
+        "lockers",
+        "restaurant",
+        "life_vest_rental"
+      ],
       "ownership": "private_mx",
-      "eco": {"sunscreen_rule": "none_allowed", "crowd_pressure": "high"},
+      "eco": {
+        "sunscreen_rule": "none_allowed",
+        "crowd_pressure": "high"
+      },
       "verified": null,
       "summary_en": "The iconic vine-curtain cenote near Chichén Itzá — combine with the ruins for a single long day from Tulum (2.5hr drive). Tour buses arrive 10am–2pm; first or last in beats the crush.",
       "summary_es": "El icónico cenote de cortina de raíces cerca de Chichén Itzá — combínalo con las ruinas en un día largo desde Tulum (2.5h). Los tours llegan 10am–2pm; primero o último evita el lleno."
@@ -471,9 +858,14 @@
       "slug": "suytun",
       "name_en": "Cenote Suytun",
       "name_es": "Cenote Suytun",
-      "coords": [20.7022, -88.1797],
+      "coords": [
+        20.7022,
+        -88.1797
+      ],
       "region": "valladolid",
-      "activities": ["swim"],
+      "activities": [
+        "swim"
+      ],
       "skill_min": "swimmer",
       "kid_friendly": true,
       "wheelchair": false,
@@ -483,10 +875,24 @@
       "opening_orientation_deg": 90,
       "hours": "09:00-17:00",
       "cost_mxn": 250,
-      "access": {"road": "paved", "parking": true, "collectivo_stops": false, "four_wd_needed": false},
-      "amenities": ["restrooms", "showers", "lockers", "restaurant", "stone_platform"],
+      "access": {
+        "road": "paved",
+        "parking": true,
+        "collectivo_stops": false,
+        "four_wd_needed": false
+      },
+      "amenities": [
+        "restrooms",
+        "showers",
+        "lockers",
+        "restaurant",
+        "stone_platform"
+      ],
       "ownership": "private_mx",
-      "eco": {"sunscreen_rule": "none_allowed", "crowd_pressure": "high"},
+      "eco": {
+        "sunscreen_rule": "none_allowed",
+        "crowd_pressure": "high"
+      },
       "verified": null,
       "summary_en": "Famous for the single sunbeam that lands on the stone walkway around midday — Instagram's favourite cenote. Best beam window 11:30am–1pm on clear days, Nov–Feb.",
       "summary_es": "Famoso por el rayo de sol único que cae sobre la plataforma de piedra al mediodía — el favorito de Instagram. Mejor ventana 11:30am–1pm en días despejados, nov–feb."
@@ -495,9 +901,14 @@
       "slug": "angelita",
       "name_en": "Cenote Angelita",
       "name_es": "Cenote Angelita",
-      "coords": [20.0986, -87.4836],
+      "coords": [
+        20.0986,
+        -87.4836
+      ],
       "region": "tulum",
-      "activities": ["cave_dive"],
+      "activities": [
+        "cave_dive"
+      ],
       "skill_min": "cave_cert",
       "kid_friendly": false,
       "wheelchair": false,
@@ -507,13 +918,1090 @@
       "opening_orientation_deg": null,
       "hours": "08:00-15:00",
       "cost_mxn": 300,
-      "access": {"road": "dirt_easy", "parking": true, "collectivo_stops": false, "four_wd_needed": false},
-      "amenities": ["restrooms", "guided_only", "tank_fill"],
+      "access": {
+        "road": "dirt_easy",
+        "parking": true,
+        "collectivo_stops": false,
+        "four_wd_needed": false
+      },
+      "amenities": [
+        "restrooms",
+        "guided_only",
+        "tank_fill"
+      ],
       "ownership": "private_mx",
-      "eco": {"sunscreen_rule": "none_allowed", "crowd_pressure": "low"},
+      "eco": {
+        "sunscreen_rule": "none_allowed",
+        "crowd_pressure": "low"
+      },
       "verified": null,
       "summary_en": "Tech-dive destination 30 minutes south of Tulum — descend through fresh water at 30m to a halocline that looks like an underwater river of mist. Cave cert required.",
       "summary_es": "Destino de buceo técnico a 30 min al sur de Tulum — desciendes por agua dulce hasta la haloclina a 30m que parece un río de niebla submarino. Requiere certificación cueva."
+    },
+    {
+      "slug": "xkeken",
+      "name_en": "Cenote Xkeken",
+      "name_es": "Cenote Xkekén",
+      "coords": [
+        20.6633,
+        -88.2147
+      ],
+      "region": "valladolid",
+      "activities": [
+        "swim",
+        "snorkel"
+      ],
+      "skill_min": "swimmer",
+      "kid_friendly": true,
+      "wheelchair": false,
+      "depth_m": null,
+      "typical_visibility_m": null,
+      "opening_type": null,
+      "opening_orientation_deg": null,
+      "hours": "08:00-17:00",
+      "cost_mxn": null,
+      "access": {
+        "road": "paved",
+        "parking": true,
+        "collectivo_stops": false,
+        "four_wd_needed": false
+      },
+      "amenities": [],
+      "ownership": "unknown",
+      "eco": {
+        "sunscreen_rule": "biodegradable_only",
+        "crowd_pressure": "medium"
+      },
+      "verified": "2026-05-23",
+      "summary_en": "Underground cathedral-like cavern with stalactites and a single skylight illuminating turquoise water; one half of the Dzitnup pair near Valladolid.",
+      "summary_es": "Caverna catedral subterránea con estalactitas y un único tragaluz que ilumina el agua turquesa; parte del par Dzitnup."
+    },
+    {
+      "slug": "samula",
+      "name_en": "Cenote Samula",
+      "name_es": "Cenote Samulá",
+      "coords": [
+        20.6628,
+        -88.2152
+      ],
+      "region": "valladolid",
+      "activities": [
+        "swim",
+        "snorkel"
+      ],
+      "skill_min": "swimmer",
+      "kid_friendly": true,
+      "wheelchair": false,
+      "depth_m": null,
+      "typical_visibility_m": null,
+      "opening_type": null,
+      "opening_orientation_deg": null,
+      "hours": "08:00-17:00",
+      "cost_mxn": null,
+      "access": {
+        "road": "paved",
+        "parking": true,
+        "collectivo_stops": false,
+        "four_wd_needed": false
+      },
+      "amenities": [],
+      "ownership": "unknown",
+      "eco": {
+        "sunscreen_rule": "biodegradable_only",
+        "crowd_pressure": "medium"
+      },
+      "verified": "2026-05-23",
+      "summary_en": "Domed cave cenote famous for a single tree root descending from a ceiling hole to the turquoise water; twin of Xkekén at Dzitnup.",
+      "summary_es": "Cenote en bóveda famoso por una sola raíz de árbol que desciende desde un hueco del techo hasta el agua turquesa; gemelo de Xkeken en Dzitnup."
+    },
+    {
+      "slug": "oxman",
+      "name_en": "Cenote Oxman",
+      "name_es": "Cenote Oxman",
+      "coords": [
+        20.65,
+        -88.215
+      ],
+      "region": "valladolid",
+      "activities": [
+        "swim",
+        "snorkel"
+      ],
+      "skill_min": "swimmer",
+      "kid_friendly": true,
+      "wheelchair": false,
+      "depth_m": null,
+      "typical_visibility_m": null,
+      "opening_type": null,
+      "opening_orientation_deg": null,
+      "hours": "08:00-17:00",
+      "cost_mxn": null,
+      "access": {
+        "road": "paved",
+        "parking": true,
+        "collectivo_stops": false,
+        "four_wd_needed": false
+      },
+      "amenities": [],
+      "ownership": "unknown",
+      "eco": {
+        "sunscreen_rule": "biodegradable_only",
+        "crowd_pressure": "medium"
+      },
+      "verified": "2026-05-23",
+      "summary_en": "Semi-open hacienda cenote with hanging vines and a rope swing; inside Hacienda San Lorenzo on the outskirts of Valladolid.",
+      "summary_es": "Cenote semi-abierto en hacienda con lianas colgantes y columpio; dentro de la Hacienda San Lorenzo."
+    },
+    {
+      "slug": "saamal",
+      "name_en": "Cenote Saamal",
+      "name_es": "Cenote Saamal",
+      "coords": [
+        20.69,
+        -88.24
+      ],
+      "region": "valladolid",
+      "activities": [
+        "swim",
+        "snorkel"
+      ],
+      "skill_min": "swimmer",
+      "kid_friendly": true,
+      "wheelchair": false,
+      "depth_m": null,
+      "typical_visibility_m": null,
+      "opening_type": null,
+      "opening_orientation_deg": null,
+      "hours": "08:00-17:00",
+      "cost_mxn": null,
+      "access": {
+        "road": "paved",
+        "parking": true,
+        "collectivo_stops": false,
+        "four_wd_needed": false
+      },
+      "amenities": [],
+      "ownership": "unknown",
+      "eco": {
+        "sunscreen_rule": "biodegradable_only",
+        "crowd_pressure": "medium"
+      },
+      "verified": "2026-05-23",
+      "summary_en": "Semi-open hacienda cenote with an artificial waterfall; part of Hacienda Selva Maya, popular with day-tour packages.",
+      "summary_es": "Cenote semi-abierto en hacienda con cascada artificial; parte de la Hacienda Selva Maya."
+    },
+    {
+      "slug": "zaci",
+      "name_en": "Cenote Zaci",
+      "name_es": "Cenote Zací",
+      "coords": [
+        20.6889,
+        -88.1989
+      ],
+      "region": "valladolid",
+      "activities": [
+        "swim",
+        "snorkel"
+      ],
+      "skill_min": "swimmer",
+      "kid_friendly": true,
+      "wheelchair": false,
+      "depth_m": null,
+      "typical_visibility_m": null,
+      "opening_type": null,
+      "opening_orientation_deg": null,
+      "hours": "08:00-17:00",
+      "cost_mxn": null,
+      "access": {
+        "road": "paved",
+        "parking": true,
+        "collectivo_stops": false,
+        "four_wd_needed": false
+      },
+      "amenities": [],
+      "ownership": "unknown",
+      "eco": {
+        "sunscreen_rule": "biodegradable_only",
+        "crowd_pressure": "medium"
+      },
+      "verified": "2026-05-23",
+      "summary_en": "Semi-open cenote inside the town of Valladolid — the only one within walking distance of the main square. Stairs descend into a wide pool.",
+      "summary_es": "Cenote semi-abierto dentro de la ciudad de Valladolid; el único cenote a distancia caminable de la plaza principal."
+    },
+    {
+      "slug": "hubiku",
+      "name_en": "Cenote Hubiku",
+      "name_es": "Cenote Hubikú",
+      "coords": [
+        20.805,
+        -88.15
+      ],
+      "region": "valladolid",
+      "activities": [
+        "swim",
+        "snorkel"
+      ],
+      "skill_min": "swimmer",
+      "kid_friendly": true,
+      "wheelchair": false,
+      "depth_m": null,
+      "typical_visibility_m": null,
+      "opening_type": null,
+      "opening_orientation_deg": null,
+      "hours": "08:00-17:00",
+      "cost_mxn": null,
+      "access": {
+        "road": "paved",
+        "parking": true,
+        "collectivo_stops": false,
+        "four_wd_needed": false
+      },
+      "amenities": [],
+      "ownership": "unknown",
+      "eco": {
+        "sunscreen_rule": "biodegradable_only",
+        "crowd_pressure": "medium"
+      },
+      "verified": "2026-05-23",
+      "summary_en": "Underground cave cenote in Temozón with a large ceiling opening and dramatic roots; on-site tequila museum makes it a common tour stop.",
+      "summary_es": "Cenote en cueva subterránea en Temozón con gran apertura en el techo y raíces; museo del tequila en sitio."
+    },
+    {
+      "slug": "xcanche",
+      "name_en": "Cenote X'Canche",
+      "name_es": "Cenote X'Canché",
+      "coords": [
+        20.892,
+        -88.1356
+      ],
+      "region": "valladolid",
+      "activities": [
+        "swim",
+        "snorkel"
+      ],
+      "skill_min": "swimmer",
+      "kid_friendly": true,
+      "wheelchair": false,
+      "depth_m": null,
+      "typical_visibility_m": null,
+      "opening_type": null,
+      "opening_orientation_deg": null,
+      "hours": "08:00-17:00",
+      "cost_mxn": null,
+      "access": {
+        "road": "paved",
+        "parking": true,
+        "collectivo_stops": false,
+        "four_wd_needed": false
+      },
+      "amenities": [],
+      "ownership": "unknown",
+      "eco": {
+        "sunscreen_rule": "biodegradable_only",
+        "crowd_pressure": "medium"
+      },
+      "verified": "2026-05-23",
+      "summary_en": "Open cenote 1.5 km from Ek Balam ruins; rappel, zipline and Tarzan swing run by the Hunukú cooperative. Bike or walk in from the ruins entrance.",
+      "summary_es": "Cenote abierto a 1.5 km de las ruinas de Ek Balam; rappel, tirolesa y columpio Tarzán operado por la cooperativa Hunukú."
+    },
+    {
+      "slug": "palomitas",
+      "name_en": "Cenote Palomitas",
+      "name_es": "Cenote Palomitas",
+      "coords": [
+        20.8,
+        -88.09
+      ],
+      "region": "valladolid",
+      "activities": [
+        "swim",
+        "snorkel"
+      ],
+      "skill_min": "swimmer",
+      "kid_friendly": true,
+      "wheelchair": false,
+      "depth_m": null,
+      "typical_visibility_m": null,
+      "opening_type": null,
+      "opening_orientation_deg": null,
+      "hours": "08:00-17:00",
+      "cost_mxn": null,
+      "access": {
+        "road": "paved",
+        "parking": true,
+        "collectivo_stops": false,
+        "four_wd_needed": false
+      },
+      "amenities": [],
+      "ownership": "unknown",
+      "eco": {
+        "sunscreen_rule": "biodegradable_only",
+        "crowd_pressure": "medium"
+      },
+      "verified": "2026-05-23",
+      "summary_en": "Cathedral-sized underground dome packed with stalactites, lit by a single ceiling opening. Quiet, family-run, near Yalcobá.",
+      "summary_es": "Bóveda subterránea del tamaño de una catedral llena de estalactitas; iluminada por una sola apertura; cerca de Yalcobá."
+    },
+    {
+      "slug": "agua-dulce",
+      "name_en": "Cenote Agua Dulce",
+      "name_es": "Cenote Agua Dulce",
+      "coords": [
+        20.8005,
+        -88.0905
+      ],
+      "region": "valladolid",
+      "activities": [
+        "swim",
+        "snorkel"
+      ],
+      "skill_min": "swimmer",
+      "kid_friendly": true,
+      "wheelchair": false,
+      "depth_m": null,
+      "typical_visibility_m": null,
+      "opening_type": null,
+      "opening_orientation_deg": null,
+      "hours": "08:00-17:00",
+      "cost_mxn": null,
+      "access": {
+        "road": "paved",
+        "parking": true,
+        "collectivo_stops": false,
+        "four_wd_needed": false
+      },
+      "amenities": [],
+      "ownership": "unknown",
+      "eco": {
+        "sunscreen_rule": "biodegradable_only",
+        "crowd_pressure": "medium"
+      },
+      "verified": "2026-05-23",
+      "summary_en": "Underground cave cenote next door to Palomitas; rappel and kayak with a floating platform.",
+      "summary_es": "Cenote en cueva subterránea junto a Palomitas; rappel y kayak con plataforma flotante."
+    },
+    {
+      "slug": "chichikan",
+      "name_en": "Cenote Chichikan",
+      "name_es": "Cenote Chichikán",
+      "coords": [
+        20.716,
+        -88.25
+      ],
+      "region": "valladolid",
+      "activities": [
+        "swim",
+        "snorkel"
+      ],
+      "skill_min": "swimmer",
+      "kid_friendly": true,
+      "wheelchair": false,
+      "depth_m": null,
+      "typical_visibility_m": null,
+      "opening_type": null,
+      "opening_orientation_deg": null,
+      "hours": "08:00-17:00",
+      "cost_mxn": null,
+      "access": {
+        "road": "paved",
+        "parking": true,
+        "collectivo_stops": false,
+        "four_wd_needed": false
+      },
+      "amenities": [],
+      "ownership": "unknown",
+      "eco": {
+        "sunscreen_rule": "biodegradable_only",
+        "crowd_pressure": "medium"
+      },
+      "verified": "2026-05-23",
+      "summary_en": "Semi-open cenote with a small island, waterfall, and Mayan ceremony offerings. Recently opened to visitors.",
+      "summary_es": "Cenote semi-abierto con isla pequeña, cascada y ofrendas ceremoniales mayas; abierto recientemente."
+    },
+    {
+      "slug": "cenote-maya",
+      "name_en": "Cenote Maya",
+      "name_es": "Cenote Maya",
+      "coords": [
+        20.78,
+        -88.3
+      ],
+      "region": "valladolid",
+      "activities": [
+        "swim",
+        "snorkel"
+      ],
+      "skill_min": "swimmer",
+      "kid_friendly": true,
+      "wheelchair": false,
+      "depth_m": null,
+      "typical_visibility_m": null,
+      "opening_type": null,
+      "opening_orientation_deg": null,
+      "hours": "08:00-17:00",
+      "cost_mxn": null,
+      "access": {
+        "road": "paved",
+        "parking": true,
+        "collectivo_stops": false,
+        "four_wd_needed": false
+      },
+      "amenities": [],
+      "ownership": "unknown",
+      "eco": {
+        "sunscreen_rule": "biodegradable_only",
+        "crowd_pressure": "medium"
+      },
+      "verified": "2026-05-23",
+      "summary_en": "Largest dome-cave cenote in the Yucatán Peninsula; rappel, zipline, and shaman ceremony at Cenote Maya Park.",
+      "summary_es": "La mayor bóveda en cueva de la Península de Yucatán; rappel, tirolesa, ceremonia chamánica; Cenote Maya Park."
+    },
+    {
+      "slug": "yokdzonot",
+      "name_en": "Cenote Yokdzonot",
+      "name_es": "Cenote Yokdzonot",
+      "coords": [
+        20.7,
+        -88.75
+      ],
+      "region": "chichen_itza",
+      "activities": [
+        "swim",
+        "snorkel"
+      ],
+      "skill_min": "swimmer",
+      "kid_friendly": true,
+      "wheelchair": false,
+      "depth_m": null,
+      "typical_visibility_m": null,
+      "opening_type": null,
+      "opening_orientation_deg": null,
+      "hours": "08:00-17:00",
+      "cost_mxn": null,
+      "access": {
+        "road": "paved",
+        "parking": true,
+        "collectivo_stops": false,
+        "four_wd_needed": false
+      },
+      "amenities": [],
+      "ownership": "unknown",
+      "eco": {
+        "sunscreen_rule": "biodegradable_only",
+        "crowd_pressure": "medium"
+      },
+      "verified": "2026-05-23",
+      "summary_en": "40 m diameter circular open cenote 15 km west of Chichén Itzá; run by an all-women Mayan cooperative. Zipline and rappel available.",
+      "summary_es": "Cenote abierto circular de 40 m de diámetro a 15 km al oeste de Chichén Itzá; operado por cooperativa de mujeres mayas; tirolesa y rappel."
+    },
+    {
+      "slug": "sagrado",
+      "name_en": "Sacred Cenote",
+      "name_es": "Cenote Sagrado",
+      "coords": [
+        20.6877,
+        -88.5677
+      ],
+      "region": "chichen_itza",
+      "activities": [],
+      "skill_min": "none",
+      "kid_friendly": true,
+      "wheelchair": false,
+      "depth_m": null,
+      "typical_visibility_m": null,
+      "opening_type": null,
+      "opening_orientation_deg": null,
+      "hours": "08:00-17:00",
+      "cost_mxn": null,
+      "access": {
+        "road": "paved",
+        "parking": true,
+        "collectivo_stops": false,
+        "four_wd_needed": false
+      },
+      "amenities": [],
+      "ownership": "unknown",
+      "eco": {
+        "sunscreen_rule": "biodegradable_only",
+        "crowd_pressure": "medium"
+      },
+      "verified": "2026-05-23",
+      "summary_en": "60 m diameter sacrificial well at the Chichén Itzá UNESCO site. Not swimmable — historically significant view-only stop.",
+      "summary_es": "Pozo sacrificial de 60 m de diámetro en el sitio UNESCO de Chichén Itzá; no es para nadar pero históricamente significativo."
+    },
+    {
+      "slug": "san-ignacio",
+      "name_en": "Cenote San Ignacio",
+      "name_es": "Cenote San Ignacio",
+      "coords": [
+        20.732,
+        -89.852
+      ],
+      "region": "merida",
+      "activities": [
+        "swim",
+        "snorkel"
+      ],
+      "skill_min": "swimmer",
+      "kid_friendly": true,
+      "wheelchair": false,
+      "depth_m": null,
+      "typical_visibility_m": null,
+      "opening_type": null,
+      "opening_orientation_deg": null,
+      "hours": "08:00-17:00",
+      "cost_mxn": null,
+      "access": {
+        "road": "paved",
+        "parking": true,
+        "collectivo_stops": false,
+        "four_wd_needed": false
+      },
+      "amenities": [],
+      "ownership": "unknown",
+      "eco": {
+        "sunscreen_rule": "biodegradable_only",
+        "crowd_pressure": "medium"
+      },
+      "verified": "2026-05-23",
+      "summary_en": "Semi-open cenote in Chocholá with lukewarm crystal water and dramatic light shafts through ancient rock formations.",
+      "summary_es": "Cenote semi-abierto en Chocholá con agua cristalina tibia y dramáticos haces de luz; formaciones rocosas antiguas."
+    },
+    {
+      "slug": "kankirixche",
+      "name_en": "Cenote Kankirixche",
+      "name_es": "Cenote Kankirixché",
+      "coords": [
+        20.63,
+        -89.75
+      ],
+      "region": "merida",
+      "activities": [
+        "swim",
+        "snorkel"
+      ],
+      "skill_min": "swimmer",
+      "kid_friendly": true,
+      "wheelchair": false,
+      "depth_m": null,
+      "typical_visibility_m": null,
+      "opening_type": null,
+      "opening_orientation_deg": null,
+      "hours": "08:00-17:00",
+      "cost_mxn": null,
+      "access": {
+        "road": "paved",
+        "parking": true,
+        "collectivo_stops": false,
+        "four_wd_needed": false
+      },
+      "amenities": [],
+      "ownership": "unknown",
+      "eco": {
+        "sunscreen_rule": "biodegradable_only",
+        "crowd_pressure": "medium"
+      },
+      "verified": "2026-05-23",
+      "summary_en": "Huge 90 m diameter underground cavern in Mucuyché. Descend a 15 m metal ladder; popular cavern dive site with stalactites and roots.",
+      "summary_es": "Enorme caverna subterránea de 90 m de diámetro en Mucuyché; bajada por escalera metálica de 15 m; popular sitio de buceo con estalactitas y raíces."
+    },
+    {
+      "slug": "yaal-utzil",
+      "name_en": "Cenote Yaal Utzil",
+      "name_es": "Cenote Yaal Utzil",
+      "coords": [
+        20.628,
+        -89.77
+      ],
+      "region": "merida",
+      "activities": [
+        "swim",
+        "snorkel"
+      ],
+      "skill_min": "swimmer",
+      "kid_friendly": true,
+      "wheelchair": false,
+      "depth_m": null,
+      "typical_visibility_m": null,
+      "opening_type": null,
+      "opening_orientation_deg": null,
+      "hours": "08:00-17:00",
+      "cost_mxn": null,
+      "access": {
+        "road": "paved",
+        "parking": true,
+        "collectivo_stops": false,
+        "four_wd_needed": false
+      },
+      "amenities": [],
+      "ownership": "unknown",
+      "eco": {
+        "sunscreen_rule": "biodegradable_only",
+        "crowd_pressure": "medium"
+      },
+      "verified": "2026-05-23",
+      "summary_en": "Open cenote near Mucuyché with a 3 m jump platform. Quieter and cheaper alternative to the Hacienda Mucuyché package.",
+      "summary_es": "Cenote abierto cerca de Mucuyché con plataforma de salto de 3 m; alternativa más tranquila y económica a Hacienda Mucuyché."
+    },
+    {
+      "slug": "carlota",
+      "name_en": "Cenote Carlota",
+      "name_es": "Cenote Carlota",
+      "coords": [
+        20.629,
+        -89.772
+      ],
+      "region": "merida",
+      "activities": [
+        "swim",
+        "snorkel"
+      ],
+      "skill_min": "swimmer",
+      "kid_friendly": true,
+      "wheelchair": false,
+      "depth_m": null,
+      "typical_visibility_m": null,
+      "opening_type": null,
+      "opening_orientation_deg": null,
+      "hours": "08:00-17:00",
+      "cost_mxn": null,
+      "access": {
+        "road": "paved",
+        "parking": true,
+        "collectivo_stops": false,
+        "four_wd_needed": false
+      },
+      "amenities": [],
+      "ownership": "unknown",
+      "eco": {
+        "sunscreen_rule": "biodegradable_only",
+        "crowd_pressure": "medium"
+      },
+      "verified": "2026-05-23",
+      "summary_en": "Semi-open cenote at Hacienda Mucuyché named for Empress Carlota, who reportedly bathed there in 1865. Visited as part of a guided tour.",
+      "summary_es": "Cenote semi-abierto en Hacienda Mucuyché bautizado por la Emperatriz Carlota, quien reportadamente se bañó allí en 1865."
+    },
+    {
+      "slug": "azul-maya",
+      "name_en": "Cenote Azul Maya",
+      "name_es": "Cenote Azul Maya",
+      "coords": [
+        20.6285,
+        -89.7715
+      ],
+      "region": "merida",
+      "activities": [
+        "swim",
+        "snorkel"
+      ],
+      "skill_min": "swimmer",
+      "kid_friendly": true,
+      "wheelchair": false,
+      "depth_m": null,
+      "typical_visibility_m": null,
+      "opening_type": null,
+      "opening_orientation_deg": null,
+      "hours": "08:00-17:00",
+      "cost_mxn": null,
+      "access": {
+        "road": "paved",
+        "parking": true,
+        "collectivo_stops": false,
+        "four_wd_needed": false
+      },
+      "amenities": [],
+      "ownership": "unknown",
+      "eco": {
+        "sunscreen_rule": "biodegradable_only",
+        "crowd_pressure": "medium"
+      },
+      "verified": "2026-05-23",
+      "summary_en": "Underground cenote at Hacienda Mucuyché connected to Cenote Carlota by an artificial channel; you swim between them on the tour.",
+      "summary_es": "Cenote subterráneo en Hacienda Mucuyché conectado al Cenote Carlota por un canal artificial."
+    },
+    {
+      "slug": "sambula",
+      "name_en": "Cenote Sambula",
+      "name_es": "Cenote Sambulá",
+      "coords": [
+        20.62,
+        -89.78
+      ],
+      "region": "merida",
+      "activities": [
+        "swim",
+        "snorkel"
+      ],
+      "skill_min": "swimmer",
+      "kid_friendly": true,
+      "wheelchair": false,
+      "depth_m": null,
+      "typical_visibility_m": null,
+      "opening_type": null,
+      "opening_orientation_deg": null,
+      "hours": "08:00-17:00",
+      "cost_mxn": null,
+      "access": {
+        "road": "paved",
+        "parking": true,
+        "collectivo_stops": false,
+        "four_wd_needed": false
+      },
+      "amenities": [],
+      "ownership": "unknown",
+      "eco": {
+        "sunscreen_rule": "biodegradable_only",
+        "crowd_pressure": "medium"
+      },
+      "verified": "2026-05-23",
+      "summary_en": "Cave cenote near Hacienda Mucuyché (Google lists it as 'Peba'); rough access road keeps crowds low.",
+      "summary_es": "Cenote en cueva cerca de Hacienda Mucuyché (aparece en Google como 'Peba'); el camino de acceso difícil mantiene las multitudes bajas."
+    },
+    {
+      "slug": "pool-uinic",
+      "name_en": "Cenote Pool Uinic",
+      "name_es": "Cenote Pool Uinic",
+      "coords": [
+        20.745,
+        -89.294
+      ],
+      "region": "homun",
+      "activities": [
+        "swim",
+        "snorkel"
+      ],
+      "skill_min": "swimmer",
+      "kid_friendly": true,
+      "wheelchair": false,
+      "depth_m": null,
+      "typical_visibility_m": null,
+      "opening_type": null,
+      "opening_orientation_deg": null,
+      "hours": "08:00-17:00",
+      "cost_mxn": null,
+      "access": {
+        "road": "paved",
+        "parking": true,
+        "collectivo_stops": false,
+        "four_wd_needed": false
+      },
+      "amenities": [],
+      "ownership": "unknown",
+      "eco": {
+        "sunscreen_rule": "biodegradable_only",
+        "crowd_pressure": "medium"
+      },
+      "verified": "2026-05-23",
+      "summary_en": "Closed cave with underground gallery and limited swimming area; one of the Homún cluster.",
+      "summary_es": "Cueva cerrada con galería subterránea y área de natación limitada; Homún."
+    },
+    {
+      "slug": "santa-rosa",
+      "name_en": "Cenote Santa Rosa",
+      "name_es": "Cenote Santa Rosa",
+      "coords": [
+        20.748,
+        -89.288
+      ],
+      "region": "homun",
+      "activities": [
+        "swim",
+        "snorkel"
+      ],
+      "skill_min": "swimmer",
+      "kid_friendly": true,
+      "wheelchair": false,
+      "depth_m": null,
+      "typical_visibility_m": null,
+      "opening_type": null,
+      "opening_orientation_deg": null,
+      "hours": "08:00-17:00",
+      "cost_mxn": null,
+      "access": {
+        "road": "paved",
+        "parking": true,
+        "collectivo_stops": false,
+        "four_wd_needed": false
+      },
+      "amenities": [],
+      "ownership": "unknown",
+      "eco": {
+        "sunscreen_rule": "biodegradable_only",
+        "crowd_pressure": "medium"
+      },
+      "verified": "2026-05-23",
+      "summary_en": "Walking-distance Homún cave cenote with caves and stalactites; one of the easy-access cluster in town.",
+      "summary_es": "Cenote en cueva a distancia caminable en Homún con cuevas y estalactitas; uno del grupo de fácil acceso en el pueblo."
+    },
+    {
+      "slug": "chac-mool",
+      "name_en": "Cenote Chac Mool",
+      "name_es": "Cenote Chac Mool",
+      "coords": [
+        20.48,
+        -87.24
+      ],
+      "region": "puerto_aventuras",
+      "activities": [
+        "swim",
+        "snorkel",
+        "cavern_dive"
+      ],
+      "skill_min": "open_water",
+      "kid_friendly": false,
+      "wheelchair": false,
+      "depth_m": null,
+      "typical_visibility_m": null,
+      "opening_type": null,
+      "opening_orientation_deg": null,
+      "hours": "08:00-17:00",
+      "cost_mxn": null,
+      "access": {
+        "road": "paved",
+        "parking": true,
+        "collectivo_stops": false,
+        "four_wd_needed": false
+      },
+      "amenities": [],
+      "ownership": "unknown",
+      "eco": {
+        "sunscreen_rule": "biodegradable_only",
+        "crowd_pressure": "medium"
+      },
+      "verified": "2026-05-23",
+      "summary_en": "Popular cavern dive site 23 km south of Playa del Carmen, with halocline and an air dome studded with stalactites. Open water cert is enough.",
+      "summary_es": "Sitio popular de buceo en caverna 23 km al sur de Playa del Carmen con haloclina y domo de aire con estalactitas."
+    },
+    {
+      "slug": "taak-bi-ha",
+      "name_en": "Cenote Taak Bi Ha",
+      "name_es": "Cenote Taak Bi Ha",
+      "coords": [
+        20.32,
+        -87.387
+      ],
+      "region": "tulum",
+      "activities": [
+        "swim",
+        "snorkel"
+      ],
+      "skill_min": "swimmer",
+      "kid_friendly": true,
+      "wheelchair": false,
+      "depth_m": null,
+      "typical_visibility_m": null,
+      "opening_type": null,
+      "opening_orientation_deg": null,
+      "hours": "08:00-17:00",
+      "cost_mxn": null,
+      "access": {
+        "road": "paved",
+        "parking": true,
+        "collectivo_stops": false,
+        "four_wd_needed": false
+      },
+      "amenities": [],
+      "ownership": "unknown",
+      "eco": {
+        "sunscreen_rule": "biodegradable_only",
+        "crowd_pressure": "medium"
+      },
+      "verified": "2026-05-23",
+      "summary_en": "Fully underground cenote with turquoise water, dramatic stalactites, and a stone jump platform. Inside the Dos Ojos park boundary.",
+      "summary_es": "Cenote totalmente subterráneo con agua turquesa, estalactitas dramáticas y plataforma de salto de piedra; cerca de Dos Ojos."
+    },
+    {
+      "slug": "pet-cemetery",
+      "name_en": "Cenote Pet Cemetery",
+      "name_es": "Cementerio de Mascotas",
+      "coords": [
+        20.346,
+        -87.369
+      ],
+      "region": "tulum",
+      "activities": [
+        "swim",
+        "snorkel"
+      ],
+      "skill_min": "swimmer",
+      "kid_friendly": false,
+      "wheelchair": false,
+      "depth_m": null,
+      "typical_visibility_m": null,
+      "opening_type": null,
+      "opening_orientation_deg": null,
+      "hours": "08:00-17:00",
+      "cost_mxn": null,
+      "access": {
+        "road": "paved",
+        "parking": true,
+        "collectivo_stops": false,
+        "four_wd_needed": false
+      },
+      "amenities": [],
+      "ownership": "unknown",
+      "eco": {
+        "sunscreen_rule": "biodegradable_only",
+        "crowd_pressure": "medium"
+      },
+      "verified": "2026-05-23",
+      "summary_en": "Semi-open cenote inside Dos Ojos Park with ancient animal bones visible in the cavern; entry to the Sac Actun system.",
+      "summary_es": "Cenote semi-abierto dentro del Parque Dos Ojos con huesos de animales antiguos en la caverna; entrada al sistema Sac Actun."
+    },
+    {
+      "slug": "xunaan-ha",
+      "name_en": "Cenote Xunaan-Ha",
+      "name_es": "Cenote Xunaan-Ha",
+      "coords": [
+        20.37,
+        -87.34
+      ],
+      "region": "akumal",
+      "activities": [
+        "swim",
+        "snorkel"
+      ],
+      "skill_min": "swimmer",
+      "kid_friendly": true,
+      "wheelchair": false,
+      "depth_m": null,
+      "typical_visibility_m": null,
+      "opening_type": null,
+      "opening_orientation_deg": null,
+      "hours": "08:00-17:00",
+      "cost_mxn": null,
+      "access": {
+        "road": "paved",
+        "parking": true,
+        "collectivo_stops": false,
+        "four_wd_needed": false
+      },
+      "amenities": [],
+      "ownership": "unknown",
+      "eco": {
+        "sunscreen_rule": "biodegradable_only",
+        "crowd_pressure": "medium"
+      },
+      "verified": "2026-05-23",
+      "summary_en": "Open-air cenote in Chemuyil village; jump platforms, hammocks, much less touristy than Dos Ojos.",
+      "summary_es": "Cenote al aire libre en el pueblo de Chemuyil; plataformas de salto, hamacas, menos turístico que Dos Ojos."
+    },
+    {
+      "slug": "casa-tortuga",
+      "name_en": "Casa Tortuga Cenotes",
+      "name_es": "Cenotes Casa Tortuga",
+      "coords": [
+        20.27,
+        -87.45
+      ],
+      "region": "tulum",
+      "activities": [
+        "swim",
+        "snorkel"
+      ],
+      "skill_min": "swimmer",
+      "kid_friendly": true,
+      "wheelchair": false,
+      "depth_m": null,
+      "typical_visibility_m": null,
+      "opening_type": null,
+      "opening_orientation_deg": null,
+      "hours": "08:00-17:00",
+      "cost_mxn": null,
+      "access": {
+        "road": "paved",
+        "parking": true,
+        "collectivo_stops": false,
+        "four_wd_needed": false
+      },
+      "amenities": [],
+      "ownership": "unknown",
+      "eco": {
+        "sunscreen_rule": "biodegradable_only",
+        "crowd_pressure": "medium"
+      },
+      "verified": "2026-05-23",
+      "summary_en": "Four-cenote park (Wisho, Tres Zapotes, Campana, Jaguar) with a guided educational tour; 10 min north of Tulum.",
+      "summary_es": "Parque de cuatro cenotes (Wisho, Tres Zapotes, Campana, Jaguar) con visita guiada educativa; 10 min al norte de Tulum."
+    },
+    {
+      "slug": "chikin-ha",
+      "name_en": "Cenote Chikin-Ha",
+      "name_es": "Cenote Chikin-Ha",
+      "coords": [
+        20.54,
+        -87.23
+      ],
+      "region": "playa",
+      "activities": [
+        "swim",
+        "snorkel"
+      ],
+      "skill_min": "swimmer",
+      "kid_friendly": true,
+      "wheelchair": false,
+      "depth_m": null,
+      "typical_visibility_m": null,
+      "opening_type": null,
+      "opening_orientation_deg": null,
+      "hours": "08:00-17:00",
+      "cost_mxn": null,
+      "access": {
+        "road": "paved",
+        "parking": true,
+        "collectivo_stops": false,
+        "four_wd_needed": false
+      },
+      "amenities": [],
+      "ownership": "unknown",
+      "eco": {
+        "sunscreen_rule": "biodegradable_only",
+        "crowd_pressure": "medium"
+      },
+      "verified": "2026-05-23",
+      "summary_en": "Three-cenote park (open, cave, and a ceremonial dry one); ziplines and Mayan rituals; between Playa and Puerto Aventuras.",
+      "summary_es": "Parque de tres cenotes (abierto, cueva y ceremonial seco); tirolesas y rituales mayas; entre Playa y Puerto Aventuras."
+    },
+    {
+      "slug": "xlacah",
+      "name_en": "Cenote Xlacah",
+      "name_es": "Cenote Xlacah",
+      "coords": [
+        21.0917,
+        -89.5944
+      ],
+      "region": "merida",
+      "activities": [
+        "swim",
+        "snorkel"
+      ],
+      "skill_min": "swimmer",
+      "kid_friendly": true,
+      "wheelchair": false,
+      "depth_m": 44,
+      "typical_visibility_m": 15,
+      "opening_type": "open",
+      "opening_orientation_deg": null,
+      "hours": "08:00-17:00",
+      "cost_mxn": 195,
+      "access": {
+        "road": "paved",
+        "parking": true,
+        "collectivo_stops": false,
+        "four_wd_needed": false
+      },
+      "amenities": [
+        "restrooms",
+        "restaurant"
+      ],
+      "ownership": "community",
+      "eco": {
+        "sunscreen_rule": "biodegradable_only",
+        "crowd_pressure": "low"
+      },
+      "verified": "2026-05-23",
+      "summary_en": "Open cenote inside the Dzibilchaltún archaeological site north of Mérida — 100 m long, 44 m deep, with Mayan artifacts recovered from the bottom. Combined ticket with the ruins.",
+      "summary_es": "Cenote abierto dentro del sitio arqueológico de Dzibilchaltún al norte de Mérida — 100 m de largo, 44 m de profundidad, con artefactos mayas recuperados del fondo. Boleto combinado con las ruinas."
     }
   ]
 }
