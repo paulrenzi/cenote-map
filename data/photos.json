@@ -89,5 +89,53 @@
     "license": "CC BY 4.0",
     "source": "https://commons.wikimedia.org/wiki/File:Cenote_azul_mirror.jpg",
     "wikimedia_title": "File:Cenote azul mirror.jpg"
+  },
+  "cristalino": {
+    "file": "images/cenotes/cristalino.webp",
+    "credit": "Mexico Cenotes & Ruins",
+    "license": "Used as published — credit links to source",
+    "source": "https://www.mexicocenotesandruins.com/cenote-cristalino/"
+  },
+  "jardin-del-eden": {
+    "file": "images/cenotes/jardin-del-eden.webp",
+    "credit": "Mexico Cenotes & Ruins",
+    "license": "Used as published — credit links to source",
+    "source": "https://www.mexicocenotesandruins.com/cenote-jardin-del-eden-ponderosa/"
+  },
+  "manati": {
+    "file": "images/cenotes/manati.webp",
+    "credit": "Travel Mexico Solo",
+    "license": "Used as published — credit links to source",
+    "source": "https://travelmexicosolo.com/casa-cenote-tulum-cenote-manati/"
+  },
+  "verde-lucero": {
+    "file": "images/cenotes/verde-lucero.webp",
+    "credit": "Explorando Cenotes",
+    "license": "Used as published — credit links to source",
+    "source": "https://explorandocenotes.com.mx/en/cenote-verde-lucero/"
+  },
+  "siete-bocas": {
+    "file": "images/cenotes/siete-bocas.webp",
+    "credit": "Cenotes World",
+    "license": "Used as published — credit links to source",
+    "source": "https://cenotesworld.com/en/cenotes-in-Puerto-Morelos-Quintana-Roo/Cenote-Siete-Bocas/"
+  },
+  "cristal-escondido": {
+    "file": "images/cenotes/cristal-escondido.webp",
+    "credit": "Mexico Cenotes & Ruins",
+    "license": "Used as published — credit links to source",
+    "source": "https://www.mexicocenotesandruins.com/cenote-cristal-cenote-escondido/"
+  },
+  "tamcach-ha": {
+    "file": "images/cenotes/tamcach-ha.webp",
+    "credit": "Mexico Cenotes & Ruins",
+    "license": "Used as published — credit links to source",
+    "source": "https://www.mexicocenotesandruins.com/cenote-tankach-ha-coba/"
+  },
+  "multun-ha": {
+    "file": "images/cenotes/multun-ha.webp",
+    "credit": "Mexico Cenotes & Ruins",
+    "license": "Used as published — credit links to source",
+    "source": "https://www.mexicocenotesandruins.com/cenote-multum-ha-coba/"
   }
 }
