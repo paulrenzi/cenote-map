@@ -2762,6 +2762,303 @@
       "verified": "2026-05-23",
       "summary_en": "Huge shallow turquoise lagoon with an 80 m deep central cenote pit; SUP, water swings; 10 min south of Tulum.",
       "summary_es": "Enorme laguna turquesa poco profunda con un cenote pit central de 80 m de profundidad; SUP, columpios de agua."
+    },
+    {
+      "slug": "chilam-balam",
+      "name_en": "Cenote Chilam Balam",
+      "name_es": "Cenote Chilam Balam",
+      "coords": [
+        20.812,
+        -87.043
+      ],
+      "region": "puerto_morelos",
+      "activities": [
+        "swim",
+        "snorkel",
+        "cavern_dive"
+      ],
+      "skill_min": "swimmer",
+      "kid_friendly": true,
+      "wheelchair": false,
+      "depth_m": 18,
+      "typical_visibility_m": null,
+      "opening_type": null,
+      "opening_orientation_deg": null,
+      "hours": "10:00-17:00",
+      "cost_mxn": 200,
+      "access": {
+        "road": "paved",
+        "parking": true,
+        "collectivo_stops": false,
+        "four_wd_needed": false
+      },
+      "amenities": [
+        "restrooms",
+        "snorkel_rental",
+        "atv_trail"
+      ],
+      "ownership": "private",
+      "eco": {
+        "sunscreen_rule": "biodegradable_only",
+        "crowd_pressure": "low"
+      },
+      "verified": "2026-05-23",
+      "summary_en": "Collapsed-dome cenote at km 17 of the Ruta de los Cenotes — 47 m wide, 18 m deep, emerald interior with stone steps. Part of the Tres Reyes group; popular with divers.",
+      "summary_es": "Cenote tipo domo colapsado en el km 17 de la Ruta de los Cenotes — 47 m de ancho, 18 m de profundidad, interior color esmeralda con escalones de piedra. Parte del grupo Tres Reyes; popular para buceo."
+    },
+    {
+      "slug": "sol-y-luna",
+      "name_en": "Cenote Sol y Luna",
+      "name_es": "Cenote Sol y Luna",
+      "coords": [
+        20.838,
+        -86.928
+      ],
+      "region": "puerto_morelos",
+      "activities": [
+        "swim",
+        "zip_line"
+      ],
+      "skill_min": "swimmer",
+      "kid_friendly": true,
+      "wheelchair": false,
+      "depth_m": null,
+      "typical_visibility_m": null,
+      "opening_type": null,
+      "opening_orientation_deg": null,
+      "hours": "09:00-18:00",
+      "cost_mxn": null,
+      "access": {
+        "road": "paved",
+        "parking": true,
+        "collectivo_stops": false,
+        "four_wd_needed": false
+      },
+      "amenities": [
+        "zip_line",
+        "atv_trail",
+        "restaurant",
+        "lodging",
+        "restrooms"
+      ],
+      "ownership": "private",
+      "eco": {
+        "sunscreen_rule": "biodegradable_only",
+        "crowd_pressure": "low"
+      },
+      "verified": "2026-05-23",
+      "summary_en": "Hacienda Sol y Luna at km 6.25 of the Ruta de los Cenotes — first major stop heading inland. Cenote plus ATV, zip line, restaurant, on-site rooms.",
+      "summary_es": "Hacienda Sol y Luna en el km 6.25 de la Ruta de los Cenotes — primera parada importante saliendo de Puerto Morelos. Cenote más ATV, tirolesa, restaurante, hospedaje."
+    },
+    {
+      "slug": "luum",
+      "name_en": "Cenote Lu'um",
+      "name_es": "Cenote Lu'um",
+      "coords": [
+        20.77,
+        -87.15
+      ],
+      "region": "puerto_morelos",
+      "activities": [
+        "swim",
+        "snorkel",
+        "rappel"
+      ],
+      "skill_min": "adventurous",
+      "kid_friendly": false,
+      "wheelchair": false,
+      "depth_m": 25,
+      "typical_visibility_m": null,
+      "opening_type": null,
+      "opening_orientation_deg": null,
+      "hours": "09:00-17:00",
+      "cost_mxn": null,
+      "access": {
+        "road": "paved",
+        "parking": true,
+        "collectivo_stops": false,
+        "four_wd_needed": false
+      },
+      "amenities": [
+        "rappel",
+        "restrooms"
+      ],
+      "ownership": "private",
+      "eco": {
+        "sunscreen_rule": "biodegradable_only",
+        "crowd_pressure": "low"
+      },
+      "verified": "2026-05-23",
+      "summary_en": "Cave cenote on the Leona Vicario side of the Ruta — entry is a 25 m rappel into the cavern. Turquoise water, 21-25 m deep, very few visitors compared to the open cenotes.",
+      "summary_es": "Cenote tipo caverna del lado de Leona Vicario en la Ruta — la entrada es un rappel de 25 m al interior. Agua turquesa, 21-25 m de profundidad, mucho menos visitado que los abiertos."
+    },
+    {
+      "slug": "boca-del-puma",
+      "name_en": "Cenote Boca del Puma",
+      "name_es": "Cenote Boca del Puma",
+      "coords": [
+        20.8155,
+        -87.0344
+      ],
+      "region": "puerto_morelos",
+      "activities": [
+        "swim",
+        "zip_line"
+      ],
+      "skill_min": "swimmer",
+      "kid_friendly": true,
+      "wheelchair": false,
+      "depth_m": null,
+      "typical_visibility_m": null,
+      "opening_type": null,
+      "opening_orientation_deg": null,
+      "hours": "10:00-18:00",
+      "cost_mxn": null,
+      "access": {
+        "road": "paved",
+        "parking": true,
+        "collectivo_stops": false,
+        "four_wd_needed": false
+      },
+      "amenities": [
+        "zip_line",
+        "atv_trail",
+        "restrooms"
+      ],
+      "ownership": "private",
+      "eco": {
+        "sunscreen_rule": "biodegradable_only",
+        "crowd_pressure": "low"
+      },
+      "verified": "2026-05-23",
+      "summary_en": "Adventure park at km 16 of the Ruta de los Cenotes — two cenotes connected by 9 km of ATV trail and seven high zip lines.",
+      "summary_es": "Parque de aventura en el km 16 de la Ruta de los Cenotes — dos cenotes conectados por 9 km de pista ATV y siete tirolesas altas."
+    },
+    {
+      "slug": "popol-vuh",
+      "name_en": "Cenote Popol Vuh",
+      "name_es": "Cenote Popol Vuh",
+      "coords": [
+        20.808,
+        -87.058
+      ],
+      "region": "puerto_morelos",
+      "activities": [
+        "swim",
+        "snorkel",
+        "zip_line"
+      ],
+      "skill_min": "swimmer",
+      "kid_friendly": true,
+      "wheelchair": false,
+      "depth_m": null,
+      "typical_visibility_m": null,
+      "opening_type": null,
+      "opening_orientation_deg": null,
+      "hours": "09:00-18:00",
+      "cost_mxn": 200,
+      "access": {
+        "road": "paved",
+        "parking": true,
+        "collectivo_stops": false,
+        "four_wd_needed": false
+      },
+      "amenities": [
+        "zip_line",
+        "restrooms"
+      ],
+      "ownership": "ejido",
+      "eco": {
+        "sunscreen_rule": "biodegradable_only",
+        "crowd_pressure": "low"
+      },
+      "verified": "2026-05-23",
+      "summary_en": "Open cenote about 35 m across with vivid blue-green water and a zip line that drops you in. On the Puerto Morelos jungle road, less crowded than Verde Lucero next door.",
+      "summary_es": "Cenote abierto de unos 35 m con agua color azul-verde y tirolesa al agua. En la ruta de los cenotes de Puerto Morelos, menos concurrido que Verde Lucero."
+    },
+    {
+      "slug": "elvira",
+      "name_en": "Cenote Elvira",
+      "name_es": "Cenote Elvira",
+      "coords": [
+        20.815,
+        -87.04
+      ],
+      "region": "puerto_morelos",
+      "activities": [
+        "swim",
+        "snorkel"
+      ],
+      "skill_min": "swimmer",
+      "kid_friendly": false,
+      "wheelchair": false,
+      "depth_m": null,
+      "typical_visibility_m": null,
+      "opening_type": null,
+      "opening_orientation_deg": null,
+      "hours": "10:00-23:00",
+      "cost_mxn": 600,
+      "access": {
+        "road": "paved",
+        "parking": true,
+        "collectivo_stops": false,
+        "four_wd_needed": false
+      },
+      "amenities": [
+        "restrooms",
+        "events"
+      ],
+      "ownership": "private",
+      "eco": {
+        "sunscreen_rule": "biodegradable_only",
+        "crowd_pressure": "low"
+      },
+      "verified": "2026-05-23",
+      "summary_en": "Private semi-open cenote on the Ruta de los Cenotes — reservation-only, open day and night for events. Quiet alternative when the busier ejido cenotes are packed.",
+      "summary_es": "Cenote semiabierto privado en la Ruta de los Cenotes — solo con reservación, abierto de día y de noche para eventos. Alternativa tranquila cuando los ejidales están llenos."
+    },
+    {
+      "slug": "cueva-del-jaguar",
+      "name_en": "Cenote La Cueva del Jaguar",
+      "name_es": "Cenote La Cueva del Jaguar",
+      "coords": [
+        20.81,
+        -87.05
+      ],
+      "region": "puerto_morelos",
+      "activities": [
+        "swim",
+        "snorkel",
+        "cliff_jump",
+        "zip_line"
+      ],
+      "skill_min": "swimmer",
+      "kid_friendly": true,
+      "wheelchair": false,
+      "depth_m": null,
+      "typical_visibility_m": null,
+      "opening_type": null,
+      "opening_orientation_deg": null,
+      "hours": "09:00-18:00",
+      "cost_mxn": 200,
+      "access": {
+        "road": "paved",
+        "parking": true,
+        "collectivo_stops": false,
+        "four_wd_needed": false
+      },
+      "amenities": [
+        "zip_line",
+        "restrooms"
+      ],
+      "ownership": "ejido",
+      "eco": {
+        "sunscreen_rule": "biodegradable_only",
+        "crowd_pressure": "low"
+      },
+      "verified": "2026-05-23",
+      "summary_en": "Crystal-clear cave-mouth cenote on the Puerto Morelos jungle road with zip lines and a jump platform. Smaller crowds than the headline cenotes one km away.",
+      "summary_es": "Cenote tipo boca de cueva con agua muy clara en la ruta de los cenotes de Puerto Morelos. Tirolesas y plataforma de salto. Menos gente que los grandes del mismo tramo."
     }
   ]
 }

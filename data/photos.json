@@ -435,5 +435,47 @@
     "credit": "tulumtravelsecrets.com",
     "license": "Used as published — credit links to source",
     "source": "https://tulumtravelsecrets.com/best-tulum-cenotes/"
+  },
+  "chilam-balam": {
+    "file": "images/cenotes/chilam-balam.webp",
+    "credit": "menteurbana.mx",
+    "license": "publisher image (best-effort attribution)",
+    "source": "https://menteurbana.mx/cenote-chilam-balam"
+  },
+  "sol-y-luna": {
+    "file": "images/cenotes/sol-y-luna.webp",
+    "credit": "cenotesolyluna.com (operator)",
+    "license": "publisher image (best-effort attribution)",
+    "source": "https://cenotesolyluna.com/"
+  },
+  "luum": {
+    "file": "images/cenotes/luum.webp",
+    "credit": "México Desconocido",
+    "license": "publisher image (best-effort attribution)",
+    "source": "https://escapadas.mexicodesconocido.com.mx/atractivos/cenote-luum/"
+  },
+  "boca-del-puma": {
+    "file": "images/cenotes/boca-del-puma.webp",
+    "credit": "todocenotes.com",
+    "license": "publisher og:image (best-effort attribution)",
+    "source": "https://todocenotes.com/puerto-morelos/"
+  },
+  "popol-vuh": {
+    "file": "images/cenotes/popol-vuh.webp",
+    "credit": "todocenotes.com",
+    "license": "publisher og:image (best-effort attribution)",
+    "source": "https://todocenotes.com/puerto-morelos/"
+  },
+  "elvira": {
+    "file": "images/cenotes/elvira.webp",
+    "credit": "todocenotes.com",
+    "license": "publisher og:image (best-effort attribution)",
+    "source": "https://todocenotes.com/puerto-morelos/"
+  },
+  "cueva-del-jaguar": {
+    "file": "images/cenotes/cueva-del-jaguar.webp",
+    "credit": "todocenotes.com",
+    "license": "publisher og:image (best-effort attribution)",
+    "source": "https://todocenotes.com/puerto-morelos/"
   }
 }
