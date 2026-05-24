@@ -2,7 +2,7 @@
 // The activate handler deletes every cache whose name doesn't match, so a
 // stale shell can't outlive a release. The ?v= query strings on the URLs
 // below also force the browser HTTP cache to miss for those URLs.
-const CACHE = "cenote-map-v6";
+const CACHE = "cenote-map-v7";
 const SHELL = [
   "/cenote-map/",
   "/cenote-map/index.html",
