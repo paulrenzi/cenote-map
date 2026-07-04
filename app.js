@@ -86,6 +86,7 @@
       "plan.drive": "Drive",
       "plan.driveMin": (m) => `~${m} min`,
       "plan.view": "View itinerary",
+      "plan.viewOne": "Get directions",
       "plan.clear": "Clear",
       "plan.remove": "Remove",
       "plan.moveUp": "Move up",
@@ -189,6 +190,7 @@
       "plan.drive": "Carretera",
       "plan.driveMin": (m) => `~${m} min`,
       "plan.view": "Ver itinerario",
+      "plan.viewOne": "Cómo llegar",
       "plan.clear": "Limpiar",
       "plan.remove": "Quitar",
       "plan.moveUp": "Subir",
@@ -655,7 +657,7 @@
         aria-label="${escapeHtml(t(minimized ? "plan.expand" : "plan.minimize"))}"
         aria-expanded="${!minimized}">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-          <polyline points="${minimized ? "6 9 12 15 18 9" : "18 15 12 9 6 15"}"/>
+          <polyline points="${minimized ? "18 15 12 9 6 15" : "6 9 12 15 18 9"}"/>
         </svg>
       </button>`;
 
@@ -717,7 +719,7 @@
             <span class="tray-stat"><span class="tray-stat-k">${t("plan.costTotal")}</span> ${escapeHtml(costText)}</span>
             <span class="tray-stat"><span class="tray-stat-k">${t("plan.drive")}</span> ${t("plan.driveMin", s.driveMin)}</span>
           </div>
-          <button type="button" class="btn btn-primary tray-view" data-plan-view>${t("plan.view")}</button>
+          <button type="button" class="btn btn-primary tray-view" data-plan-view>${t(s.count === 1 ? "plan.viewOne" : "plan.view")}</button>
         </div>
         ${s.far ? `<p class="tray-warn">${t("plan.far")}</p>` : ""}
       </div>`;
@@ -741,9 +743,16 @@
   function openItinerary() {
     const modal = document.getElementById("itin-modal");
     if (!modal) return;
+    const { legs, stops } = planLegs();
+    // A single-stop plan has no route to order and nothing the tray doesn't
+    // already show — the modal is just an extra tap. Send straight to Maps.
+    if (stops.length === 1) {
+      const url = planMapsUrl();
+      if (url) window.open(url, "_blank", "noopener");
+      return;
+    }
     const base = state.bases.find((b) => b.id === state.baseId);
     const baseName = base ? (langPref === "es" ? base.label_es : base.label_en) : "";
-    const { legs, stops } = planLegs();
     const s = planStats();
 
     const rows = stops.map((c, i) => {
@@ -869,13 +878,15 @@
                 ${dist}
               </div>
               <p class="card-summary">${escapeHtml(summary)}</p>
-              <div class="card-meta">
+              <div class="card-meta card-meta-primary">
+                <span class="meta-pill cost">${costLabel(c)}</span>
+                ${skillPill(c)}
+                ${transitPill(c)}
+              </div>
+              <div class="card-meta card-meta-secondary">
                 ${conditionPill(c.slug)}
                 ${activities}
-                ${skillPill(c)}
                 ${kids}
-                <span class="meta-pill cost">${costLabel(c)}</span>
-                ${transitPill(c)}
                 ${sunscreenPill(c)}
               </div>
               <div class="card-foot">${verified}${directionsBtn}${reportBtn}${planButton(c.slug)}</div>
@@ -1217,7 +1228,7 @@
     if (!hadSavedBase) detectAndApplyLocationBase();
 
     if ("serviceWorker" in navigator && location.protocol === "https:") {
-      navigator.serviceWorker.register("sw.js?v=17").then((reg) => {
+      navigator.serviceWorker.register("sw.js?v=19").then((reg) => {
         // Force a real network check on every visit instead of waiting for the
         // browser's lazy periodic re-fetch, which can leave a stale worker
         // running for hours after a deploy.

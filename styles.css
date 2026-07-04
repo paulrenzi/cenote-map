@@ -464,7 +464,14 @@ button { font: inherit; cursor: pointer; }
   display: flex;
   flex-wrap: wrap;
   gap: 0.4rem;
+}
+
+.card-meta-primary {
   margin-top: auto;
+}
+
+.card-meta-secondary {
+  margin-top: 0.4rem;
 }
 
 .meta-pill {
@@ -480,20 +487,31 @@ button { font: inherit; cursor: pointer; }
   letter-spacing: 0.01em;
 }
 
-.meta-pill.cost {
-  background: rgba(15, 42, 52, 0.06);
-  color: var(--text);
+/* Secondary tier — activities, condition, kid-friendly, sunscreen prep notes.
+   Deliberately quieter than the primary (cost/skill/transit) tier so the
+   numbers people actually decide with don't compete visually with tags. */
+.card-meta-secondary .meta-pill {
+  background: transparent;
+  border: 1px solid var(--border);
+  color: var(--muted);
+  font-weight: 600;
 }
 
-.meta-pill.kids   { background: rgba(46, 139, 87, 0.1);  color: #1e6e42; }
-.meta-pill.skill  { background: rgba(201, 138, 26, 0.12); color: #8a5e0d; }
-.meta-pill.transit,
-.meta-pill.prep   { background: rgba(15, 42, 52, 0.06);  color: var(--muted); }
-.meta-pill.warn   { background: rgba(201, 138, 26, 0.14); color: #8a5e0d; }
+/* Primary tier — the facts that drive the go/no-go decision. */
+.meta-pill.cost {
+  background: var(--accent-deep);
+  color: #fff;
+}
 
-.meta-pill.cond   { background: rgba(46, 139, 87, 0.12);  color: #1e6e42; }
-.meta-pill.cond.medium { background: rgba(201, 138, 26, 0.14); color: #8a5e0d; }
-.meta-pill.cond.high   { background: rgba(177, 74, 59, 0.14);  color: #8a2f22; }
+.card-meta-secondary .meta-pill.kids { color: #1e6e42; border-color: rgba(46, 139, 87, 0.3); }
+.meta-pill.skill  { background: rgba(201, 138, 26, 0.14); color: #8a5e0d; }
+.meta-pill.transit { background: rgba(15, 42, 52, 0.08); color: var(--text); }
+.meta-pill.warn   { background: rgba(201, 138, 26, 0.18); color: #8a5e0d; }
+.card-meta-secondary .meta-pill.warn { background: transparent; border-color: rgba(201, 138, 26, 0.5); color: #8a5e0d; }
+
+.card-meta-secondary .meta-pill.cond   { color: #1e6e42; border-color: rgba(46, 139, 87, 0.3); }
+.card-meta-secondary .meta-pill.cond.medium { color: #8a5e0d; border-color: rgba(201, 138, 26, 0.4); }
+.card-meta-secondary .meta-pill.cond.high   { color: #8a2f22; border-color: rgba(177, 74, 59, 0.4); }
 
 .report-btn {
   background: transparent;
@@ -514,8 +532,10 @@ button { font: inherit; cursor: pointer; }
 
 .card-foot {
   display: flex;
+  flex-wrap: wrap;
   justify-content: space-between;
   align-items: center;
+  gap: 0.6rem;
   font-size: 0.74rem;
   letter-spacing: 0.04em;
   color: var(--subtle);
@@ -1060,7 +1080,6 @@ button { font: inherit; cursor: pointer; }
   display: inline-flex;
   align-items: center;
   gap: 0.3rem;
-  margin-left: auto;
   padding: 0.34rem 0.7rem;
   border: 1.5px solid var(--accent);
   border-radius: 999px;
@@ -1176,8 +1195,15 @@ button { font: inherit; cursor: pointer; }
 .itin-totals > div { font-size: 1.05rem; font-weight: 800; color: var(--text); }
 .itin-tot-k { display: block; font-size: 0.62rem; font-weight: 800; letter-spacing: 0.14em; text-transform: uppercase; color: var(--subtle); }
 .itin-onsite { display: block; font-size: 0.72rem; font-weight: 600; color: var(--subtle); }
-.itin-actions { display: flex; align-items: center; gap: 0.8rem; margin-bottom: 1.2rem; }
-.itin-share-ok { font-size: 0.82rem; font-weight: 700; color: var(--ok); }
+.itin-actions {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 0.6rem;
+  margin-bottom: 1.2rem;
+}
+.itin-actions .btn { width: 100%; text-align: center; }
+.itin-share-ok { font-size: 0.82rem; font-weight: 700; color: var(--ok); text-align: center; }
 .itin-partners-h { font-size: 0.66rem; font-weight: 800; letter-spacing: 0.16em; text-transform: uppercase; color: var(--subtle); margin: 0 0 0.4rem; }
 .itin-partners ul { list-style: none; margin: 0; padding: 0; display: flex; gap: 1rem; flex-wrap: wrap; }
 .itin-partners a { color: var(--accent-deep); font-weight: 700; font-size: 0.9rem; }
