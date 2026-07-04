@@ -524,22 +524,19 @@
     return `https://www.google.com/maps/dir/?api=1&destination=${c.coords[0]},${c.coords[1]}&travelmode=driving`;
   }
 
-  // Multi-stop Google Maps route for the whole day plan — base (if chosen) as
-  // origin, last stop as destination, everything between as waypoints. Most
-  // visitors already have Google Maps installed, so this beats building our
-  // own turn-by-turn.
+  // Multi-stop Google Maps route for the whole day plan. Origin is left
+  // blank on purpose — Maps then starts from wherever the visitor actually
+  // is when they tap it (their live device location), not the "staying in"
+  // dropdown pick, which is only a distance-sort hint and often isn't where
+  // they're standing. Destination is the last stop, everything else in
+  // between is a waypoint.
   function planMapsUrl() {
-    const { points } = planLegs();
-    if (points.length < 2) {
-      return points.length === 1
-        ? `https://www.google.com/maps/search/?api=1&query=${points[0].coords[0]},${points[0].coords[1]}`
-        : null;
-    }
+    const { stops } = planLegs();
+    if (stops.length === 0) return null;
     const toStr = (coords) => `${coords[0]},${coords[1]}`;
-    const origin = toStr(points[0].coords);
-    const destination = toStr(points[points.length - 1].coords);
-    const waypoints = points.slice(1, -1).map((p) => toStr(p.coords));
-    let url = `https://www.google.com/maps/dir/?api=1&origin=${origin}&destination=${destination}&travelmode=driving`;
+    const destination = toStr(stops[stops.length - 1].coords);
+    const waypoints = stops.slice(0, -1).map((c) => toStr(c.coords));
+    let url = `https://www.google.com/maps/dir/?api=1&destination=${destination}&travelmode=driving`;
     if (waypoints.length) url += `&waypoints=${encodeURIComponent(waypoints.join("|"))}`;
     return url;
   }
@@ -735,7 +732,7 @@
           ${s.unknownCount ? `<span class="itin-onsite">${escapeHtml(t("itin.onSite", s.unknownCount))}</span>` : ""}</div>
       </div>
       <div class="itin-actions">
-        <a class="btn btn-primary" id="itin-maps" href="${planMapsUrl()}" target="_blank" rel="noreferrer">${t("itin.openMaps")}</a>
+        <a class="btn btn-primary" id="itin-maps" href="${planMapsUrl()}">${t("itin.openMaps")}</a>
         <a class="btn btn-ghost" id="itin-email" href="${planEmailHref(stops, legs, s, baseName)}">${t("itin.email")}</a>
         <button type="button" class="btn btn-ghost" id="itin-share">${t("plan.share")}</button>
         <span class="itin-share-ok" id="itin-share-ok" role="status"></span>
@@ -1157,7 +1154,7 @@
     loadConditions().then(() => renderCards());
 
     if ("serviceWorker" in navigator && location.protocol === "https:") {
-      navigator.serviceWorker.register("sw.js?v=15").then((reg) => {
+      navigator.serviceWorker.register("sw.js?v=16").then((reg) => {
         // Force a real network check on every visit instead of waiting for the
         // browser's lazy periodic re-fetch, which can leave a stale worker
         // running for hours after a deploy.

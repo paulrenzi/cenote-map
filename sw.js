@@ -6,13 +6,13 @@ const CACHE = "cenote-map-v14";
 const SHELL = [
   "/cenote-map/",
   "/cenote-map/index.html",
-  "/cenote-map/styles.css?v=15",
-  "/cenote-map/app.js?v=15",
+  "/cenote-map/styles.css?v=16",
+  "/cenote-map/app.js?v=16",
   "/cenote-map/data/cenotes.json",
   "/cenote-map/data/bases.json",
   "/cenote-map/data/photos.json",
   "/cenote-map/images/hero.webp",
-  "/cenote-map/manifest.webmanifest?v=15"
+  "/cenote-map/manifest.webmanifest?v=16"
 ];
 
 self.addEventListener("install", (e) => {
