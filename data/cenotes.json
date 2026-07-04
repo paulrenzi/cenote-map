@@ -3059,6 +3059,263 @@
       "verified": "2026-05-23",
       "summary_en": "Crystal-clear cave-mouth cenote on the Puerto Morelos jungle road with zip lines and a jump platform. Smaller crowds than the headline cenotes one km away.",
       "summary_es": "Cenote tipo boca de cueva con agua muy clara en la ruta de los cenotes de Puerto Morelos. Tirolesas y plataforma de salto. Menos gente que los grandes del mismo tramo."
+    },
+    {
+      "slug": "kantun-chi",
+      "name_en": "Kantun Chi Ecopark",
+      "name_es": "Ecoparque Kantún Chi",
+      "coords": [
+        20.4642,
+        -87.243
+      ],
+      "region": "riviera_central",
+      "activities": [
+        "swim",
+        "snorkel"
+      ],
+      "skill_min": "swimmer",
+      "kid_friendly": true,
+      "wheelchair": false,
+      "depth_m": 5,
+      "typical_visibility_m": 12,
+      "opening_type": "cluster",
+      "opening_orientation_deg": 90,
+      "hours": "09:00-17:00",
+      "cost_mxn": 500,
+      "access": {
+        "road": "paved",
+        "parking": true,
+        "collectivo_stops": true,
+        "four_wd_needed": false
+      },
+      "amenities": [
+        "restrooms",
+        "showers",
+        "lockers",
+        "life_vest_rental",
+        "snorkel_rental",
+        "restaurant",
+        "guide_available"
+      ],
+      "ownership": "private_mx",
+      "eco": {
+        "sunscreen_rule": "none_allowed",
+        "crowd_pressure": "medium"
+      },
+      "summary_en": "A family-run ecopark on Highway 307 south of Puerto Aventuras bundling four cenotes — an open swim pool plus cavern-roofed grottos — with life vests, easy walkways, and a jungle trail. A gentle, uncrowded stop good for first-timers and kids.",
+      "summary_es": "Un ecoparque familiar sobre la carretera 307 al sur de Puerto Aventuras que reúne cuatro cenotes — una alberca abierta y grutas techadas — con chalecos, pasarelas fáciles y un sendero en la selva. Una parada tranquila ideal para principiantes y niños."
+    },
+    {
+      "slug": "sac-actun",
+      "name_en": "Sac Actun (Nohoch Nah Chich)",
+      "name_es": "Sac Actun (Nohoch Nah Chich)",
+      "coords": [
+        20.301,
+        -87.402
+      ],
+      "region": "tulum",
+      "activities": [
+        "snorkel",
+        "cavern_dive",
+        "cave_dive"
+      ],
+      "skill_min": "cavern_cert",
+      "kid_friendly": false,
+      "wheelchair": false,
+      "depth_m": 12,
+      "typical_visibility_m": 40,
+      "opening_type": "cave_system",
+      "opening_orientation_deg": 90,
+      "hours": "09:00-16:00",
+      "cost_mxn": null,
+      "access": {
+        "road": "dirt_easy",
+        "parking": true,
+        "collectivo_stops": false,
+        "four_wd_needed": false
+      },
+      "amenities": [
+        "guided_only",
+        "guide_available",
+        "restrooms",
+        "tank_fill"
+      ],
+      "ownership": "ejido",
+      "eco": {
+        "sunscreen_rule": "none_allowed",
+        "crowd_pressure": "low"
+      },
+      "summary_en": "Part of the world's longest surveyed underwater cave system. Access is by guided cavern snorkel or a cave-certified dive only — crystal freshwater, dramatic decorations, and near-silence. Not a casual swim stop; book a licensed guide.",
+      "summary_es": "Parte del sistema de cuevas inundadas más largo del mundo. El acceso es solo con snorkel de caverna guiado o buceo con certificación de cueva — agua dulce cristalina, formaciones dramáticas y casi silencio. No es una parada casual; contrata un guía certificado."
+    },
+    {
+      "slug": "el-pit",
+      "name_en": "Cenote El Pit",
+      "name_es": "Cenote El Pit",
+      "coords": [
+        20.3239,
+        -87.3782
+      ],
+      "region": "tulum",
+      "activities": [
+        "cavern_dive",
+        "cave_dive"
+      ],
+      "skill_min": "cave_cert",
+      "kid_friendly": false,
+      "wheelchair": false,
+      "depth_m": 40,
+      "typical_visibility_m": 50,
+      "opening_type": "pit",
+      "opening_orientation_deg": 0,
+      "hours": "08:00-17:00",
+      "cost_mxn": null,
+      "access": {
+        "road": "dirt_rough",
+        "parking": true,
+        "collectivo_stops": false,
+        "four_wd_needed": false
+      },
+      "amenities": [
+        "guided_only",
+        "tank_fill",
+        "restrooms"
+      ],
+      "ownership": "ejido",
+      "eco": {
+        "sunscreen_rule": "none_allowed",
+        "crowd_pressure": "low"
+      },
+      "summary_en": "The deepest cenote in the Dos Ojos / Sac Actun area — a vertical shaft dropping past a hydrogen-sulphide cloud and ancient tree limbs, with legendary morning light beams. A technical dive site for certified divers only; not for swimmers or snorkelers.",
+      "summary_es": "El cenote más profundo de la zona Dos Ojos / Sac Actun — un tiro vertical que atraviesa una nube de ácido sulfhídrico y ramas antiguas, con legendarios rayos de luz por la mañana. Un sitio de buceo técnico solo para buzos certificados; no apto para nadadores ni snorkel."
+    },
+    {
+      "slug": "nicte-ha",
+      "name_en": "Cenote Nicte-Ha",
+      "name_es": "Cenote Nicte-Ha",
+      "coords": [
+        20.3252,
+        -87.3888
+      ],
+      "region": "tulum",
+      "activities": [
+        "swim",
+        "snorkel",
+        "cavern_dive"
+      ],
+      "skill_min": "swimmer",
+      "kid_friendly": true,
+      "wheelchair": false,
+      "depth_m": 10,
+      "typical_visibility_m": 30,
+      "opening_type": "open_pool",
+      "opening_orientation_deg": 90,
+      "hours": "09:00-17:00",
+      "cost_mxn": 200,
+      "access": {
+        "road": "dirt_easy",
+        "parking": true,
+        "collectivo_stops": false,
+        "four_wd_needed": false
+      },
+      "amenities": [
+        "restrooms",
+        "guide_available",
+        "snorkel_rental"
+      ],
+      "ownership": "ejido",
+      "eco": {
+        "sunscreen_rule": "none_allowed",
+        "crowd_pressure": "low"
+      },
+      "summary_en": "A quiet, lily-pad-fringed open cenote near the Dos Ojos entrance — shallow, clear, and usually calm, with a cavern edge for divers. A pretty, low-key swim and snorkel stop that most Dos Ojos day-trippers skip.",
+      "summary_es": "Un cenote abierto y tranquilo bordeado de nenúfares cerca de la entrada de Dos Ojos — poco profundo, claro y por lo general en calma, con un borde de caverna para buzos. Una parada bonita y relajada para nadar y hacer snorkel que la mayoría de los visitantes de Dos Ojos se salta."
+    },
+    {
+      "slug": "tankah",
+      "name_en": "Cenote Tankah",
+      "name_es": "Cenote Tankah",
+      "coords": [
+        20.298,
+        -87.404
+      ],
+      "region": "tulum",
+      "activities": [
+        "swim",
+        "snorkel"
+      ],
+      "skill_min": "swimmer",
+      "kid_friendly": true,
+      "wheelchair": false,
+      "depth_m": 4,
+      "typical_visibility_m": 10,
+      "opening_type": "mangrove_channel",
+      "opening_orientation_deg": 90,
+      "hours": "08:00-17:00",
+      "cost_mxn": 50,
+      "access": {
+        "road": "paved",
+        "parking": true,
+        "collectivo_stops": true,
+        "four_wd_needed": false
+      },
+      "amenities": [
+        "restrooms"
+      ],
+      "ownership": "community",
+      "eco": {
+        "sunscreen_rule": "none_allowed",
+        "crowd_pressure": "low"
+      },
+      "summary_en": "A natural mangrove-fringed cenote in Tankah Tres, near Casa Cenote — a brackish channel of open freshwater winding through the jungle, gentle enough to float and snorkel. Undeveloped and low-key compared with the commercial Tankah park nearby.",
+      "summary_es": "Un cenote natural rodeado de manglar en Tankah Tres, cerca de Casa Cenote — un canal de agua dulce salobre que serpentea por la selva, tranquilo para flotar y hacer snorkel. Sin desarrollar y relajado en comparación con el parque comercial Tankah cercano."
+    },
+    {
+      "slug": "parque-tankah",
+      "name_en": "Parque Tankah",
+      "name_es": "Parque Tankah",
+      "coords": [
+        20.2862,
+        -87.403
+      ],
+      "region": "tulum",
+      "activities": [
+        "swim",
+        "snorkel",
+        "zip_line"
+      ],
+      "skill_min": "swimmer",
+      "kid_friendly": true,
+      "wheelchair": false,
+      "depth_m": 6,
+      "typical_visibility_m": 10,
+      "opening_type": "cluster",
+      "opening_orientation_deg": 90,
+      "hours": "09:00-17:00",
+      "cost_mxn": null,
+      "access": {
+        "road": "paved",
+        "parking": true,
+        "collectivo_stops": true,
+        "four_wd_needed": false
+      },
+      "amenities": [
+        "restrooms",
+        "showers",
+        "lockers",
+        "life_vest_rental",
+        "kayak_rental",
+        "zip_line",
+        "restaurant",
+        "guide_available"
+      ],
+      "ownership": "private_mx",
+      "eco": {
+        "sunscreen_rule": "none_allowed",
+        "crowd_pressure": "medium"
+      },
+      "summary_en": "A commercial adventure park at Km 233+400 on Highway 307 bundling several cenotes with ziplines, kayaks, and canoe channels — sold as activity packages rather than a simple entry fee. Convenient and family-friendly; different place from the natural Cenote Tankah despite the shared name.",
+      "summary_es": "Un parque de aventura comercial en el Km 233+400 de la carretera 307 que combina varios cenotes con tirolesas, kayaks y canales de canoa — vendido como paquetes de actividades más que una simple entrada. Cómodo y familiar; un lugar distinto al Cenote Tankah natural pese al nombre compartido."
     }
   ]
 }

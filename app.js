@@ -16,6 +16,9 @@
       "strip.base": "Staying in",
       "strip.activity": "I want to",
       "strip.kids": "Kid-friendly only",
+      "strip.search": "Search",
+      "strip.searchPlaceholder": "Name, activity, or place…",
+      "results.emptySearch": "No cenotes match your search. Try fewer words or a different spelling.",
       "activity.any": "Anything",
       "activity.swim": "Swim",
       "activity.snorkel": "Snorkel",
@@ -63,7 +66,35 @@
       "report.rate": "You've sent a few reports recently — please wait an hour.",
       "support.eyebrow": "Plan the day",
       "support.body": "Cenote Map is a free, independent planner built by Akumal locals. Booking with our partner businesses keeps it online and ad-free.",
-      "footer.text": "Cenotes are sacred to the Maya and fragile freshwater systems — skip the sunscreen, take your trash with you, and tip the local crew."
+      "footer.text": "Cenotes are sacred to the Maya and fragile freshwater systems — skip the sunscreen, take your trash with you, and tip the local crew.",
+      "plan.add": "Add to day",
+      "plan.added": "In your day",
+      "plan.full": "Day is full (3)",
+      "plan.title": "Your day",
+      "plan.stops": (n) => `${n} stop${n === 1 ? "" : "s"}`,
+      "plan.costTotal": "Entry total",
+      "plan.costFrom": (p) => `$${p} MXN`,
+      "plan.costUnknown": (n) => ` · +${n} priced on-site`,
+      "plan.costNone": "Priced on-site",
+      "plan.drive": "Drive",
+      "plan.driveMin": (m) => `~${m} min`,
+      "plan.view": "View itinerary",
+      "plan.clear": "Clear",
+      "plan.remove": "Remove",
+      "plan.moveUp": "Move up",
+      "plan.moveDown": "Move down",
+      "plan.share": "Copy share link",
+      "plan.shared": "Link copied",
+      "plan.far": "Heads up — these stops are spread far apart for one day.",
+      "itin.title": "Your cenote day",
+      "itin.routeFrom": (b) => `Route from ${b}`,
+      "itin.leg": (m) => `${m} min drive`,
+      "itin.legStart": (b, m) => `${m} min from ${b}`,
+      "itin.totalDrive": "Total driving",
+      "itin.totalCost": "Entry total",
+      "itin.onSite": (n) => `${n} stop${n === 1 ? "" : "s"} priced on-site`,
+      "itin.partners": "Make it easy",
+      "itin.close": "Close"
     },
     es: {
       "hero.eyebrow": "Riviera Maya · Quintana Roo",
@@ -72,6 +103,9 @@
       "strip.base": "Te hospedas en",
       "strip.activity": "Quiero",
       "strip.kids": "Solo para niños",
+      "strip.search": "Buscar",
+      "strip.searchPlaceholder": "Nombre, actividad o lugar…",
+      "results.emptySearch": "Ningún cenote coincide con tu búsqueda. Prueba con menos palabras u otra ortografía.",
       "activity.any": "Cualquier cosa",
       "activity.swim": "Nadar",
       "activity.snorkel": "Hacer snorkel",
@@ -119,7 +153,35 @@
       "report.rate": "Has enviado varios reportes recientemente — espera una hora.",
       "support.eyebrow": "Planea el día",
       "support.body": "Cenote Map es un planificador gratuito e independiente hecho por locales de Akumal. Reservar con nuestros socios lo mantiene en línea y sin anuncios.",
-      "footer.text": "Los cenotes son sagrados para los mayas y sistemas de agua dulce frágiles — no uses bloqueador, llévate tu basura, y propina al equipo local."
+      "footer.text": "Los cenotes son sagrados para los mayas y sistemas de agua dulce frágiles — no uses bloqueador, llévate tu basura, y propina al equipo local.",
+      "plan.add": "Añadir al día",
+      "plan.added": "En tu día",
+      "plan.full": "Día lleno (3)",
+      "plan.title": "Tu día",
+      "plan.stops": (n) => `${n} parada${n === 1 ? "" : "s"}`,
+      "plan.costTotal": "Total entradas",
+      "plan.costFrom": (p) => `$${p} MXN`,
+      "plan.costUnknown": (n) => ` · +${n} con precio en sitio`,
+      "plan.costNone": "Precio en sitio",
+      "plan.drive": "Carretera",
+      "plan.driveMin": (m) => `~${m} min`,
+      "plan.view": "Ver itinerario",
+      "plan.clear": "Limpiar",
+      "plan.remove": "Quitar",
+      "plan.moveUp": "Subir",
+      "plan.moveDown": "Bajar",
+      "plan.share": "Copiar enlace",
+      "plan.shared": "Enlace copiado",
+      "plan.far": "Atención — estas paradas están muy separadas para un solo día.",
+      "itin.title": "Tu día de cenotes",
+      "itin.routeFrom": (b) => `Ruta desde ${b}`,
+      "itin.leg": (m) => `${m} min en auto`,
+      "itin.legStart": (b, m) => `${m} min desde ${b}`,
+      "itin.totalDrive": "Total en carretera",
+      "itin.totalCost": "Total entradas",
+      "itin.onSite": (n) => `${n} parada${n === 1 ? "" : "s"} con precio en sitio`,
+      "itin.partners": "Hazlo fácil",
+      "itin.close": "Cerrar"
     }
   };
 
@@ -136,6 +198,12 @@
       const key = el.getAttribute("data-i18n");
       const val = I18N[langPref][key] ?? I18N.en[key];
       if (typeof val === "string") el.innerHTML = val;
+    });
+    document.querySelectorAll("[data-i18n-attr]").forEach((el) => {
+      // Format: "attr:key" (e.g. "placeholder:strip.searchPlaceholder")
+      const [attr, key] = el.getAttribute("data-i18n-attr").split(":");
+      const val = I18N[langPref][key] ?? I18N.en[key];
+      if (attr && typeof val === "string") el.setAttribute(attr, val);
     });
     document.getElementById("lang-en")?.classList.toggle("is-active", langPref === "en");
     document.getElementById("lang-es")?.classList.toggle("is-active", langPref === "es");
@@ -164,6 +232,8 @@
     baseId: null,
     activity: "",
     kidsOnly: false,
+    query: "",
+    plan: [],              // ordered array of slugs (max MAX_PLAN)
     map: null,
     markers: [],
     conditions: {},        // slug -> latest condition record
@@ -197,6 +267,29 @@
     } catch { /* offline / cors / down — degrade silently */ }
   }
 
+  // ── Search ─────────────────────────────────────────────────────
+  // Fold accents + lowercase so "nicte" matches "Nicté" and "cenote azul"
+  // matches regardless of diacritics.
+  const fold = (s) => String(s).toLowerCase()
+    .normalize("NFD").replace(/[̀-ͯ]/g, "");
+
+  function searchHaystack(c) {
+    if (c._haystack) return c._haystack;
+    const activityWords = (c.activities || []).map((a) =>
+      `${t("activity." + a)} ${I18N.en["activity." + a] || ""} ${I18N.es["activity." + a] || ""}`).join(" ");
+    c._haystack = fold([
+      c.name_en, c.name_es, c.summary_en, c.summary_es,
+      c.region, activityWords
+    ].join(" "));
+    return c._haystack;
+  }
+
+  function matchesQuery(c) {
+    if (!state.query) return true;
+    const hay = searchHaystack(c);
+    return fold(state.query).split(/\s+/).filter(Boolean).every((tok) => hay.includes(tok));
+  }
+
   // ── Filter + sort ──────────────────────────────────────────────
   function visibleCenotes() {
     const base = state.bases.find((b) => b.id === state.baseId);
@@ -205,6 +298,7 @@
       .filter((c) => {
         if (state.activity && !c.activities.includes(state.activity)) return false;
         if (state.kidsOnly && !c.kid_friendly) return false;
+        if (!matchesQuery(c)) return false;
         return true;
       })
       .map((c) => ({
@@ -278,6 +372,221 @@
     return (h % 70) - 35;
   }
 
+  // ── Day plan ───────────────────────────────────────────────────
+  const MAX_PLAN = 3;
+  const PLAN_KEY = "cenote-plan";
+
+  const cenoteBySlug = (slug) => state.cenotes.find((c) => c.slug === slug);
+
+  function loadPlan() {
+    // A ?plan= URL wins over localStorage so shared links open the same day.
+    const fromUrl = params.get("plan");
+    let slugs = [];
+    if (fromUrl) {
+      slugs = fromUrl.split(",").map((s) => s.trim()).filter(Boolean);
+    } else {
+      try { slugs = JSON.parse(localStorage.getItem(PLAN_KEY) || "[]"); } catch {}
+    }
+    // Keep only slugs that still exist, cap at MAX_PLAN.
+    state.plan = slugs.filter((s) => cenoteBySlug(s)).slice(0, MAX_PLAN);
+  }
+
+  function savePlan() {
+    try { localStorage.setItem(PLAN_KEY, JSON.stringify(state.plan)); } catch {}
+    // Reflect the plan in the URL without a reload so it's copy-pasteable.
+    const url = new URL(location.href);
+    if (state.plan.length) url.searchParams.set("plan", state.plan.join(","));
+    else url.searchParams.delete("plan");
+    history.replaceState(null, "", url);
+  }
+
+  function togglePlan(slug) {
+    const i = state.plan.indexOf(slug);
+    if (i >= 0) state.plan.splice(i, 1);
+    else if (state.plan.length < MAX_PLAN) state.plan.push(slug);
+    savePlan();
+    renderCards();
+    renderTray();
+  }
+
+  function movePlan(slug, dir) {
+    const i = state.plan.indexOf(slug);
+    const j = i + dir;
+    if (i < 0 || j < 0 || j >= state.plan.length) return;
+    [state.plan[i], state.plan[j]] = [state.plan[j], state.plan[i]];
+    savePlan();
+    renderTray();
+    renderMarkers(visibleCenotes());
+  }
+
+  function clearPlan() {
+    state.plan = [];
+    savePlan();
+    renderCards();
+    renderTray();
+    renderMarkers(visibleCenotes());
+  }
+
+  // Ordered coords for the day: base first (if chosen), then each stop.
+  function planLegs() {
+    const base = state.bases.find((b) => b.id === state.baseId);
+    const stops = state.plan.map(cenoteBySlug).filter(Boolean);
+    const points = [];
+    if (base) points.push({ coords: base.coords, name: base.label_en, isBase: true });
+    stops.forEach((c) => points.push({ coords: c.coords, cenote: c }));
+    const legs = [];
+    for (let i = 1; i < points.length; i++) {
+      legs.push(minutesDrive(haversineKm(points[i - 1].coords, points[i].coords)));
+    }
+    return { points, legs, stops };
+  }
+
+  function planStats() {
+    const { legs, stops } = planLegs();
+    let knownCost = 0, unknownCount = 0, hasKnown = false;
+    stops.forEach((c) => {
+      if (typeof c.cost_mxn === "number" && c.cost_mxn > 0) { knownCost += c.cost_mxn; hasKnown = true; }
+      else if (c.cost_mxn === 0) { hasKnown = true; }
+      else unknownCount++;
+    });
+    const driveMin = legs.reduce((a, b) => a + b, 0);
+    // Flag a plan whose stops sprawl beyond a realistic single-day loop.
+    let far = false;
+    for (let i = 0; i < stops.length; i++)
+      for (let j = i + 1; j < stops.length; j++)
+        if (haversineKm(stops[i].coords, stops[j].coords) > 80) far = true;
+    return { knownCost, unknownCount, hasKnown, driveMin, far, count: stops.length };
+  }
+
+  function planButton(slug) {
+    const inPlan = state.plan.includes(slug);
+    const full = !inPlan && state.plan.length >= MAX_PLAN;
+    const label = inPlan ? t("plan.added") : full ? t("plan.full") : t("plan.add");
+    return `<button type="button" class="plan-btn${inPlan ? " is-in" : ""}" ${full ? "disabled" : ""}
+      data-plan-slug="${escapeHtml(slug)}" aria-pressed="${inPlan}">
+      <span class="plan-btn-icon" aria-hidden="true">${inPlan ? "✓" : "+"}</span>${escapeHtml(label)}</button>`;
+  }
+
+  function renderTray() {
+    let tray = document.getElementById("plan-tray");
+    if (!tray) {
+      tray = document.createElement("div");
+      tray.id = "plan-tray";
+      tray.className = "plan-tray";
+      document.body.appendChild(tray);
+    }
+    if (state.plan.length === 0) {
+      tray.classList.remove("is-open");
+      tray.innerHTML = "";
+      return;
+    }
+    const s = planStats();
+    const chips = state.plan.map((slug, idx) => {
+      const c = cenoteBySlug(slug);
+      const name = langPref === "es" ? c.name_es : c.name_en;
+      return `<li class="tray-chip">
+        <span class="tray-num">${idx + 1}</span>
+        <span class="tray-chip-name">${escapeHtml(name)}</span>
+        <button type="button" class="tray-x" data-plan-remove="${escapeHtml(slug)}" aria-label="${t("plan.remove")}">×</button>
+      </li>`;
+    }).join("");
+    const costText = s.hasKnown
+      ? t("plan.costFrom", s.knownCost) + (s.unknownCount ? t("plan.costUnknown", s.unknownCount) : "")
+      : t("plan.costNone");
+    tray.innerHTML = `
+      <div class="tray-inner">
+        <div class="tray-head">
+          <strong class="tray-title">${t("plan.title")}</strong>
+          <span class="tray-count">${t("plan.stops", s.count)}</span>
+          <button type="button" class="tray-clear" data-plan-clear>${t("plan.clear")}</button>
+        </div>
+        <ul class="tray-chips">${chips}</ul>
+        <div class="tray-foot">
+          <div class="tray-stats">
+            <span class="tray-stat"><span class="tray-stat-k">${t("plan.costTotal")}</span> ${escapeHtml(costText)}</span>
+            <span class="tray-stat"><span class="tray-stat-k">${t("plan.drive")}</span> ${t("plan.driveMin", s.driveMin)}</span>
+          </div>
+          <button type="button" class="btn btn-primary tray-view" data-plan-view>${t("plan.view")}</button>
+        </div>
+        ${s.far ? `<p class="tray-warn">${t("plan.far")}</p>` : ""}
+      </div>`;
+    tray.classList.add("is-open");
+
+    tray.querySelectorAll("[data-plan-remove]").forEach((b) =>
+      b.addEventListener("click", () => togglePlan(b.dataset.planRemove)));
+    tray.querySelector("[data-plan-clear]")?.addEventListener("click", clearPlan);
+    tray.querySelector("[data-plan-view]")?.addEventListener("click", openItinerary);
+    renderMarkers(visibleCenotes());
+  }
+
+  function openItinerary() {
+    const modal = document.getElementById("itin-modal");
+    if (!modal) return;
+    const base = state.bases.find((b) => b.id === state.baseId);
+    const baseName = base ? (langPref === "es" ? base.label_es : base.label_en) : "";
+    const { legs, stops } = planLegs();
+    const s = planStats();
+
+    const rows = stops.map((c, i) => {
+      const name = langPref === "es" ? c.name_es : c.name_en;
+      const leg = legs[i]; // leg i is the drive INTO stop i (base->s0, s0->s1, …)
+      const legTxt = leg == null ? "" :
+        (i === 0 && base ? t("itin.legStart", baseName, leg) : t("itin.leg", leg));
+      const cost = c.cost_mxn === 0 ? t("card.cost.free")
+        : (typeof c.cost_mxn === "number" ? t("card.cost.mxn", c.cost_mxn) : t("plan.costNone"));
+      const hours = c.hours ? ` · ${escapeHtml(c.hours)}` : "";
+      const href = `cenotes/${encodeURIComponent(c.slug)}.html${langPref === "es" ? "?lang=es" : ""}`;
+      return `<li class="itin-stop">
+        <span class="itin-num">${i + 1}</span>
+        <div class="itin-stop-body">
+          ${legTxt ? `<span class="itin-leg">${escapeHtml(legTxt)}</span>` : ""}
+          <a class="itin-name" href="${href}">${escapeHtml(name)}</a>
+          <span class="itin-meta">${escapeHtml(cost)}${hours}</span>
+        </div>
+      </li>`;
+    }).join("");
+
+    const costText = s.hasKnown
+      ? t("plan.costFrom", s.knownCost) : t("plan.costNone");
+    document.getElementById("itin-body").innerHTML = `
+      ${base ? `<p class="itin-route">${escapeHtml(t("itin.routeFrom", baseName))}</p>` : ""}
+      <ol class="itin-stops">${rows}</ol>
+      <div class="itin-totals">
+        <div><span class="itin-tot-k">${t("itin.totalDrive")}</span> ${t("plan.driveMin", s.driveMin)}</div>
+        <div><span class="itin-tot-k">${t("itin.totalCost")}</span> ${escapeHtml(costText)}
+          ${s.unknownCount ? `<span class="itin-onsite">${escapeHtml(t("itin.onSite", s.unknownCount))}</span>` : ""}</div>
+      </div>
+      <div class="itin-actions">
+        <button type="button" class="btn btn-ghost" id="itin-share">${t("plan.share")}</button>
+        <span class="itin-share-ok" id="itin-share-ok" role="status"></span>
+      </div>
+      <div class="itin-partners">
+        <p class="itin-partners-h">${t("itin.partners")}</p>
+        <ul>
+          <li><a href="https://akumalscooters.com" target="_blank" rel="noreferrer">Akumal Scooters</a></li>
+          <li><a href="https://akumalwildlife.com" target="_blank" rel="noreferrer">Akumal Wildlife</a></li>
+        </ul>
+      </div>`;
+    modal.classList.add("is-open");
+    modal.setAttribute("aria-hidden", "false");
+
+    document.getElementById("itin-share")?.addEventListener("click", async () => {
+      savePlan();
+      const ok = document.getElementById("itin-share-ok");
+      try {
+        await navigator.clipboard.writeText(location.href);
+        ok.textContent = t("plan.shared");
+      } catch { ok.textContent = location.href; }
+    });
+  }
+
+  function closeItinerary() {
+    const modal = document.getElementById("itin-modal");
+    if (!modal) return;
+    modal.classList.remove("is-open");
+    modal.setAttribute("aria-hidden", "true");
+  }
+
   function renderCards() {
     const list = visibleCenotes();
     const wrap = document.getElementById("cards");
@@ -285,7 +594,7 @@
     counter.textContent = t("results.count", list.length);
 
     if (list.length === 0) {
-      wrap.innerHTML = `<div class="empty-state">${t("results.empty")}</div>`;
+      wrap.innerHTML = `<div class="empty-state">${t(state.query ? "results.emptySearch" : "results.empty")}</div>`;
     } else {
       wrap.innerHTML = list.map((c) => {
         const name = langPref === "es" ? c.name_es : c.name_en;
@@ -329,13 +638,16 @@
                 ${kids}
                 <span class="meta-pill cost">${costLabel(c)}</span>
               </div>
-              <div class="card-foot">${verified}${reportBtn}</div>
+              <div class="card-foot">${verified}${reportBtn}${planButton(c.slug)}</div>
             </div>
           </article>`;
       }).join("");
 
       wrap.querySelectorAll("[data-report-slug]").forEach((btn) => {
         btn.addEventListener("click", () => openReportModal(btn.dataset.reportSlug, btn.dataset.reportName));
+      });
+      wrap.querySelectorAll("[data-plan-slug]").forEach((btn) => {
+        btn.addEventListener("click", () => togglePlan(btn.dataset.planSlug));
       });
     }
 
@@ -420,6 +732,8 @@
       pts.push(lngLat);
     }
 
+    drawPlanRoute();
+
     if (pts.length >= 2) {
       const lngs = pts.map((p) => p[0]);
       const lats = pts.map((p) => p[1]);
@@ -432,11 +746,51 @@
     }
   }
 
+  // Dashed line through base → each plan stop, plus numbered pins so the
+  // day's route reads at a glance on the main map.
+  function drawPlanRoute() {
+    if (!state.map || !window.maplibregl || !state.map.isStyleLoaded()) return;
+    const { points } = planLegs();
+    const coords = points.map((p) => [p.coords[1], p.coords[0]]);
+    const geo = { type: "Feature", geometry: { type: "LineString", coordinates: coords } };
+
+    if (state.map.getSource("plan-route")) {
+      state.map.getSource("plan-route").setData(coords.length >= 2 ? geo
+        : { type: "Feature", geometry: { type: "LineString", coordinates: [] } });
+    } else {
+      state.map.addSource("plan-route", { type: "geojson", data: geo });
+      state.map.addLayer({
+        id: "plan-route",
+        type: "line",
+        source: "plan-route",
+        paint: {
+          "line-color": "#b14a3b",
+          "line-width": 3,
+          "line-dasharray": [1.5, 1.2]
+        }
+      });
+    }
+
+    // Numbered pins for the ordered stops.
+    state.plan.forEach((slug, idx) => {
+      const c = cenoteBySlug(slug);
+      if (!c) return;
+      const el = document.createElement("div");
+      el.className = "plan-pin";
+      el.textContent = String(idx + 1);
+      const marker = new window.maplibregl.Marker({ element: el })
+        .setLngLat([c.coords[1], c.coords[0]])
+        .addTo(state.map);
+      state.markers.push(marker);
+    });
+  }
+
   // ── Wire up ────────────────────────────────────────────────────
   function wireControls() {
     document.getElementById("base-select").addEventListener("change", (e) => {
       state.baseId = e.target.value;
       renderCards();
+      renderTray();
     });
     document.getElementById("activity-select").addEventListener("change", (e) => {
       state.activity = e.target.value;
@@ -446,6 +800,18 @@
       state.kidsOnly = e.target.checked;
       renderCards();
     });
+    const searchInput = document.getElementById("search-input");
+    if (searchInput) {
+      let searchTimer = null;
+      searchInput.addEventListener("input", (e) => {
+        clearTimeout(searchTimer);
+        const val = e.target.value;
+        searchTimer = setTimeout(() => {
+          state.query = val.trim();
+          renderCards();
+        }, 120);
+      });
+    }
 
     const btn = document.getElementById("back-to-top");
     window.addEventListener("scroll", () => {
@@ -458,7 +824,10 @@
       el.addEventListener("click", closeReportModal);
     });
     document.addEventListener("keydown", (e) => {
-      if (e.key === "Escape") closeReportModal();
+      if (e.key === "Escape") { closeReportModal(); closeItinerary(); }
+    });
+    document.querySelectorAll("[data-close-itin]").forEach((el) => {
+      el.addEventListener("click", closeItinerary);
     });
 
     document.getElementById("report-form")?.addEventListener("submit", submitReport);
@@ -596,14 +965,16 @@
   async function start() {
     applyI18n();
     await loadData();
+    loadPlan();
     renderBases();
     wireControls();
     renderCards();
+    renderTray();
     lazyLoadMapOnScroll();
     loadConditions().then(() => renderCards());
 
     if ("serviceWorker" in navigator && location.protocol === "https:") {
-      navigator.serviceWorker.register("sw.js?v=6").catch(() => {});
+      navigator.serviceWorker.register("sw.js?v=9").catch(() => {});
     }
   }
 

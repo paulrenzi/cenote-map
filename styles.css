@@ -197,6 +197,31 @@ button { font: inherit; cursor: pointer; }
   box-shadow: 0 0 0 4px rgba(10, 138, 158, 0.1);
 }
 
+.strip-field--search { flex: 1 1 240px; }
+
+.strip-search {
+  padding: 0.72rem 0.95rem 0.72rem 2.5rem;
+  border: 1.5px solid var(--border);
+  border-radius: 12px;
+  background: var(--bg);
+  color: var(--text);
+  font-family: inherit;
+  font-size: 0.97rem;
+  outline: none;
+  -webkit-appearance: none;
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%235a7888' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'%3E%3Ccircle cx='11' cy='11' r='7'/%3E%3Cpath d='M21 21l-4.3-4.3'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: left 0.9rem center;
+}
+
+.strip-search::-webkit-search-cancel-button { cursor: pointer; }
+
+.strip-search:focus {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 4px rgba(10, 138, 158, 0.1);
+}
+
 .strip-toggle {
   flex-direction: row;
   align-items: center;
@@ -747,6 +772,31 @@ button { font: inherit; cursor: pointer; }
   margin: 0 0 2.4rem;
 }
 
+.detail-gallery {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 0.6rem;
+}
+
+.gallery-tile {
+  display: block;
+  aspect-ratio: 4 / 3;
+  overflow: hidden;
+  border-radius: var(--radius-sm);
+  background: rgba(10, 138, 158, 0.07);
+}
+
+.gallery-tile img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.4s ease;
+}
+
+.gallery-tile:hover img {
+  transform: scale(1.04);
+}
+
 .detail-section h2 {
   font-family: "Fraunces", serif;
   font-size: 1.45rem;
@@ -1003,4 +1053,109 @@ button { font: inherit; cursor: pointer; }
   .shell { padding-top: 1.8rem; }
   .hero { min-height: 60vh; }
   .hero-content { padding: 3rem 0 2.5rem; }
+}
+
+/* ── Day plan: card button, tray, map pins, itinerary ──────────── */
+.plan-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  margin-left: auto;
+  padding: 0.34rem 0.7rem;
+  border: 1.5px solid var(--accent);
+  border-radius: 999px;
+  background: transparent;
+  color: var(--accent-deep);
+  font-family: inherit;
+  font-size: 0.78rem;
+  font-weight: 800;
+  cursor: pointer;
+  transition: background 0.18s ease, color 0.18s ease, border-color 0.18s ease;
+}
+.plan-btn:hover:not(:disabled) { background: rgba(10, 138, 158, 0.1); }
+.plan-btn.is-in { background: var(--accent); color: #fff; border-color: var(--accent); }
+.plan-btn:disabled { opacity: 0.45; cursor: not-allowed; }
+.plan-btn-icon { font-weight: 900; }
+
+.plan-tray {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 60;
+  transform: translateY(120%);
+  transition: transform 0.28s cubic-bezier(0.2, 0.7, 0.2, 1);
+  padding: 0 0.9rem env(safe-area-inset-bottom, 0);
+}
+.plan-tray.is-open { transform: translateY(0); }
+.tray-inner {
+  max-width: 900px;
+  margin: 0 auto 0.9rem;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-lg);
+  padding: 0.9rem 1.1rem;
+}
+.tray-head { display: flex; align-items: center; gap: 0.6rem; margin-bottom: 0.6rem; }
+.tray-title { font-family: "Fraunces", serif; font-size: 1.1rem; color: var(--text); }
+.tray-count { font-size: 0.8rem; font-weight: 700; color: var(--subtle); }
+.tray-clear {
+  margin-left: auto; background: none; border: none; cursor: pointer;
+  color: var(--stale); font-family: inherit; font-size: 0.8rem; font-weight: 700;
+}
+.tray-chips { list-style: none; margin: 0 0 0.7rem; padding: 0; display: flex; flex-wrap: wrap; gap: 0.45rem; }
+.tray-chip {
+  display: inline-flex; align-items: center; gap: 0.4rem;
+  padding: 0.3rem 0.4rem 0.3rem 0.35rem;
+  background: rgba(10, 138, 158, 0.08); border-radius: 999px;
+  font-size: 0.85rem; font-weight: 600; color: var(--text);
+}
+.tray-num, .plan-pin, .itin-num {
+  display: inline-flex; align-items: center; justify-content: center;
+  width: 1.35rem; height: 1.35rem; border-radius: 50%;
+  background: var(--accent); color: #fff; font-weight: 800; font-size: 0.75rem;
+}
+.tray-chip-name { max-width: 42vw; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.tray-x {
+  background: none; border: none; cursor: pointer; color: var(--subtle);
+  font-size: 1.1rem; line-height: 1; padding: 0 0.15rem;
+}
+.tray-x:hover { color: var(--stale); }
+.tray-foot { display: flex; align-items: center; gap: 1rem; flex-wrap: wrap; }
+.tray-stats { display: flex; gap: 1.3rem; flex-wrap: wrap; }
+.tray-stat { font-size: 0.95rem; font-weight: 700; color: var(--text); }
+.tray-stat-k {
+  display: block; font-size: 0.62rem; font-weight: 800; letter-spacing: 0.14em;
+  text-transform: uppercase; color: var(--subtle);
+}
+.tray-view { margin-left: auto; }
+.tray-warn { margin: 0.6rem 0 0; font-size: 0.8rem; color: var(--warn); font-weight: 600; }
+
+.plan-pin { border: 2px solid #fff; box-shadow: 0 2px 8px rgba(10, 28, 38, 0.4); cursor: pointer; }
+
+.itin-panel { max-width: 560px; }
+.itin-route { font-size: 0.85rem; font-weight: 700; color: var(--subtle); margin: 0 0 0.8rem; }
+.itin-stops { list-style: none; margin: 0 0 1.2rem; padding: 0; }
+.itin-stop { display: flex; gap: 0.75rem; padding: 0.7rem 0; border-top: 1px solid var(--border); }
+.itin-stop:first-child { border-top: none; }
+.itin-num { width: 1.7rem; height: 1.7rem; font-size: 0.85rem; flex: 0 0 auto; }
+.itin-leg { display: block; font-size: 0.75rem; font-weight: 700; color: var(--stale); margin-bottom: 0.1rem; }
+.itin-name { display: block; font-family: "Fraunces", serif; font-size: 1.1rem; font-weight: 700; color: var(--text); text-decoration: none; }
+.itin-name:hover { color: var(--accent-deep); }
+.itin-meta { font-size: 0.85rem; color: var(--muted); }
+.itin-totals { display: flex; gap: 1.6rem; flex-wrap: wrap; padding: 0.9rem 1rem; background: rgba(10, 138, 158, 0.06); border-radius: var(--radius-sm); margin-bottom: 1rem; }
+.itin-totals > div { font-size: 1.05rem; font-weight: 800; color: var(--text); }
+.itin-tot-k { display: block; font-size: 0.62rem; font-weight: 800; letter-spacing: 0.14em; text-transform: uppercase; color: var(--subtle); }
+.itin-onsite { display: block; font-size: 0.72rem; font-weight: 600; color: var(--subtle); }
+.itin-actions { display: flex; align-items: center; gap: 0.8rem; margin-bottom: 1.2rem; }
+.itin-share-ok { font-size: 0.82rem; font-weight: 700; color: var(--ok); }
+.itin-partners-h { font-size: 0.66rem; font-weight: 800; letter-spacing: 0.16em; text-transform: uppercase; color: var(--subtle); margin: 0 0 0.4rem; }
+.itin-partners ul { list-style: none; margin: 0; padding: 0; display: flex; gap: 1rem; flex-wrap: wrap; }
+.itin-partners a { color: var(--accent-deep); font-weight: 700; font-size: 0.9rem; }
+
+@media (max-width: 560px) {
+  .tray-foot { gap: 0.6rem; }
+  .tray-view { margin-left: 0; width: 100%; }
+  .tray-chip-name { max-width: 60vw; }
 }

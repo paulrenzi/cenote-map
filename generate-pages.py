@@ -173,15 +173,42 @@ def make_page(c, lang="en"):
         f'<link rel="preload" as="image" href="../{esc(photo["file"])}" fetchpriority="high" />'
         if photo else ""
     )
+    # A gallery is any photo entry carrying 2+ images. Falls back to the
+    # single primary when absent, so older single-photo entries are unaffected.
+    gallery_imgs = (photo or {}).get("gallery") or ([photo] if photo else [])
+
+    def credit_line(p):
+        credit_txt = strip_html(p.get("credit", "Unknown"))
+        lic = p.get("license", "")
+        src = p.get("source", "")
+        if "wikimedia" in src or "wikipedia" in src:
+            host = "Wikimedia Commons"
+        elif "flickr" in src:
+            host = "Flickr"
+        else:
+            host = "source"
+        return (f'{esc(lbl("credit", lang))} {esc(credit_txt)}, {esc(lic)} · '
+                f'<a href="{esc(src)}" target="_blank" rel="noreferrer">{host}</a>')
+
     photo_credit_html = ""
-    if photo:
-        credit_txt = strip_html(photo.get("credit", "Unknown"))
-        lic = photo.get("license", "")
-        src = photo.get("source", "")
-        photo_credit_html = (
-            f'<p class="footer-credit">{esc(lbl("credit", lang))} '
-            f'{esc(credit_txt)}, {esc(lic)} · '
-            f'<a href="{esc(src)}" target="_blank" rel="noreferrer">Wikimedia Commons</a></p>'
+    if gallery_imgs:
+        photo_credit_html = "\n      ".join(
+            f'<p class="footer-credit">{credit_line(p)}</p>' for p in gallery_imgs
+        )
+
+    gallery_html = ""
+    if len(gallery_imgs) > 1:
+        tiles = "\n          ".join(
+            f'<a class="gallery-tile" href="../{esc(p["file"])}" target="_blank" rel="noreferrer">'
+            f'<img loading="lazy" decoding="async" src="../{esc(p["file"])}" alt="{esc(name)}" /></a>'
+            for p in gallery_imgs
+        )
+        h_en, h_es = "Photos", "Fotos"
+        gallery_html = (
+            f'<section class="detail-section">\n'
+            f'        <h2 {two_lang_attrs(h_en, h_es)}>{esc(h_en if lang=="en" else h_es)}</h2>\n'
+            f'        <div class="detail-gallery">\n          {tiles}\n        </div>\n'
+            f'      </section>'
         )
 
     # At-a-glance pills
@@ -304,7 +331,7 @@ def make_page(c, lang="en"):
     <link rel="alternate" hreflang="en" href="{SITE}/cenotes/{slug}.html" />
     <link rel="alternate" hreflang="es" href="{SITE}/cenotes/{slug}.html?lang=es" />
     <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>💧</text></svg>" />
-    <link rel="manifest" href="../manifest.webmanifest?v=6" />
+    <link rel="manifest" href="../manifest.webmanifest?v=9" />
     <meta name="theme-color" content="#0a8a9e" />
 
     <meta property="og:type" content="article" />
@@ -324,7 +351,7 @@ def make_page(c, lang="en"):
       href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700;9..144,800&family=Manrope:wght@400;500;600;700;800&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="../styles.css?v=6" />
+    <link rel="stylesheet" href="../styles.css?v=9" />
   </head>
   <body>
     <header class="detail-hero">
@@ -344,6 +371,8 @@ def make_page(c, lang="en"):
       <p class="lead" {two_lang_attrs(summary_other if lang == "es" else summary, summary if lang == "es" else summary_other)}>{esc(summary)}</p>
 
       {no_photo_notice}
+
+      {gallery_html}
 
       <section class="detail-section">
         <h2 {two_lang_attrs(L["h_activities"][0], L["h_activities"][1])}>{esc(lbl("h_activities", lang))}</h2>

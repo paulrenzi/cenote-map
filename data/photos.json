@@ -477,5 +477,131 @@
     "credit": "todocenotes.com",
     "license": "publisher og:image (best-effort attribution)",
     "source": "https://todocenotes.com/puerto-morelos/"
+  },
+  "kantun-chi": {
+    "file": "images/cenotes/kantun-chi-1.webp",
+    "credit": "eugene_o",
+    "license": "CC BY 2.0",
+    "source": "https://commons.wikimedia.org/wiki/File:20230321_-_Kantun_Chi_-_6.jpg",
+    "wikimedia_title": "File:20230321 - Kantun Chi - 6.jpg",
+    "gallery": [
+      {
+        "file": "images/cenotes/kantun-chi-1.webp",
+        "credit": "eugene_o",
+        "license": "CC BY 2.0",
+        "source": "https://commons.wikimedia.org/wiki/File:20230321_-_Kantun_Chi_-_6.jpg",
+        "wikimedia_title": "File:20230321 - Kantun Chi - 6.jpg"
+      },
+      {
+        "file": "images/cenotes/kantun-chi-2.webp",
+        "credit": "eugene_o",
+        "license": "CC BY 2.0",
+        "source": "https://commons.wikimedia.org/wiki/File:20230321_-_Kantun_Chi_-_9.jpg",
+        "wikimedia_title": "File:20230321 - Kantun Chi - 9.jpg"
+      },
+      {
+        "file": "images/cenotes/kantun-chi-3.webp",
+        "credit": "eugene_o",
+        "license": "CC BY 2.0",
+        "source": "https://commons.wikimedia.org/wiki/File:20230321_-_Kantun_Chi_-_25.jpg",
+        "wikimedia_title": "File:20230321 - Kantun Chi - 25.jpg"
+      }
+    ]
+  },
+  "sac-actun": {
+    "file": "images/cenotes/sac-actun-1.webp",
+    "credit": "Offthebeatonpath",
+    "license": "CC BY-SA 4.0",
+    "source": "https://commons.wikimedia.org/wiki/File:Cenote_Nohoch_Nah_Chich.jpg",
+    "wikimedia_title": "File:Cenote Nohoch Nah Chich.jpg",
+    "gallery": [
+      {
+        "file": "images/cenotes/sac-actun-1.webp",
+        "credit": "Offthebeatonpath",
+        "license": "CC BY-SA 4.0",
+        "source": "https://commons.wikimedia.org/wiki/File:Cenote_Nohoch_Nah_Chich.jpg",
+        "wikimedia_title": "File:Cenote Nohoch Nah Chich.jpg"
+      },
+      {
+        "file": "images/cenotes/sac-actun-2.webp",
+        "credit": "Offthebeatonpath",
+        "license": "CC BY-SA 4.0",
+        "source": "https://commons.wikimedia.org/wiki/File:Cenote_Calimba.jpg",
+        "wikimedia_title": "File:Cenote Calimba.jpg"
+      }
+    ]
+  },
+  "el-pit": {
+    "file": "images/cenotes/el-pit-1.webp",
+    "credit": "Serge Melki from Indianapolis, USA",
+    "license": "CC BY 2.0",
+    "source": "https://commons.wikimedia.org/wiki/File:The_Pit_-_Profundo_-_Cenote_(4317117052).jpg",
+    "wikimedia_title": "File:The Pit - Profundo - Cenote (4317117052).jpg",
+    "gallery": [
+      {
+        "file": "images/cenotes/el-pit-1.webp",
+        "credit": "Serge Melki from Indianapolis, USA",
+        "license": "CC BY 2.0",
+        "source": "https://commons.wikimedia.org/wiki/File:The_Pit_-_Profundo_-_Cenote_(4317117052).jpg",
+        "wikimedia_title": "File:The Pit - Profundo - Cenote (4317117052).jpg"
+      },
+      {
+        "file": "images/cenotes/el-pit-2.webp",
+        "credit": "Serge Melki from Indianapolis, USA",
+        "license": "CC BY 2.0",
+        "source": "https://commons.wikimedia.org/wiki/File:The_Pit_-_Profundo_-_Cenote_(4317117458).jpg",
+        "wikimedia_title": "File:The Pit - Profundo - Cenote (4317117458).jpg"
+      }
+    ]
+  },
+  "tankah": {
+    "file": "images/cenotes/tankah-1.webp",
+    "credit": "dronepicr",
+    "license": "CC BY 2.0",
+    "source": "https://commons.wikimedia.org/wiki/File:Casa_Cenote_in_Mexico_(42877772324).jpg",
+    "wikimedia_title": "File:Casa Cenote in Mexico (42877772324).jpg",
+    "gallery": [
+      {
+        "file": "images/cenotes/tankah-1.webp",
+        "credit": "dronepicr",
+        "license": "CC BY 2.0",
+        "source": "https://commons.wikimedia.org/wiki/File:Casa_Cenote_in_Mexico_(42877772324).jpg",
+        "wikimedia_title": "File:Casa Cenote in Mexico (42877772324).jpg"
+      },
+      {
+        "file": "images/cenotes/tankah-2.webp",
+        "credit": "dronepicr",
+        "license": "CC BY 2.0",
+        "source": "https://commons.wikimedia.org/wiki/File:Snorkeling_in_the_Casa_Cenote_in_Mexico_(29725069898).jpg",
+        "wikimedia_title": "File:Snorkeling in the Casa Cenote in Mexico (29725069898).jpg"
+      },
+      {
+        "file": "images/cenotes/tankah-3.webp",
+        "credit": "dronepicr",
+        "license": "CC BY 2.0",
+        "source": "https://commons.wikimedia.org/wiki/File:Diving_in_the_Casa_Cenote_in_Mexico_Casa_Cenote_in_Mexico_(41787128060).jpg",
+        "wikimedia_title": "File:Diving in the Casa Cenote in Mexico Casa Cenote in Mexico (41787128060).jpg"
+      }
+    ]
+  },
+  "nicte-ha": {
+    "file": "images/cenotes/nicte-ha-1.webp",
+    "credit": "woodleywonderworks",
+    "license": "CC BY 2.0",
+    "source": "https://www.flickr.com/photos/73645804@N00/52615169725",
+    "gallery": [
+      {
+        "file": "images/cenotes/nicte-ha-1.webp",
+        "credit": "woodleywonderworks",
+        "license": "CC BY 2.0",
+        "source": "https://www.flickr.com/photos/73645804@N00/52615169725"
+      },
+      {
+        "file": "images/cenotes/nicte-ha-2.webp",
+        "credit": "woodleywonderworks",
+        "license": "CC BY 2.0",
+        "source": "https://www.flickr.com/photos/73645804@N00/52615169780"
+      }
+    ]
   }
 }

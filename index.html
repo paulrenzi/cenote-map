@@ -10,7 +10,7 @@
     <title>Riviera Maya Cenotes — Trip Planner</title>
     <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>💧</text></svg>" />
     <link rel="canonical" href="https://paulrenzi.github.io/cenote-map/" />
-    <link rel="manifest" href="manifest.webmanifest?v=8" />
+    <link rel="manifest" href="manifest.webmanifest?v=9" />
     <meta name="theme-color" content="#0a8a9e" />
 
     <meta property="og:type" content="website" />
@@ -58,7 +58,7 @@
       href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700;9..144,800&family=Manrope:wght@400;500;600;700;800&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="styles.css?v=8" />
+    <link rel="stylesheet" href="styles.css?v=9" />
   </head>
   <body>
 
@@ -93,6 +93,18 @@
 
     <div class="strip" aria-label="Plan your cenote day">
       <div class="strip-inner">
+        <label class="strip-field strip-field--search">
+          <span class="strip-label" data-i18n="strip.search">Search</span>
+          <input
+            type="search"
+            id="search-input"
+            class="strip-search"
+            autocomplete="off"
+            data-i18n-attr="placeholder:strip.searchPlaceholder"
+            placeholder="Name, activity, or place…"
+            aria-label="Search cenotes"
+          />
+        </label>
         <label class="strip-field">
           <span class="strip-label" data-i18n="strip.base">Staying in</span>
           <select id="base-select" class="strip-select"></select>
@@ -212,12 +224,22 @@
       </form>
     </div>
 
+    <div class="modal" id="itin-modal" aria-hidden="true" role="dialog" aria-labelledby="itin-title">
+      <div class="modal-backdrop" data-close-itin></div>
+      <div class="modal-panel itin-panel">
+        <button type="button" class="modal-close" data-close-itin aria-label="Close">×</button>
+        <p class="modal-eyebrow" data-i18n="plan.title">Your day</p>
+        <h3 class="modal-title" id="itin-title" data-i18n="itin.title">Your cenote day</h3>
+        <div id="itin-body"></div>
+      </div>
+    </div>
+
     <button class="back-to-top" id="back-to-top" aria-label="Back to top">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
         <polyline points="18 15 12 9 6 15"/>
       </svg>
     </button>
 
-    <script src="app.js?v=8" defer></script>
+    <script src="app.js?v=9" defer></script>
   </body>
 </html>
