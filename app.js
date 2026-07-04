@@ -92,6 +92,7 @@
       "plan.moveDown": "Move down",
       "plan.share": "Copy share link",
       "plan.shared": "Link copied",
+      "itin.email": "Email me this",
       "plan.far": "Heads up — these stops are spread far apart for one day.",
       "plan.minimize": "Minimize",
       "plan.expand": "Expand",
@@ -194,6 +195,7 @@
       "plan.moveDown": "Bajar",
       "plan.share": "Copiar enlace",
       "plan.shared": "Enlace copiado",
+      "itin.email": "Envíamelo por correo",
       "plan.far": "Atención — estas paradas están muy separadas para un solo día.",
       "plan.minimize": "Minimizar",
       "plan.expand": "Expandir",
@@ -542,6 +544,31 @@
     return url;
   }
 
+  // Plain-text itinerary for the "email me this" mailto: link — no backend
+  // needed, so Phase 3 (email capture) ships even while the Worker/D1
+  // conditions backend is undeployed. Visitor addresses it to themselves.
+  function planEmailHref(stops, legs, s, baseName) {
+    const lines = [];
+    if (baseName) lines.push(t("itin.routeFrom", baseName));
+    stops.forEach((c, i) => {
+      const name = langPref === "es" ? c.name_es : c.name_en;
+      const leg = legs[i];
+      const legTxt = leg == null ? "" :
+        (i === 0 && baseName ? t("itin.legStart", baseName, leg) : t("itin.leg", leg));
+      const cost = c.cost_mxn === 0 ? t("card.cost.free")
+        : (typeof c.cost_mxn === "number" ? t("card.cost.mxn", c.cost_mxn) : t("plan.costNone"));
+      lines.push(`${i + 1}. ${name}${legTxt ? " — " + legTxt : ""} — ${cost}`);
+    });
+    lines.push("");
+    lines.push(`${t("itin.totalDrive")}: ${t("plan.driveMin", s.driveMin)}`);
+    const mapsUrl = planMapsUrl();
+    if (mapsUrl) lines.push(mapsUrl);
+    lines.push("");
+    lines.push(location.href);
+    const subject = t("itin.title");
+    return `mailto:?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(lines.join("\n"))}`;
+  }
+
   function planButton(slug) {
     const inPlan = state.plan.includes(slug);
     const full = !inPlan && state.plan.length >= MAX_PLAN;
@@ -709,6 +736,7 @@
       </div>
       <div class="itin-actions">
         <a class="btn btn-primary" id="itin-maps" href="${planMapsUrl()}" target="_blank" rel="noreferrer">${t("itin.openMaps")}</a>
+        <a class="btn btn-ghost" id="itin-email" href="${planEmailHref(stops, legs, s, baseName)}">${t("itin.email")}</a>
         <button type="button" class="btn btn-ghost" id="itin-share">${t("plan.share")}</button>
         <span class="itin-share-ok" id="itin-share-ok" role="status"></span>
       </div>
@@ -1129,7 +1157,7 @@
     loadConditions().then(() => renderCards());
 
     if ("serviceWorker" in navigator && location.protocol === "https:") {
-      navigator.serviceWorker.register("sw.js?v=14").then((reg) => {
+      navigator.serviceWorker.register("sw.js?v=15").then((reg) => {
         // Force a real network check on every visit instead of waiting for the
         // browser's lazy periodic re-fetch, which can leave a stale worker
         // running for hours after a deploy.
