@@ -13,9 +13,8 @@ Site brand promise (support band copy): "free, ad-free" — banner/display ads (
 - Higher margin than Phase 1 once live; treat Phase 1 as the bridge until this exists.
 
 ## Phase 3 — Email capture → cross-sell
-- Add an "email me this itinerary" option next to the existing "Copy share link" button in the itinerary modal.
-- Feed captured emails into existing Umbrella Arcades email marketing flow; cross-sell Akumal Scooters/Wildlife and future ventures.
-- Cheap — reuses infrastructure that already exists.
+- ✅ Shipped (v15): "Email me this" mailto: link in the itinerary modal — pre-filled subject/body with stops, cost, drive time, Maps link. Zero backend, works today.
+- Still open: this only lets a visitor email *themselves* the plan — it doesn't capture the address for us. To actually build a list, need the cenote-conditions Worker + D1 (blocked on a properly-scoped CLOUDFLARE_API_TOKEN — current token can't create Pages projects, D1 databases, or deploy Workers, and can't grant itself more scope either). Once that token exists: add an email input + `/subscribe` endpoint to the Worker/D1, feed into existing Umbrella Arcades email marketing flow.
 
 ## Phase 4 — Ticket/skip-the-line commission or sponsored placement
 - Highest revenue-per-visitor (entry fee paid on every single visit) but requires real per-operator sales/negotiation, not code.
