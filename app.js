@@ -1019,7 +1019,19 @@
     loadConditions().then(() => renderCards());
 
     if ("serviceWorker" in navigator && location.protocol === "https:") {
-      navigator.serviceWorker.register("sw.js?v=9").catch(() => {});
+      navigator.serviceWorker.register("sw.js?v=11").then((reg) => {
+        // Force a real network check on every visit instead of waiting for the
+        // browser's lazy periodic re-fetch, which can leave a stale worker
+        // running for hours after a deploy.
+        reg.update().catch(() => {});
+        reg.addEventListener("updatefound", () => {
+          const worker = reg.installing;
+          if (!worker) return;
+          worker.addEventListener("statechange", () => {
+            if (worker.state === "activated") location.reload();
+          });
+        });
+      }).catch(() => {});
     }
   }
 
