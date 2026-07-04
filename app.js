@@ -287,6 +287,66 @@
     if (pRes && pRes.ok) state.photos = await pRes.json();
   }
 
+  // ── Base (staying-in) detection ─────────────────────────────────
+  // Distance/drive-time on every card is computed from state.baseId, so
+  // defaulting it to an arbitrary hotel zone (with no prompt to change it)
+  // silently shows wrong numbers to anyone not staying there. Prefer, in
+  // order: a base the visitor already picked this session (saved to
+  // localStorage), then their live location (nearest base by straight-line
+  // distance), then fall back to the first base in the list.
+  const BASE_KEY = "cenote-base";
+
+  function nearestBaseId(coords) {
+    let bestId = null, bestKm = Infinity;
+    state.bases.forEach((b) => {
+      const km = haversineKm(coords, b.coords);
+      if (km < bestKm) { bestKm = km; bestId = b.id; }
+    });
+    return bestId;
+  }
+
+  function detectBaseByLocation() {
+    return new Promise((resolve) => {
+      if (!("geolocation" in navigator)) return resolve(null);
+      const timer = setTimeout(() => resolve(null), 3800);
+      navigator.geolocation.getCurrentPosition(
+        (pos) => { clearTimeout(timer); resolve([pos.coords.latitude, pos.coords.longitude]); },
+        () => { clearTimeout(timer); resolve(null); },
+        { maximumAge: 600000, timeout: 3500 }
+      );
+    });
+  }
+
+  // Synchronous — safe to call before the first render, adds no delay.
+  function applySavedBase() {
+    let saved = null;
+    try { saved = localStorage.getItem(BASE_KEY); } catch {}
+    if (saved && state.bases.some((b) => b.id === saved)) {
+      state.baseId = saved;
+      return true;
+    }
+    return false;
+  }
+
+  // Async — fires after the first render so geolocation's permission prompt
+  // (or a slow GPS fix) never delays the page becoming usable. Re-renders
+  // only if it lands on a different base than the placeholder default.
+  async function detectAndApplyLocationBase() {
+    const coords = await detectBaseByLocation();
+    if (!coords) return;
+    const detected = nearestBaseId(coords);
+    if (detected && detected !== state.baseId) {
+      state.baseId = detected;
+      renderBases();
+      renderCards();
+      renderTray();
+    }
+  }
+
+  function saveBase(id) {
+    try { localStorage.setItem(BASE_KEY, id); } catch {}
+  }
+
   async function loadConditions() {
     if (!CONFIG.API_BASE) return;
     try {
@@ -969,6 +1029,7 @@
   function wireControls() {
     document.getElementById("base-select").addEventListener("change", (e) => {
       state.baseId = e.target.value;
+      saveBase(state.baseId);
       renderCards();
       renderTray();
     });
@@ -1146,15 +1207,17 @@
     applyI18n();
     await loadData();
     loadPlan();
+    const hadSavedBase = applySavedBase();
     renderBases();
     wireControls();
     renderCards();
     renderTray();
     lazyLoadMapOnScroll();
     loadConditions().then(() => renderCards());
+    if (!hadSavedBase) detectAndApplyLocationBase();
 
     if ("serviceWorker" in navigator && location.protocol === "https:") {
-      navigator.serviceWorker.register("sw.js?v=16").then((reg) => {
+      navigator.serviceWorker.register("sw.js?v=17").then((reg) => {
         // Force a real network check on every visit instead of waiting for the
         // browser's lazy periodic re-fetch, which can leave a stale worker
         // running for hours after a deploy.
