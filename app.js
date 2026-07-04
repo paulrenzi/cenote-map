@@ -86,6 +86,8 @@
       "plan.share": "Copy share link",
       "plan.shared": "Link copied",
       "plan.far": "Heads up — these stops are spread far apart for one day.",
+      "plan.minimize": "Minimize",
+      "plan.expand": "Expand",
       "itin.title": "Your cenote day",
       "itin.routeFrom": (b) => `Route from ${b}`,
       "itin.leg": (m) => `${m} min drive`,
@@ -173,6 +175,8 @@
       "plan.share": "Copiar enlace",
       "plan.shared": "Enlace copiado",
       "plan.far": "Atención — estas paradas están muy separadas para un solo día.",
+      "plan.minimize": "Minimizar",
+      "plan.expand": "Expandir",
       "itin.title": "Tu día de cenotes",
       "itin.routeFrom": (b) => `Ruta desde ${b}`,
       "itin.leg": (m) => `${m} min en auto`,
@@ -234,6 +238,7 @@
     kidsOnly: false,
     query: "",
     plan: [],              // ordered array of slugs (max MAX_PLAN)
+    trayMinimized: false,
     map: null,
     markers: [],
     conditions: {},        // slug -> latest condition record
@@ -481,6 +486,41 @@
       return;
     }
     const s = planStats();
+    const minimized = state.trayMinimized;
+    tray.classList.toggle("is-minimized", minimized);
+    const minimizeBtn = `<button type="button" class="tray-minimize" data-plan-minimize
+        aria-label="${escapeHtml(t(minimized ? "plan.expand" : "plan.minimize"))}"
+        aria-expanded="${!minimized}">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="${minimized ? "6 9 12 15 18 9" : "18 15 12 9 6 15"}"/>
+        </svg>
+      </button>`;
+
+    if (minimized) {
+      const costText = s.hasKnown
+        ? t("plan.costFrom", s.knownCost) + (s.unknownCount ? t("plan.costUnknown", s.unknownCount) : "")
+        : t("plan.costNone");
+      tray.innerHTML = `
+        <div class="tray-inner tray-inner--mini" data-plan-expand-hit>
+          <strong class="tray-title">${t("plan.title")}</strong>
+          <span class="tray-count">${t("plan.stops", s.count)}</span>
+          <span class="tray-stat tray-stat--mini">${escapeHtml(costText)}</span>
+          ${minimizeBtn}
+        </div>`;
+      tray.querySelector("[data-plan-minimize]")?.addEventListener("click", (e) => {
+        e.stopPropagation();
+        state.trayMinimized = false;
+        renderTray();
+      });
+      tray.querySelector("[data-plan-expand-hit]")?.addEventListener("click", () => {
+        state.trayMinimized = false;
+        renderTray();
+      });
+      tray.classList.add("is-open");
+      renderMarkers(visibleCenotes());
+      return;
+    }
+
     const chips = state.plan.map((slug, idx) => {
       const c = cenoteBySlug(slug);
       const name = langPref === "es" ? c.name_es : c.name_en;
@@ -499,6 +539,7 @@
           <strong class="tray-title">${t("plan.title")}</strong>
           <span class="tray-count">${t("plan.stops", s.count)}</span>
           <button type="button" class="tray-clear" data-plan-clear>${t("plan.clear")}</button>
+          ${minimizeBtn}
         </div>
         <ul class="tray-chips">${chips}</ul>
         <div class="tray-foot">
@@ -516,6 +557,10 @@
       b.addEventListener("click", () => togglePlan(b.dataset.planRemove)));
     tray.querySelector("[data-plan-clear]")?.addEventListener("click", clearPlan);
     tray.querySelector("[data-plan-view]")?.addEventListener("click", openItinerary);
+    tray.querySelector("[data-plan-minimize]")?.addEventListener("click", () => {
+      state.trayMinimized = true;
+      renderTray();
+    });
     renderMarkers(visibleCenotes());
   }
 
