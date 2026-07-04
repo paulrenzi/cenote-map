@@ -487,6 +487,9 @@ button { font: inherit; cursor: pointer; }
 
 .meta-pill.kids   { background: rgba(46, 139, 87, 0.1);  color: #1e6e42; }
 .meta-pill.skill  { background: rgba(201, 138, 26, 0.12); color: #8a5e0d; }
+.meta-pill.transit,
+.meta-pill.prep   { background: rgba(15, 42, 52, 0.06);  color: var(--muted); }
+.meta-pill.warn   { background: rgba(201, 138, 26, 0.14); color: #8a5e0d; }
 
 .meta-pill.cond   { background: rgba(46, 139, 87, 0.12);  color: #1e6e42; }
 .meta-pill.cond.medium { background: rgba(201, 138, 26, 0.14); color: #8a5e0d; }
@@ -1162,6 +1165,13 @@ button { font: inherit; cursor: pointer; }
 .itin-name { display: block; font-family: "Fraunces", serif; font-size: 1.1rem; font-weight: 700; color: var(--text); text-decoration: none; }
 .itin-name:hover { color: var(--accent-deep); }
 .itin-meta { font-size: 0.85rem; color: var(--muted); }
+.itin-prep {
+  margin: 0 0 1rem; padding: 0.7rem 1rem;
+  background: rgba(201, 138, 26, 0.1); border-radius: var(--radius-sm);
+}
+.itin-prep-h { margin: 0 0 0.3rem; font-size: 0.66rem; font-weight: 800; letter-spacing: 0.14em; text-transform: uppercase; color: #8a5e0d; }
+.itin-prep ul { margin: 0; padding-left: 1.1rem; }
+.itin-prep li { font-size: 0.85rem; font-weight: 600; color: var(--text); }
 .itin-totals { display: flex; gap: 1.6rem; flex-wrap: wrap; padding: 0.9rem 1rem; background: rgba(10, 138, 158, 0.06); border-radius: var(--radius-sm); margin-bottom: 1rem; }
 .itin-totals > div { font-size: 1.05rem; font-weight: 800; color: var(--text); }
 .itin-tot-k { display: block; font-size: 0.62rem; font-weight: 800; letter-spacing: 0.14em; text-transform: uppercase; color: var(--subtle); }

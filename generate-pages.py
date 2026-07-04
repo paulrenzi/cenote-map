@@ -331,7 +331,7 @@ def make_page(c, lang="en"):
     <link rel="alternate" hreflang="en" href="{SITE}/cenotes/{slug}.html" />
     <link rel="alternate" hreflang="es" href="{SITE}/cenotes/{slug}.html?lang=es" />
     <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>💧</text></svg>" />
-    <link rel="manifest" href="../manifest.webmanifest?v=12" />
+    <link rel="manifest" href="../manifest.webmanifest?v=13" />
     <meta name="theme-color" content="#0a8a9e" />
 
     <meta property="og:type" content="article" />
@@ -351,7 +351,7 @@ def make_page(c, lang="en"):
       href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700;9..144,800&family=Manrope:wght@400;500;600;700;800&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="../styles.css?v=12" />
+    <link rel="stylesheet" href="../styles.css?v=13" />
   </head>
   <body>
     <header class="detail-hero">

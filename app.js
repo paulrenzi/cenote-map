@@ -38,6 +38,12 @@
       "card.skill.cavern_cert": "Cavern cert",
       "card.skill.cave_cert": "Cave cert",
       "card.kids": "Kid-friendly",
+      "card.transit.collectivo": "Colectivo stop",
+      "card.transit.car": "Car/taxi · paved",
+      "card.transit.dirt": "Car/taxi · dirt road",
+      "card.transit.4wd": "4×4 recommended",
+      "card.sunscreen.bio": "Biodegradable sunscreen only",
+      "card.sunscreen.none": "No sunscreen allowed",
       "card.verified": (d) => `Verified ${d}`,
       "card.report": "Report",
       "card.photoSoon": "Photo coming soon",
@@ -98,7 +104,11 @@
       "itin.onSite": (n) => `${n} stop${n === 1 ? "" : "s"} priced on-site`,
       "itin.partners": "Make it easy",
       "itin.close": "Close",
-      "itin.openMaps": "Open route in Google Maps"
+      "itin.openMaps": "Open route in Google Maps",
+      "itin.prepHeading": "Before you go",
+      "itin.prepBio": "Bring biodegradable sunscreen — required at some stops.",
+      "itin.prepNoSun": "Sunscreen isn't allowed at some stops — rinse off before entry.",
+      "itin.prepCar": "No colectivo stop at one or more of these — plan a car, taxi, or tour."
     },
     es: {
       "hero.eyebrow": "Riviera Maya · Quintana Roo",
@@ -129,6 +139,12 @@
       "card.skill.cavern_cert": "Cert. caverna",
       "card.skill.cave_cert": "Cert. cueva",
       "card.kids": "Para niños",
+      "card.transit.collectivo": "Parada de colectivo",
+      "card.transit.car": "Auto/taxi · pavimentado",
+      "card.transit.dirt": "Auto/taxi · terracería",
+      "card.transit.4wd": "Se recomienda 4×4",
+      "card.sunscreen.bio": "Solo bloqueador biodegradable",
+      "card.sunscreen.none": "Bloqueador prohibido",
       "card.verified": (d) => `Verificado ${d}`,
       "card.report": "Reportar",
       "card.photoSoon": "Foto próximamente",
@@ -189,7 +205,11 @@
       "itin.onSite": (n) => `${n} parada${n === 1 ? "" : "s"} con precio en sitio`,
       "itin.partners": "Hazlo fácil",
       "itin.close": "Cerrar",
-      "itin.openMaps": "Abrir ruta en Google Maps"
+      "itin.openMaps": "Abrir ruta en Google Maps",
+      "itin.prepHeading": "Antes de salir",
+      "itin.prepBio": "Lleva bloqueador biodegradable — obligatorio en algunas paradas.",
+      "itin.prepNoSun": "El bloqueador no está permitido en algunas paradas — enjuágate antes de entrar.",
+      "itin.prepCar": "No hay parada de colectivo en una o más de estas — planea auto, taxi o tour."
     }
   };
 
@@ -355,6 +375,24 @@
     if (c.skill_min === "cave_cert") return `<span class="meta-pill skill">${t("card.skill.cave_cert")}</span>`;
     if (c.skill_min === "cavern_cert") return `<span class="meta-pill skill">${t("card.skill.cavern_cert")}</span>`;
     if (c.skill_min === "swimmer") return `<span class="meta-pill skill">${t("card.skill.swimmer")}</span>`;
+    return "";
+  }
+
+  // Surfaces two things people actually search for before a cenote trip —
+  // "can I get there without a rental car" and "what do I need to bring" —
+  // right on the browsing cards, not buried on the detail page.
+  function transitPill(c) {
+    const access = c.access || {};
+    if (access.collectivo_stops) return `<span class="meta-pill transit">${t("card.transit.collectivo")}</span>`;
+    if (access.four_wd_needed) return `<span class="meta-pill transit warn">${t("card.transit.4wd")}</span>`;
+    if (access.road === "dirt_easy" || access.road === "dirt_rough") return `<span class="meta-pill transit">${t("card.transit.dirt")}</span>`;
+    return `<span class="meta-pill transit">${t("card.transit.car")}</span>`;
+  }
+
+  function sunscreenPill(c) {
+    const rule = (c.eco || {}).sunscreen_rule;
+    if (rule === "biodegradable_only") return `<span class="meta-pill prep">${t("card.sunscreen.bio")}</span>`;
+    if (rule === "none_allowed") return `<span class="meta-pill prep warn">${t("card.sunscreen.none")}</span>`;
     return "";
   }
 
@@ -634,9 +672,25 @@
 
     const costText = s.hasKnown
       ? t("plan.costFrom", s.knownCost) : t("plan.costNone");
+
+    // Roll the two things people forget to plan for — transport and sunscreen
+    // rules — into one glance-able list instead of making them dig into each
+    // cenote's own detail page.
+    const prepLines = [];
+    if (stops.some((c) => (c.eco || {}).sunscreen_rule === "biodegradable_only")) prepLines.push(t("itin.prepBio"));
+    if (stops.some((c) => (c.eco || {}).sunscreen_rule === "none_allowed")) prepLines.push(t("itin.prepNoSun"));
+    if (stops.some((c) => !(c.access || {}).collectivo_stops)) prepLines.push(t("itin.prepCar"));
+    const prepHtml = prepLines.length
+      ? `<div class="itin-prep">
+          <p class="itin-prep-h">${t("itin.prepHeading")}</p>
+          <ul>${prepLines.map((l) => `<li>${escapeHtml(l)}</li>`).join("")}</ul>
+        </div>`
+      : "";
+
     document.getElementById("itin-body").innerHTML = `
       ${base ? `<p class="itin-route">${escapeHtml(t("itin.routeFrom", baseName))}</p>` : ""}
       <ol class="itin-stops">${rows}</ol>
+      ${prepHtml}
       <div class="itin-totals">
         <div><span class="itin-tot-k">${t("itin.totalDrive")}</span> ${t("plan.driveMin", s.driveMin)}</div>
         <div><span class="itin-tot-k">${t("itin.totalCost")}</span> ${escapeHtml(costText)}
@@ -725,6 +779,8 @@
                 ${skillPill(c)}
                 ${kids}
                 <span class="meta-pill cost">${costLabel(c)}</span>
+                ${transitPill(c)}
+                ${sunscreenPill(c)}
               </div>
               <div class="card-foot">${verified}${directionsBtn}${reportBtn}${planButton(c.slug)}</div>
             </div>
@@ -1062,7 +1118,7 @@
     loadConditions().then(() => renderCards());
 
     if ("serviceWorker" in navigator && location.protocol === "https:") {
-      navigator.serviceWorker.register("sw.js?v=12").then((reg) => {
+      navigator.serviceWorker.register("sw.js?v=13").then((reg) => {
         // Force a real network check on every visit instead of waiting for the
         // browser's lazy periodic re-fetch, which can leave a stale worker
         // running for hours after a deploy.
