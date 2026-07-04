@@ -88,6 +88,7 @@
       "plan.far": "Heads up — these stops are spread far apart for one day.",
       "plan.minimize": "Minimize",
       "plan.expand": "Expand",
+      "card.directions": "Directions",
       "itin.title": "Your cenote day",
       "itin.routeFrom": (b) => `Route from ${b}`,
       "itin.leg": (m) => `${m} min drive`,
@@ -96,7 +97,8 @@
       "itin.totalCost": "Entry total",
       "itin.onSite": (n) => `${n} stop${n === 1 ? "" : "s"} priced on-site`,
       "itin.partners": "Make it easy",
-      "itin.close": "Close"
+      "itin.close": "Close",
+      "itin.openMaps": "Open route in Google Maps"
     },
     es: {
       "hero.eyebrow": "Riviera Maya · Quintana Roo",
@@ -177,6 +179,7 @@
       "plan.far": "Atención — estas paradas están muy separadas para un solo día.",
       "plan.minimize": "Minimizar",
       "plan.expand": "Expandir",
+      "card.directions": "Cómo llegar",
       "itin.title": "Tu día de cenotes",
       "itin.routeFrom": (b) => `Ruta desde ${b}`,
       "itin.leg": (m) => `${m} min en auto`,
@@ -185,7 +188,8 @@
       "itin.totalCost": "Total entradas",
       "itin.onSite": (n) => `${n} parada${n === 1 ? "" : "s"} con precio en sitio`,
       "itin.partners": "Hazlo fácil",
-      "itin.close": "Cerrar"
+      "itin.close": "Cerrar",
+      "itin.openMaps": "Abrir ruta en Google Maps"
     }
   };
 
@@ -463,6 +467,32 @@
     return { knownCost, unknownCount, hasKnown, driveMin, far, count: stops.length };
   }
 
+  // Google Maps deep link for a single cenote — no origin, so Maps uses the
+  // visitor's current location (works whether they're at the resort or already out driving).
+  function singleMapsUrl(c) {
+    return `https://www.google.com/maps/dir/?api=1&destination=${c.coords[0]},${c.coords[1]}&travelmode=driving`;
+  }
+
+  // Multi-stop Google Maps route for the whole day plan — base (if chosen) as
+  // origin, last stop as destination, everything between as waypoints. Most
+  // visitors already have Google Maps installed, so this beats building our
+  // own turn-by-turn.
+  function planMapsUrl() {
+    const { points } = planLegs();
+    if (points.length < 2) {
+      return points.length === 1
+        ? `https://www.google.com/maps/search/?api=1&query=${points[0].coords[0]},${points[0].coords[1]}`
+        : null;
+    }
+    const toStr = (coords) => `${coords[0]},${coords[1]}`;
+    const origin = toStr(points[0].coords);
+    const destination = toStr(points[points.length - 1].coords);
+    const waypoints = points.slice(1, -1).map((p) => toStr(p.coords));
+    let url = `https://www.google.com/maps/dir/?api=1&origin=${origin}&destination=${destination}&travelmode=driving`;
+    if (waypoints.length) url += `&waypoints=${encodeURIComponent(waypoints.join("|"))}`;
+    return url;
+  }
+
   function planButton(slug) {
     const inPlan = state.plan.includes(slug);
     const full = !inPlan && state.plan.length >= MAX_PLAN;
@@ -524,9 +554,16 @@
     const chips = state.plan.map((slug, idx) => {
       const c = cenoteBySlug(slug);
       const name = langPref === "es" ? c.name_es : c.name_en;
+      const upBtn = idx > 0
+        ? `<button type="button" class="tray-move" data-plan-up="${escapeHtml(slug)}" aria-label="${t("plan.moveUp")}">▲</button>`
+        : "";
+      const downBtn = idx < state.plan.length - 1
+        ? `<button type="button" class="tray-move" data-plan-down="${escapeHtml(slug)}" aria-label="${t("plan.moveDown")}">▼</button>`
+        : "";
       return `<li class="tray-chip">
         <span class="tray-num">${idx + 1}</span>
         <span class="tray-chip-name">${escapeHtml(name)}</span>
+        ${upBtn}${downBtn}
         <button type="button" class="tray-x" data-plan-remove="${escapeHtml(slug)}" aria-label="${t("plan.remove")}">×</button>
       </li>`;
     }).join("");
@@ -555,6 +592,10 @@
 
     tray.querySelectorAll("[data-plan-remove]").forEach((b) =>
       b.addEventListener("click", () => togglePlan(b.dataset.planRemove)));
+    tray.querySelectorAll("[data-plan-up]").forEach((b) =>
+      b.addEventListener("click", () => movePlan(b.dataset.planUp, -1)));
+    tray.querySelectorAll("[data-plan-down]").forEach((b) =>
+      b.addEventListener("click", () => movePlan(b.dataset.planDown, 1)));
     tray.querySelector("[data-plan-clear]")?.addEventListener("click", clearPlan);
     tray.querySelector("[data-plan-view]")?.addEventListener("click", openItinerary);
     tray.querySelector("[data-plan-minimize]")?.addEventListener("click", () => {
@@ -602,6 +643,7 @@
           ${s.unknownCount ? `<span class="itin-onsite">${escapeHtml(t("itin.onSite", s.unknownCount))}</span>` : ""}</div>
       </div>
       <div class="itin-actions">
+        <a class="btn btn-primary" id="itin-maps" href="${planMapsUrl()}" target="_blank" rel="noreferrer">${t("itin.openMaps")}</a>
         <button type="button" class="btn btn-ghost" id="itin-share">${t("plan.share")}</button>
         <span class="itin-share-ok" id="itin-share-ok" role="status"></span>
       </div>
@@ -657,6 +699,7 @@
         const reportBtn = CONFIG.API_BASE
           ? `<button type="button" class="report-btn" data-report-slug="${escapeHtml(c.slug)}" data-report-name="${escapeHtml(name)}">${t("card.report")}</button>`
           : "";
+        const directionsBtn = `<a class="report-btn directions-btn" href="${singleMapsUrl(c)}" target="_blank" rel="noreferrer">${t("card.directions")}</a>`;
         const photo = state.photos[c.slug];
         const detailHref = `cenotes/${encodeURIComponent(c.slug)}.html${langPref === "es" ? "?lang=es" : ""}`;
         const media = photo
@@ -683,7 +726,7 @@
                 ${kids}
                 <span class="meta-pill cost">${costLabel(c)}</span>
               </div>
-              <div class="card-foot">${verified}${reportBtn}${planButton(c.slug)}</div>
+              <div class="card-foot">${verified}${directionsBtn}${reportBtn}${planButton(c.slug)}</div>
             </div>
           </article>`;
       }).join("");
@@ -1019,7 +1062,7 @@
     loadConditions().then(() => renderCards());
 
     if ("serviceWorker" in navigator && location.protocol === "https:") {
-      navigator.serviceWorker.register("sw.js?v=11").then((reg) => {
+      navigator.serviceWorker.register("sw.js?v=12").then((reg) => {
         // Force a real network check on every visit instead of waiting for the
         // browser's lazy periodic re-fetch, which can leave a stale worker
         // running for hours after a deploy.

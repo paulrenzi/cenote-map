@@ -1135,6 +1135,11 @@ button { font: inherit; cursor: pointer; }
   font-size: 1.1rem; line-height: 1; padding: 0 0.15rem;
 }
 .tray-x:hover { color: var(--stale); }
+.tray-move {
+  background: none; border: none; cursor: pointer; color: var(--subtle);
+  font-size: 0.6rem; line-height: 1; padding: 0 0.1rem;
+}
+.tray-move:hover { color: var(--accent-deep); }
 .tray-foot { display: flex; align-items: center; gap: 1rem; flex-wrap: wrap; }
 .tray-stats { display: flex; gap: 1.3rem; flex-wrap: wrap; }
 .tray-stat { font-size: 0.95rem; font-weight: 700; color: var(--text); }
