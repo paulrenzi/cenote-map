@@ -38,10 +38,11 @@
       "card.skill.cavern_cert": "Cavern cert",
       "card.skill.cave_cert": "Cave cert",
       "card.kids": "Kid-friendly",
-      "card.transit.collectivo": "Colectivo stop",
-      "card.transit.car": "Car/taxi · paved",
-      "card.transit.dirt": "Car/taxi · dirt road",
-      "card.transit.4wd": "4×4 recommended",
+      "card.transit.collectivo": "Colectivo — cheapest, flag one down on the highway",
+      "card.transit.taxi": "Taxi from town — easy paved drive-in",
+      "card.transit.dirt": "Taxi or tour van — unpaved access road",
+      "card.transit.4wd": "Private driver or 4×4 — regular taxis can't reach it",
+      "card.transit.guided": "Book a tour or driver — guided entry only",
       "card.sunscreen.bio": "Biodegradable sunscreen only",
       "card.sunscreen.none": "No sunscreen allowed",
       "card.verified": (d) => `Verified ${d}`,
@@ -139,10 +140,11 @@
       "card.skill.cavern_cert": "Cert. caverna",
       "card.skill.cave_cert": "Cert. cueva",
       "card.kids": "Para niños",
-      "card.transit.collectivo": "Parada de colectivo",
-      "card.transit.car": "Auto/taxi · pavimentado",
-      "card.transit.dirt": "Auto/taxi · terracería",
-      "card.transit.4wd": "Se recomienda 4×4",
+      "card.transit.collectivo": "Colectivo — lo más barato, detenlo en la carretera",
+      "card.transit.taxi": "Taxi desde el pueblo — entrada pavimentada fácil",
+      "card.transit.dirt": "Taxi o van de tour — camino de terracería",
+      "card.transit.4wd": "Chofer privado o 4×4 — un taxi normal no llega",
+      "card.transit.guided": "Reserva un tour o chofer — solo entrada guiada",
       "card.sunscreen.bio": "Solo bloqueador biodegradable",
       "card.sunscreen.none": "Bloqueador prohibido",
       "card.verified": (d) => `Verificado ${d}`,
@@ -378,15 +380,24 @@
     return "";
   }
 
-  // Surfaces two things people actually search for before a cenote trip —
-  // "can I get there without a rental car" and "what do I need to bring" —
-  // right on the browsing cards, not buried on the detail page.
-  function transitPill(c) {
+  // Ranked "best way there" for visitors without a rental car — most cenote
+  // searches assume no car. Built from the access fields already verified
+  // per-cenote (collectivo stop, road surface, guided-only) rather than
+  // invented bus numbers or fares: cheapest/easiest real option first,
+  // tour/private-driver only when the data says a taxi genuinely can't do it.
+  function bestTransport(c) {
     const access = c.access || {};
-    if (access.collectivo_stops) return `<span class="meta-pill transit">${t("card.transit.collectivo")}</span>`;
-    if (access.four_wd_needed) return `<span class="meta-pill transit warn">${t("card.transit.4wd")}</span>`;
-    if (access.road === "dirt_easy" || access.road === "dirt_rough") return `<span class="meta-pill transit">${t("card.transit.dirt")}</span>`;
-    return `<span class="meta-pill transit">${t("card.transit.car")}</span>`;
+    const guidedOnly = (c.amenities || []).includes("guided_only");
+    if (guidedOnly) return { key: "guided", warn: false };
+    if (access.four_wd_needed) return { key: "4wd", warn: true };
+    if (access.collectivo_stops) return { key: "collectivo", warn: false };
+    if (access.road === "dirt_easy" || access.road === "dirt_rough") return { key: "dirt", warn: true };
+    return { key: "taxi", warn: false };
+  }
+
+  function transitPill(c) {
+    const { key, warn } = bestTransport(c);
+    return `<span class="meta-pill transit${warn ? " warn" : ""}">${t("card.transit." + key)}</span>`;
   }
 
   function sunscreenPill(c) {
@@ -679,7 +690,7 @@
     const prepLines = [];
     if (stops.some((c) => (c.eco || {}).sunscreen_rule === "biodegradable_only")) prepLines.push(t("itin.prepBio"));
     if (stops.some((c) => (c.eco || {}).sunscreen_rule === "none_allowed")) prepLines.push(t("itin.prepNoSun"));
-    if (stops.some((c) => !(c.access || {}).collectivo_stops)) prepLines.push(t("itin.prepCar"));
+    if (stops.some((c) => bestTransport(c).key !== "collectivo")) prepLines.push(t("itin.prepCar"));
     const prepHtml = prepLines.length
       ? `<div class="itin-prep">
           <p class="itin-prep-h">${t("itin.prepHeading")}</p>
@@ -1118,7 +1129,7 @@
     loadConditions().then(() => renderCards());
 
     if ("serviceWorker" in navigator && location.protocol === "https:") {
-      navigator.serviceWorker.register("sw.js?v=13").then((reg) => {
+      navigator.serviceWorker.register("sw.js?v=14").then((reg) => {
         // Force a real network check on every visit instead of waiting for the
         // browser's lazy periodic re-fetch, which can leave a stale worker
         // running for hours after a deploy.

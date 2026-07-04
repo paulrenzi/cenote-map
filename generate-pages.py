@@ -41,6 +41,7 @@ L = {
     "parking":        ("Parking",                    "Estacionamiento"),
     "collectivo":     ("Collectivo stop",            "Para colectivo"),
     "fourwd":         ("4×4 required",               "Se requiere 4×4"),
+    "best_transport": ("Best way there",             "Mejor manera de llegar"),
     "yes":            ("Yes",                        "Sí"),
     "no":             ("No",                         "No"),
     "credit":         ("Photo:",                     "Foto:"),
@@ -84,6 +85,24 @@ ROAD = {
     "dirt_rough":   ("Rough dirt",       "Terracería difícil"),
     "four_wd":      ("4×4 only",         "Solo 4×4"),
 }
+
+# Ranked "best way there" for visitors without a rental car, mirroring app.js's
+# bestTransport() — cheapest/easiest real option first, tour/private-driver
+# only when access data says a regular taxi genuinely can't reach it.
+BEST_TRANSPORT = {
+    "guided":     ("Book a tour or driver — guided entry only",              "Reserva un tour o chofer — solo entrada guiada"),
+    "4wd":        ("Private driver or 4×4 — regular taxis can't reach it",   "Chofer privado o 4×4 — un taxi normal no llega"),
+    "collectivo": ("Colectivo — cheapest, flag one down on the highway",     "Colectivo — lo más barato, detenlo en la carretera"),
+    "dirt":       ("Taxi or tour van — unpaved access road",                 "Taxi o van de tour — camino de terracería"),
+    "taxi":       ("Taxi from town — easy paved drive-in",                  "Taxi desde el pueblo — entrada pavimentada fácil"),
+}
+
+def best_transport_key(access, amenities):
+    if "guided_only" in (amenities or []): return "guided"
+    if access.get("four_wd_needed"): return "4wd"
+    if access.get("collectivo_stops"): return "collectivo"
+    if access.get("road") in ("dirt_easy", "dirt_rough"): return "dirt"
+    return "taxi"
 
 OWNERSHIP = {
     "ejido":           ("Ejido (community land)",   "Ejido"),
@@ -265,7 +284,11 @@ def make_page(c, lang="en"):
         return (f'<div class="dl-row"><dt {two_lang_attrs(en_label, es_label)}>{esc(en_label if lang=="en" else es_label)}</dt>'
                 f'<dd {two_lang_attrs(en, es)}>{esc(en if lang=="en" else es)}</dd></div>')
 
+    bt_key = best_transport_key(access, c.get("amenities", []))
+    bt_en, bt_es = BEST_TRANSPORT[bt_key]
+
     access_dl = "\n        ".join([
+        dl_row("best_transport", bt_en, bt_es),
         dl_row("road",       road_en, road_es),
         dl_row("parking",    park_en, park_es),
         dl_row("collectivo", coll_en, coll_es),
@@ -331,7 +354,7 @@ def make_page(c, lang="en"):
     <link rel="alternate" hreflang="en" href="{SITE}/cenotes/{slug}.html" />
     <link rel="alternate" hreflang="es" href="{SITE}/cenotes/{slug}.html?lang=es" />
     <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>💧</text></svg>" />
-    <link rel="manifest" href="../manifest.webmanifest?v=13" />
+    <link rel="manifest" href="../manifest.webmanifest?v=14" />
     <meta name="theme-color" content="#0a8a9e" />
 
     <meta property="og:type" content="article" />
@@ -351,7 +374,7 @@ def make_page(c, lang="en"):
       href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700;9..144,800&family=Manrope:wght@400;500;600;700;800&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="../styles.css?v=13" />
+    <link rel="stylesheet" href="../styles.css?v=14" />
   </head>
   <body>
     <header class="detail-hero">
