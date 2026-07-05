@@ -959,7 +959,7 @@
       "opening_type": null,
       "opening_orientation_deg": null,
       "hours": "08:00-17:00",
-      "cost_mxn": null,
+      "cost_mxn": 150,
       "access": {
         "road": "paved",
         "parking": true,
@@ -997,7 +997,7 @@
       "opening_type": null,
       "opening_orientation_deg": null,
       "hours": "08:00-17:00",
-      "cost_mxn": null,
+      "cost_mxn": 80,
       "access": {
         "road": "paved",
         "parking": true,
@@ -1035,7 +1035,7 @@
       "opening_type": null,
       "opening_orientation_deg": null,
       "hours": "08:00-17:00",
-      "cost_mxn": null,
+      "cost_mxn": 250,
       "access": {
         "road": "paved",
         "parking": true,
@@ -1073,7 +1073,7 @@
       "opening_type": null,
       "opening_orientation_deg": null,
       "hours": "08:00-17:00",
-      "cost_mxn": null,
+      "cost_mxn": 200,
       "access": {
         "road": "paved",
         "parking": true,
@@ -1111,7 +1111,7 @@
       "opening_type": null,
       "opening_orientation_deg": null,
       "hours": "08:00-17:00",
-      "cost_mxn": null,
+      "cost_mxn": 150,
       "access": {
         "road": "paved",
         "parking": true,
@@ -1149,7 +1149,7 @@
       "opening_type": null,
       "opening_orientation_deg": null,
       "hours": "08:00-17:00",
-      "cost_mxn": null,
+      "cost_mxn": 100,
       "access": {
         "road": "paved",
         "parking": true,
@@ -1187,7 +1187,7 @@
       "opening_type": null,
       "opening_orientation_deg": null,
       "hours": "08:00-17:00",
-      "cost_mxn": null,
+      "cost_mxn": 170,
       "access": {
         "road": "paved",
         "parking": true,
@@ -1225,7 +1225,7 @@
       "opening_type": null,
       "opening_orientation_deg": null,
       "hours": "08:00-17:00",
-      "cost_mxn": null,
+      "cost_mxn": 220,
       "access": {
         "road": "paved",
         "parking": true,
@@ -1263,7 +1263,7 @@
       "opening_type": null,
       "opening_orientation_deg": null,
       "hours": "08:00-17:00",
-      "cost_mxn": null,
+      "cost_mxn": 220,
       "access": {
         "road": "paved",
         "parking": true,
@@ -1301,7 +1301,7 @@
       "opening_type": null,
       "opening_orientation_deg": null,
       "hours": "08:00-17:00",
-      "cost_mxn": null,
+      "cost_mxn": 250,
       "access": {
         "road": "paved",
         "parking": true,
@@ -1339,7 +1339,7 @@
       "opening_type": null,
       "opening_orientation_deg": null,
       "hours": "08:00-17:00",
-      "cost_mxn": null,
+      "cost_mxn": 500,
       "access": {
         "road": "paved",
         "parking": true,
@@ -1377,7 +1377,7 @@
       "opening_type": null,
       "opening_orientation_deg": null,
       "hours": "08:00-17:00",
-      "cost_mxn": null,
+      "cost_mxn": 150,
       "access": {
         "road": "paved",
         "parking": true,
@@ -1450,7 +1450,7 @@
       "opening_type": null,
       "opening_orientation_deg": null,
       "hours": "08:00-17:00",
-      "cost_mxn": null,
+      "cost_mxn": 470,
       "access": {
         "road": "paved",
         "parking": true,
@@ -1488,7 +1488,7 @@
       "opening_type": null,
       "opening_orientation_deg": null,
       "hours": "08:00-17:00",
-      "cost_mxn": null,
+      "cost_mxn": 150,
       "access": {
         "road": "paved",
         "parking": true,
@@ -1526,7 +1526,7 @@
       "opening_type": null,
       "opening_orientation_deg": null,
       "hours": "08:00-17:00",
-      "cost_mxn": null,
+      "cost_mxn": 80,
       "access": {
         "road": "paved",
         "parking": true,
@@ -1716,7 +1716,7 @@
       "opening_type": null,
       "opening_orientation_deg": null,
       "hours": "08:00-17:00",
-      "cost_mxn": null,
+      "cost_mxn": 450,
       "access": {
         "road": "paved",
         "parking": true,
@@ -1755,7 +1755,7 @@
       "opening_type": null,
       "opening_orientation_deg": null,
       "hours": "08:00-17:00",
-      "cost_mxn": null,
+      "cost_mxn": 200,
       "access": {
         "road": "paved",
         "parking": true,
@@ -1793,7 +1793,7 @@
       "opening_type": null,
       "opening_orientation_deg": null,
       "hours": "08:00-17:00",
-      "cost_mxn": null,
+      "cost_mxn": 350,
       "access": {
         "road": "paved",
         "parking": true,
@@ -1831,7 +1831,7 @@
       "opening_type": null,
       "opening_orientation_deg": null,
       "hours": "08:00-17:00",
-      "cost_mxn": null,
+      "cost_mxn": 450,
       "access": {
         "road": "paved",
         "parking": true,
@@ -1869,7 +1869,7 @@
       "opening_type": null,
       "opening_orientation_deg": null,
       "hours": "08:00-17:00",
-      "cost_mxn": null,
+      "cost_mxn": 200,
       "access": {
         "road": "paved",
         "parking": true,
@@ -1907,7 +1907,7 @@
       "opening_type": null,
       "opening_orientation_deg": null,
       "hours": "08:00-17:00",
-      "cost_mxn": null,
+      "cost_mxn": 650,
       "access": {
         "road": "paved",
         "parking": true,
@@ -1945,7 +1945,7 @@
       "opening_type": null,
       "opening_orientation_deg": null,
       "hours": "08:00-17:00",
-      "cost_mxn": null,
+      "cost_mxn": 350,
       "access": {
         "road": "paved",
         "parking": true,
@@ -2062,7 +2062,7 @@
       "opening_type": null,
       "opening_orientation_deg": null,
       "hours": "08:00-17:00",
-      "cost_mxn": null,
+      "cost_mxn": 350,
       "access": {
         "road": "paved",
         "parking": true,
@@ -2100,7 +2100,7 @@
       "opening_type": null,
       "opening_orientation_deg": null,
       "hours": "08:00-17:00",
-      "cost_mxn": null,
+      "cost_mxn": 350,
       "access": {
         "road": "paved",
         "parking": true,
@@ -2138,7 +2138,7 @@
       "opening_type": null,
       "opening_orientation_deg": null,
       "hours": "08:00-17:00",
-      "cost_mxn": null,
+      "cost_mxn": 350,
       "access": {
         "road": "paved",
         "parking": true,
@@ -2290,7 +2290,7 @@
       "opening_type": null,
       "opening_orientation_deg": null,
       "hours": "08:00-17:00",
-      "cost_mxn": null,
+      "cost_mxn": 50,
       "access": {
         "road": "paved",
         "parking": true,
@@ -2442,7 +2442,7 @@
       "opening_type": null,
       "opening_orientation_deg": null,
       "hours": "08:00-17:00",
-      "cost_mxn": null,
+      "cost_mxn": 200,
       "access": {
         "road": "paved",
         "parking": true,
@@ -2480,7 +2480,7 @@
       "opening_type": null,
       "opening_orientation_deg": null,
       "hours": "08:00-17:00",
-      "cost_mxn": null,
+      "cost_mxn": 400,
       "access": {
         "road": "paved",
         "parking": true,
@@ -2518,7 +2518,7 @@
       "opening_type": null,
       "opening_orientation_deg": null,
       "hours": "08:00-17:00",
-      "cost_mxn": null,
+      "cost_mxn": 200,
       "access": {
         "road": "paved",
         "parking": true,
@@ -2556,7 +2556,7 @@
       "opening_type": null,
       "opening_orientation_deg": null,
       "hours": "08:00-17:00",
-      "cost_mxn": null,
+      "cost_mxn": 650,
       "access": {
         "road": "paved",
         "parking": true,
@@ -2708,7 +2708,7 @@
       "opening_type": null,
       "opening_orientation_deg": null,
       "hours": "08:00-17:00",
-      "cost_mxn": null,
+      "cost_mxn": 150,
       "access": {
         "road": "paved",
         "parking": true,
@@ -2746,7 +2746,7 @@
       "opening_type": null,
       "opening_orientation_deg": null,
       "hours": "08:00-17:00",
-      "cost_mxn": null,
+      "cost_mxn": 300,
       "access": {
         "road": "paved",
         "parking": true,
@@ -2827,7 +2827,7 @@
       "opening_type": null,
       "opening_orientation_deg": null,
       "hours": "09:00-18:00",
-      "cost_mxn": null,
+      "cost_mxn": 350,
       "access": {
         "road": "paved",
         "parking": true,
@@ -2913,7 +2913,7 @@
       "opening_type": null,
       "opening_orientation_deg": null,
       "hours": "10:00-18:00",
-      "cost_mxn": null,
+      "cost_mxn": 400,
       "access": {
         "road": "paved",
         "parking": true,
@@ -3127,7 +3127,7 @@
       "opening_type": "cave_system",
       "opening_orientation_deg": 90,
       "hours": "09:00-16:00",
-      "cost_mxn": null,
+      "cost_mxn": 700,
       "access": {
         "road": "dirt_easy",
         "parking": true,
@@ -3169,7 +3169,7 @@
       "opening_type": "pit",
       "opening_orientation_deg": 0,
       "hours": "08:00-17:00",
-      "cost_mxn": null,
+      "cost_mxn": 300,
       "access": {
         "road": "dirt_rough",
         "parking": true,
@@ -3292,7 +3292,7 @@
       "opening_type": "cluster",
       "opening_orientation_deg": 90,
       "hours": "09:00-17:00",
-      "cost_mxn": null,
+      "cost_mxn": 300,
       "access": {
         "road": "paved",
         "parking": true,
