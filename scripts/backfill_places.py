@@ -181,7 +181,20 @@ def stage(key, cenotes):
             print("  - no match within radius; leaving null")
             out.append({"slug": c["slug"], "matched": False})
         else:
-            photo = (match.get("photos") or [{}])[0]
+            photos = match.get("photos") or []
+            # Full photo set (up to 10) so the client can show a carousel, not a
+            # single image. Each ref carries its own author attribution, which
+            # Google's terms require we display alongside the image.
+            photo_set = [
+                {
+                    "name": p.get("name"),
+                    "attribution": [
+                        a.get("displayName") for a in p.get("authorAttributions", [])
+                    ],
+                }
+                for p in photos if p.get("name")
+            ]
+            first = photo_set[0] if photo_set else {}
             rec = {
                 "slug": c["slug"],
                 "matched": True,
@@ -191,10 +204,9 @@ def stage(key, cenotes):
                 "formatted_address": match.get("formattedAddress"),
                 "rating": match.get("rating"),
                 "review_count": match.get("userRatingCount"),
-                "photo_name": photo.get("name"),
-                "photo_attribution": [
-                    a.get("displayName") for a in photo.get("authorAttributions", [])
-                ],
+                "photo_name": first.get("name"),
+                "photo_attribution": first.get("attribution", []),
+                "photos": photo_set,
             }
             out.append(rec)
             print(f"  ok {rec['matched_name']} · {rec['rating']}"
@@ -222,6 +234,14 @@ def execute(cenotes_doc):
         if r.get("photo_name"):
             c["google_photo_name"] = r["photo_name"]
             c["google_photo_attribution"] = r["photo_attribution"]
+        # Full photo set for the carousel. Older staging files lack "photos";
+        # fall back to the single ref so a re-run isn't required to keep parity.
+        photo_set = r.get("photos")
+        if photo_set is None and r.get("photo_name"):
+            photo_set = [{"name": r["photo_name"], "attribution": r.get("photo_attribution", [])}]
+        if photo_set:
+            c["google_photo_names"] = [p["name"] for p in photo_set]
+            c["google_photo_attributions"] = [p.get("attribution", []) for p in photo_set]
         n += 1
     DATA.write_text(json.dumps(cenotes_doc, indent=2, ensure_ascii=False) + "\n",
                     encoding="utf-8")

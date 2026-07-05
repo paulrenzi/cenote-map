@@ -7,13 +7,25 @@ Output:
   cenotes/<slug>.html  — bilingual detail page per cenote
   sitemap.xml          — for Google indexing
 """
-import json, html, re
+import json, html, re, os
 from pathlib import Path
 
 ROOT = Path(__file__).parent
 SITE = "https://paulrenzi.github.io/cenote-map"
 OUT_DIR = ROOT / "cenotes"
 OUT_DIR.mkdir(exist_ok=True)
+
+# Cloudflare Worker that proxies Google Places photo media. Must match
+# CONFIG.PHOTO_PROXY in app.js. Empty ⇒ detail pages fall back to the painted
+# hero (same graceful degradation as the card grid), so this is safe to ship
+# before the worker is deployed. Set via `PHOTO_PROXY=https://… python generate-pages.py`.
+PHOTO_PROXY = os.environ.get("PHOTO_PROXY", "").rstrip("/")
+
+def _proxy_url(name, w=1200):
+    if not PHOTO_PROXY or not name:
+        return ""
+    from urllib.parse import quote
+    return f"{PHOTO_PROXY}/?name={quote(name, safe='')}&w={w}"
 
 cenotes = json.loads((ROOT / "data" / "cenotes.json").read_text(encoding="utf-8"))["cenotes"]
 photos  = json.loads((ROOT / "data" / "photos.json").read_text(encoding="utf-8")) if (ROOT / "data" / "photos.json").exists() else {}
@@ -183,15 +195,33 @@ def make_page(c, lang="en"):
     region_label = region_en if lang == "en" else region_es
 
     photo = photos.get(slug)
-    hero_img_tag = (
-        f'<img class="detail-hero-bg" src="../{esc(photo["file"])}" alt="{esc(name)}" fetchpriority="high" />'
-        if photo else
-        '<div class="detail-hero-bg detail-hero-bg--painted" aria-hidden="true"></div>'
-    )
-    preload_tag = (
-        f'<link rel="preload" as="image" href="../{esc(photo["file"])}" fetchpriority="high" />'
-        if photo else ""
-    )
+
+    # Google Places photos (via the proxy) are the fallback when we have no
+    # locally-curated photo. Each ref carries its own author attribution, which
+    # Google requires we display. Empty PHOTO_PROXY ⇒ g_photos is [] ⇒ painted hero.
+    g_names = c.get("google_photo_names") or (
+        [c["google_photo_name"]] if c.get("google_photo_name") else [])
+    g_attribs = c.get("google_photo_attributions") or (
+        [c.get("google_photo_attribution", [])] if c.get("google_photo_name") else [])
+    g_photos = []
+    if not photo:
+        for i, gn in enumerate(g_names):
+            url = _proxy_url(gn, 1200)
+            if not url:
+                break
+            attr = g_attribs[i] if i < len(g_attribs) else []
+            g_photos.append({"url": url, "credit": ", ".join(a for a in (attr or []) if a) or "Google"})
+
+    if photo:
+        hero_img_tag = f'<img class="detail-hero-bg" src="../{esc(photo["file"])}" alt="{esc(name)}" fetchpriority="high" />'
+        preload_tag = f'<link rel="preload" as="image" href="../{esc(photo["file"])}" fetchpriority="high" />'
+    elif g_photos:
+        hero_img_tag = f'<img class="detail-hero-bg" src="{esc(g_photos[0]["url"])}" alt="{esc(name)}" fetchpriority="high" />'
+        preload_tag = f'<link rel="preload" as="image" href="{esc(g_photos[0]["url"])}" fetchpriority="high" />'
+    else:
+        hero_img_tag = '<div class="detail-hero-bg detail-hero-bg--painted" aria-hidden="true"></div>'
+        preload_tag = ""
+
     # A gallery is any photo entry carrying 2+ images. Falls back to the
     # single primary when absent, so older single-photo entries are unaffected.
     gallery_imgs = (photo or {}).get("gallery") or ([photo] if photo else [])
@@ -214,6 +244,17 @@ def make_page(c, lang="en"):
         photo_credit_html = "\n      ".join(
             f'<p class="footer-credit">{credit_line(p)}</p>' for p in gallery_imgs
         )
+    elif g_photos:
+        # De-dup author names across the set so we don't repeat "Photo: X · Google".
+        seen, credits = set(), []
+        for gp in g_photos:
+            if gp["credit"] not in seen:
+                seen.add(gp["credit"])
+                credits.append(gp["credit"])
+        photo_credit_html = "\n      ".join(
+            f'<p class="footer-credit">{esc(lbl("credit", lang))} {esc(cr)} · Google</p>'
+            for cr in credits
+        )
 
     gallery_html = ""
     if len(gallery_imgs) > 1:
@@ -221,6 +262,19 @@ def make_page(c, lang="en"):
             f'<a class="gallery-tile" href="../{esc(p["file"])}" target="_blank" rel="noreferrer">'
             f'<img loading="lazy" decoding="async" src="../{esc(p["file"])}" alt="{esc(name)}" /></a>'
             for p in gallery_imgs
+        )
+        h_en, h_es = "Photos", "Fotos"
+        gallery_html = (
+            f'<section class="detail-section">\n'
+            f'        <h2 {two_lang_attrs(h_en, h_es)}>{esc(h_en if lang=="en" else h_es)}</h2>\n'
+            f'        <div class="detail-gallery">\n          {tiles}\n        </div>\n'
+            f'      </section>'
+        )
+    elif len(g_photos) > 1:
+        tiles = "\n          ".join(
+            f'<a class="gallery-tile" href="{esc(gp["url"])}" target="_blank" rel="noreferrer">'
+            f'<img loading="lazy" decoding="async" src="{esc(gp["url"])}" alt="{esc(name)}" /></a>'
+            for gp in g_photos
         )
         h_en, h_es = "Photos", "Fotos"
         gallery_html = (
@@ -337,6 +391,8 @@ def make_page(c, lang="en"):
     }
     if photo:
         jsonld["image"] = f"{SITE}/{photo['file']}"
+    elif g_photos:
+        jsonld["image"] = g_photos[0]["url"]
 
     title_en = f"{c['name_en']} — Riviera Maya cenote guide"
     title_es = f"{c['name_es']} — Guía de cenotes de la Riviera Maya"
@@ -344,7 +400,7 @@ def make_page(c, lang="en"):
     desc_es = strip_html(c["summary_es"])[:155]
 
     no_photo_notice = ""
-    if not photo:
+    if not photo and not g_photos:
         en, es = L["no_photo"]
         no_photo_notice = f'<p class="no-photo-notice" {two_lang_attrs(en, es)}>{esc(en if lang=="en" else es)}</p>'
 
@@ -370,7 +426,7 @@ def make_page(c, lang="en"):
     <meta property="og:title" content="{esc(title_en if lang == "en" else title_es)}" />
     <meta property="og:description" content="{esc(desc_en if lang == "en" else desc_es)}" />
     <meta property="og:url" content="{SITE}/cenotes/{slug}.html" />
-    {f'<meta property="og:image" content="{SITE}/{photo["file"]}" />' if photo else ""}
+    {f'<meta property="og:image" content="{SITE}/{photo["file"]}" />' if photo else (f'<meta property="og:image" content="{esc(g_photos[0]["url"])}" />' if g_photos else "")}
 
     <script type="application/ld+json">
 {json.dumps(jsonld, indent=2, ensure_ascii=False)}

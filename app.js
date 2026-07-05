@@ -5,8 +5,21 @@
   // Leave both empty to ship the static planner without the conditions backend.
   const CONFIG = {
     API_BASE: "",            // e.g. "https://cenote-conditions.<acct>.workers.dev"
-    TURNSTILE_SITE_KEY: ""   // e.g. "0x4AAA..."  (public, fine to commit)
+    TURNSTILE_SITE_KEY: "",  // e.g. "0x4AAA..."  (public, fine to commit)
+    // Cloudflare Worker that proxies Google Places photo media (keeps the API
+    // key server-side). Set to the deployed worker origin, e.g.
+    // "https://cenote-photos.<subdomain>.workers.dev". Empty ⇒ no Google photos
+    // render (cards fall back to the painted placeholder), so this is safe to
+    // ship before the worker is deployed.
+    PHOTO_PROXY: ""
   };
+
+  // Build a proxied Google Places photo URL. Returns "" when the proxy isn't
+  // configured or the photo ref is missing, so callers can treat "" as "none".
+  function photoProxyUrl(name, w) {
+    if (!CONFIG.PHOTO_PROXY || !name) return "";
+    return `${CONFIG.PHOTO_PROXY}/?name=${encodeURIComponent(name)}&w=${w || 800}`;
+  }
 
   const I18N = {
     en: {
@@ -48,6 +61,7 @@
       "card.verified": (d) => `Verified ${d}`,
       "card.report": "Report",
       "card.photoSoon": "Photo coming soon",
+      "card.photoCredit": (who) => `Photo: ${who} · Google`,
       "card.open.now":    (close) => `Open now · closes ${close}`,
       "card.open.closed": (open) => `Closed · opens ${open}`,
       "card.crowd.high": "Fills up by 10am — go early",
@@ -167,6 +181,7 @@
       "card.verified": (d) => `Verificado ${d}`,
       "card.report": "Reportar",
       "card.photoSoon": "Foto próximamente",
+      "card.photoCredit": (who) => `Foto: ${who} · Google`,
       "card.open.now":    (close) => `Abierto · cierra ${close}`,
       "card.open.closed": (open) => `Cerrado · abre ${open}`,
       "card.crowd.high": "Se llena para las 10am — ve temprano",
@@ -1075,14 +1090,28 @@
         const directionsBtn = `<a class="report-btn directions-btn" href="${singleMapsUrl(c)}" target="_blank" rel="noreferrer">${t("card.directions")}</a>`;
         const photo = state.photos[c.slug];
         const detailHref = `cenotes/${encodeURIComponent(c.slug)}.html${langPref === "es" ? "?lang=es" : ""}`;
-        const media = photo
-          ? `<a class="card-media" href="${detailHref}" aria-label="${escapeHtml(name)}">
+        // Photo precedence: locally-curated (CC-licensed, free to serve) →
+        // Google Places photo via the proxy → painted placeholder.
+        const gName = (c.google_photo_names && c.google_photo_names[0]) || c.google_photo_name;
+        const gUrl = photo ? "" : photoProxyUrl(gName, 800);
+        const gCredit = ((c.google_photo_attributions && c.google_photo_attributions[0])
+          || c.google_photo_attribution || []).filter(Boolean).join(", ");
+        let media;
+        if (photo) {
+          media = `<a class="card-media" href="${detailHref}" aria-label="${escapeHtml(name)}">
                <img loading="lazy" decoding="async" src="${escapeHtml(photo.file)}" alt="${escapeHtml(name)}" />
-             </a>`
-          : `<a class="card-media card-media--painted" href="${detailHref}" aria-label="${escapeHtml(name)}" style="--hue-shift:${hueFromSlug(c.slug)}deg">
+             </a>`;
+        } else if (gUrl) {
+          media = `<a class="card-media" href="${detailHref}" aria-label="${escapeHtml(name)}">
+               <img loading="lazy" decoding="async" src="${escapeHtml(gUrl)}" alt="${escapeHtml(name)}" />
+               <span class="photo-credit">${t("card.photoCredit", gCredit || "Google")}</span>
+             </a>`;
+        } else {
+          media = `<a class="card-media card-media--painted" href="${detailHref}" aria-label="${escapeHtml(name)}" style="--hue-shift:${hueFromSlug(c.slug)}deg">
                <span class="placeholder-name">${escapeHtml(name)}</span>
                <span class="placeholder-note">${t("card.photoSoon")}</span>
              </a>`;
+        }
         return `
           <article class="cenote-card">
             ${media}

@@ -423,6 +423,24 @@ button { font: inherit; cursor: pointer; }
 
 .cenote-card:hover .card-media img { transform: scale(1.04); }
 
+/* Google Places attribution — required when serving their photo media. */
+.photo-credit {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  padding: 0.7rem 0.7rem 0.4rem;
+  font-size: 0.62rem;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  color: rgba(255, 255, 255, 0.9);
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.55), transparent);
+  pointer-events: none;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
 .card-media--painted {
   background:
     radial-gradient(ellipse 90% 70% at 30% 30%, rgba(120, 220, 230, 0.45) 0%, transparent 60%),
