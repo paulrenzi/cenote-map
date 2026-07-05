@@ -48,6 +48,14 @@
       "card.verified": (d) => `Verified ${d}`,
       "card.report": "Report",
       "card.photoSoon": "Photo coming soon",
+      "card.open.now":    (close) => `Open now · closes ${close}`,
+      "card.open.closed": (open) => `Closed · opens ${open}`,
+      "card.crowd.high": "Fills up by 10am — go early",
+      "locate.btn": "Closest to me",
+      "locate.active": "Sorted by you",
+      "locate.locating": "Locating…",
+      "locate.denied": "Turn on location to sort by you",
+      "results.countMe": (n) => `${n} cenote${n === 1 ? "" : "s"} · closest to you`,
       "card.cond.low":    (d) => `Quiet · ${d}d ago`,
       "card.cond.medium": (d) => `Busy · ${d}d ago`,
       "card.cond.high":   (d) => `Packed · ${d}d ago`,
@@ -158,6 +166,14 @@
       "card.verified": (d) => `Verificado ${d}`,
       "card.report": "Reportar",
       "card.photoSoon": "Foto próximamente",
+      "card.open.now":    (close) => `Abierto · cierra ${close}`,
+      "card.open.closed": (open) => `Cerrado · abre ${open}`,
+      "card.crowd.high": "Se llena para las 10am — ve temprano",
+      "locate.btn": "Más cerca de mí",
+      "locate.active": "Ordenado por ti",
+      "locate.locating": "Ubicando…",
+      "locate.denied": "Activa la ubicación para ordenar por ti",
+      "results.countMe": (n) => `${n} cenote${n === 1 ? "" : "s"} · más cercanos a ti`,
       "card.cond.low":    (d) => `Tranquilo · hace ${d}d`,
       "card.cond.medium": (d) => `Concurrido · hace ${d}d`,
       "card.cond.high":   (d) => `Lleno · hace ${d}d`,
@@ -271,6 +287,61 @@
     return Math.max(5, Math.round((km / 75) * 60 * 1.25));
   }
 
+  // ── Open-now status ────────────────────────────────────────────
+  // Cenotes keep local (America/Cancún) hours, and this planner's users are
+  // often browsing from a device set to another timezone. Compute "now"
+  // against Cancún wall-clock (fixed UTC-5, no DST in Quintana Roo) rather
+  // than the device clock so the open/closed call is always correct.
+  function cancunNowMinutes() {
+    const parts = new Intl.DateTimeFormat("en-US", {
+      timeZone: "America/Cancun", hour12: false, hour: "2-digit", minute: "2-digit"
+    }).formatToParts(new Date());
+    let h = 0, m = 0;
+    for (const p of parts) {
+      if (p.type === "hour") h = parseInt(p.value, 10) % 24;
+      if (p.type === "minute") m = parseInt(p.value, 10);
+    }
+    return h * 60 + m;
+  }
+
+  // "08:10-16:45" → { open: 490, close: 1005 }; anything else → null (unknown
+  // hours stay silent rather than guessing).
+  function parseHours(hours) {
+    if (!hours || typeof hours !== "string") return null;
+    const m = hours.match(/^\s*(\d{1,2}):(\d{2})\s*[-–—]\s*(\d{1,2}):(\d{2})\s*$/);
+    if (!m) return null;
+    const open = (+m[1]) * 60 + (+m[2]);
+    const close = (+m[3]) * 60 + (+m[4]);
+    if (close <= open) return null; // overnight/malformed — don't fake it
+    return { open, close };
+  }
+
+  function fmtClock(mins) {
+    const h = Math.floor(mins / 60), m = mins % 60;
+    if (langPref === "es") return `${String(h).padStart(2, "0")}:${String(m).padStart(2, "0")}`;
+    const ap = h >= 12 ? "PM" : "AM";
+    let hh = h % 12; if (hh === 0) hh = 12;
+    return m === 0 ? `${hh} ${ap}` : `${hh}:${String(m).padStart(2, "0")} ${ap}`;
+  }
+
+  function openPill(c) {
+    const hrs = parseHours(c.hours);
+    if (!hrs) return "";
+    const now = cancunNowMinutes();
+    if (now >= hrs.open && now < hrs.close) {
+      return `<span class="meta-pill open is-open">${escapeHtml(t("card.open.now", fmtClock(hrs.close)))}</span>`;
+    }
+    return `<span class="meta-pill open is-closed">${escapeHtml(t("card.open.closed", fmtClock(hrs.open)))}</span>`;
+  }
+
+  // Static baseline crowd hint from the verified data (distinct from live
+  // visitor reports) — surfaces the "get there early" nudge on the busiest
+  // cenotes, which is the single most actionable planning fact.
+  function crowdPill(c) {
+    if ((c.eco || {}).crowd_pressure !== "high") return "";
+    return `<span class="meta-pill crowd">${escapeHtml(t("card.crowd.high"))}</span>`;
+  }
+
   // ── State ──────────────────────────────────────────────────────
   const state = {
     cenotes: [],
@@ -288,7 +359,8 @@
     photos: {},            // slug -> { file, credit, license, source }
     turnstileLoaded: false,
     turnstileWidgetId: null,
-    liveCoords: null        // [lat, lng] from the last successful geolocation fix, if any
+    liveCoords: null,       // [lat, lng] from the last successful geolocation fix, if any
+    sortMode: "base"        // "base" (drive time from staying-in) | "me" (GPS distance)
   };
 
   // ── Data load ──────────────────────────────────────────────────
@@ -403,7 +475,8 @@
   // ── Filter + sort ──────────────────────────────────────────────
   function visibleCenotes() {
     const base = state.bases.find((b) => b.id === state.baseId);
-    const baseCoords = base?.coords;
+    const useLive = state.sortMode === "me" && state.liveCoords;
+    const origin = useLive ? state.liveCoords : base?.coords;
     return state.cenotes
       .filter((c) => {
         if (state.activity && !c.activities.includes(state.activity)) return false;
@@ -413,7 +486,7 @@
       })
       .map((c) => ({
         ...c,
-        _km: baseCoords ? haversineKm(baseCoords, c.coords) : null
+        _km: origin ? haversineKm(origin, c.coords) : null
       }))
       .sort((a, b) => {
         if (a._km == null && b._km == null) return a.name_en.localeCompare(b.name_en);
@@ -435,6 +508,16 @@
     });
     sel.value = state.baseId || state.bases[0].id;
     state.baseId = sel.value;
+  }
+
+  function reflectLocateBtn() {
+    const btn = document.getElementById("locate-btn");
+    const label = document.getElementById("locate-btn-label");
+    if (!btn || !label) return;
+    const active = state.sortMode === "me" && state.liveCoords;
+    btn.classList.toggle("is-active", !!active);
+    btn.classList.remove("is-error");
+    label.textContent = t(active ? "locate.active" : "locate.btn");
   }
 
   // ── Render: cards ──────────────────────────────────────────────
@@ -960,7 +1043,7 @@
     const list = visibleCenotes();
     const wrap = document.getElementById("cards");
     const counter = document.getElementById("result-count");
-    counter.textContent = t("results.count", list.length);
+    counter.textContent = t(state.sortMode === "me" && state.liveCoords ? "results.countMe" : "results.count", list.length);
 
     if (list.length === 0) {
       wrap.innerHTML = `<div class="empty-state">${t(state.query ? "results.emptySearch" : "results.empty")}</div>`;
@@ -1000,10 +1083,12 @@
               <p class="card-summary">${escapeHtml(summary)}</p>
               <div class="card-meta card-meta-primary">
                 <span class="meta-pill cost">${costLabel(c)}</span>
+                ${openPill(c)}
                 ${skillPill(c)}
               </div>
               <div class="card-meta card-meta-secondary">
                 ${conditionPill(c.slug)}
+                ${crowdPill(c)}
                 ${activities}
                 ${kids}
                 ${sunscreenPill(c)}
@@ -1163,9 +1248,39 @@
     document.getElementById("base-select").addEventListener("change", (e) => {
       state.baseId = e.target.value;
       saveBase(state.baseId);
+      // Picking a place to stay is an explicit "sort from here" — drop the
+      // GPS sort so the two distance origins don't silently fight.
+      state.sortMode = "base";
+      reflectLocateBtn();
       renderCards();
       renderTray();
     });
+
+    const locateBtn = document.getElementById("locate-btn");
+    if (locateBtn) {
+      locateBtn.addEventListener("click", async () => {
+        if (state.sortMode === "me") {
+          state.sortMode = "base";
+          reflectLocateBtn();
+          renderCards();
+          return;
+        }
+        locateBtn.disabled = true;
+        locateBtn.classList.remove("is-error");
+        document.getElementById("locate-btn-label").textContent = t("locate.locating");
+        const coords = await detectBaseByLocation();
+        locateBtn.disabled = false;
+        if (!coords) {
+          locateBtn.classList.add("is-error");
+          document.getElementById("locate-btn-label").textContent = t("locate.denied");
+          return;
+        }
+        state.liveCoords = coords;
+        state.sortMode = "me";
+        reflectLocateBtn();
+        renderCards();
+      });
+    }
     document.getElementById("activity-select").addEventListener("change", (e) => {
       state.activity = e.target.value;
       renderCards();

@@ -10,7 +10,7 @@
     <title>Riviera Maya Cenotes — Trip Planner</title>
     <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>💧</text></svg>" />
     <link rel="canonical" href="https://paulrenzi.github.io/cenote-map/" />
-    <link rel="manifest" href="manifest.webmanifest?v=20" />
+    <link rel="manifest" href="manifest.webmanifest?v=21" />
     <meta name="theme-color" content="#0a8a9e" />
 
     <meta property="og:type" content="website" />
@@ -58,7 +58,7 @@
       href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700;9..144,800&family=Manrope:wght@400;500;600;700;800&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="styles.css?v=20" />
+    <link rel="stylesheet" href="styles.css?v=21" />
   </head>
   <body>
 
@@ -126,6 +126,14 @@
           <input type="checkbox" id="kid-toggle" />
           <span data-i18n="strip.kids">Kid-friendly only</span>
         </label>
+        <div class="strip-field strip-field--locate">
+          <button type="button" id="locate-btn" class="locate-btn">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <circle cx="12" cy="12" r="3"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3"/>
+            </svg>
+            <span id="locate-btn-label" data-i18n="locate.btn">Closest to me</span>
+          </button>
+        </div>
       </div>
     </div>
 
@@ -240,6 +248,6 @@
       </svg>
     </button>
 
-    <script src="app.js?v=20" defer></script>
+    <script src="app.js?v=21" defer></script>
   </body>
 </html>
