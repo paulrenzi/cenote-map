@@ -107,7 +107,8 @@
       "itin.onSite": (n) => `${n} stop${n === 1 ? "" : "s"} priced on-site`,
       "itin.partners": "Make it easy",
       "itin.close": "Close",
-      "itin.openMaps": "Open route in Google Maps",
+      "itin.openMaps": "Preview whole route",
+      "itin.navStop": "Navigate here",
       "itin.prepHeading": "Before you go",
       "itin.prepBio": "Bring biodegradable sunscreen — required at some stops.",
       "itin.prepNoSun": "Sunscreen isn't allowed at some stops — rinse off before entry.",
@@ -211,7 +212,8 @@
       "itin.onSite": (n) => `${n} parada${n === 1 ? "" : "s"} con precio en sitio`,
       "itin.partners": "Hazlo fácil",
       "itin.close": "Cerrar",
-      "itin.openMaps": "Abrir ruta en Google Maps",
+      "itin.openMaps": "Ver ruta completa",
+      "itin.navStop": "Navegar aquí",
       "itin.prepHeading": "Antes de salir",
       "itin.prepBio": "Lleva bloqueador biodegradable — obligatorio en algunas paradas.",
       "itin.prepNoSun": "El bloqueador no está permitido en algunas paradas — enjuágate antes de entrar.",
@@ -781,6 +783,7 @@
           <a class="itin-name" href="${href}">${escapeHtml(name)}</a>
           <span class="itin-meta">${escapeHtml(cost)}${hours}</span>
         </div>
+        <a class="itin-nav" href="${singleMapsUrl(c)}" target="_blank" rel="noreferrer">${t("itin.navStop")}</a>
       </li>`;
     }).join("");
 
