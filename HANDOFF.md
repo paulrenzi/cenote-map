@@ -11,10 +11,10 @@ Deploy: commit → push → poll `gh api repos/paulrenzi/cenote-map/pages/builds
 ## Next task: kill the two "escape hatches" (why users leave for Maps / TripAdvisor)
 Users leave for **trust/proof** (Maps = "is it real, open now, what's it look like"; TripAdvisor = "reviews"). The planning layer is solid; the proof layer is missing. Priority order:
 
-### Tier 1 — zero-cost, ship immediately (no API key needed)
-1. **"Open now" live status** — `hours` is static text (e.g. `"08:00-17:00"`). Compute open/closed + "closes 5 PM" against device clock in JS. Handles ranges + null hours gracefully.
-2. **Closest-to-you sorting** — `navigator.geolocation` → haversine vs each `coords` → "23 min / 18 km away" + sort option. Maps' main superpower.
-3. **Surface crowd / best-time** — data already has `eco.crowd_pressure`; add a "go before 10am" hint where `crowd_pressure: high`. Check it's actually rendered in the card UI (`app.js`).
+### Tier 1 — SHIPPED 2026-07-04 (v21, SW cache v15) ✅
+1. **"Open now" live status** — `openPill()` in `app.js`. Parses `hours` ("08:10-16:45"), computes open/closed + "closes 5 PM"/"opens 8 AM" against **America/Cancún** wall-clock (fixed UTC-5, via `Intl.DateTimeFormat` + `cancunNowMinutes()`) — NOT device clock, since users browse from other timezones. Null/malformed/overnight hours stay silent. EN 12h, ES 24h. Sits in the primary meta row next to price.
+2. **Closest-to-you sorting** — `state.sortMode` ('base'|'me') + "Closest to me" button (`#locate-btn`). Click → `navigator.geolocation` → `state.liveCoords` → haversine sort; existing `_km` "km · ~min" label reused. Picking a "staying in" base resets to drive-time sort. Counter switches to "closest to you". Denied geolocation shows an inline hint.
+3. **Crowd hint** — `crowdPill()` renders "Fills up by 10am — go early" where `eco.crowd_pressure: high` (secondary meta row, distinct from live user-report `conditionPill`).
 
 ### Tier 2 — the big unlock, needs Paul's Google login (5 min)
 4. **Photos + Google ratings/review-count per cenote** — THE #1 gap. A directory with no images loses to Maps' photo carousel every time. Same blocker for both: a **Google Places API key**. Enabling the Places API (New) requires authenticating AS Paul (project owner) — a security boundary; no SA/token/script bypasses it. Once enabled, one pass backfills `place_id`, rating, review count, and a photo reference for all 82. Then `singleMapsUrl`/`planMapsUrl` auto-upgrade to exact `destination_place_id` (code already checks for `c.place_id`).
