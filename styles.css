@@ -825,6 +825,11 @@ button { font: inherit; cursor: pointer; }
   color: #fff;
 }
 
+.glance-pill--rating {
+  background: rgba(201, 138, 26, 0.32);
+  border-color: rgba(255, 214, 130, 0.5);
+}
+
 .detail-shell {
   width: min(760px, calc(100% - 3rem));
   margin: 0 auto;

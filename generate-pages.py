@@ -239,6 +239,15 @@ def make_page(c, lang="en"):
         + two_lang_attrs(f"Entry · {cost_en}", f"Entrada · {cost_es}")
         + '>' + esc(lbl("cost", lang) + " · " + (cost_en if lang == "en" else cost_es)) + '</span>'
     )
+    if c.get("google_rating") is not None and c.get("google_review_count"):
+        r = c["google_rating"]
+        n = f"{c['google_review_count']:,}"
+        glance.append(
+            '<span class="glance-pill glance-pill--rating" '
+            + two_lang_attrs(f"★ {r} · {n} Google reviews", f"★ {r} · {n} reseñas de Google")
+            + '>' + esc(f"★ {r} · {n} " + ("Google reviews" if lang == "en" else "reseñas de Google"))
+            + '</span>'
+        )
     if c.get("hours"):
         hrs = c["hours"]
         glance.append(
@@ -354,7 +363,7 @@ def make_page(c, lang="en"):
     <link rel="alternate" hreflang="en" href="{SITE}/cenotes/{slug}.html" />
     <link rel="alternate" hreflang="es" href="{SITE}/cenotes/{slug}.html?lang=es" />
     <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>💧</text></svg>" />
-    <link rel="manifest" href="../manifest.webmanifest?v=20" />
+    <link rel="manifest" href="../manifest.webmanifest?v=23" />
     <meta name="theme-color" content="#0a8a9e" />
 
     <meta property="og:type" content="article" />
@@ -374,7 +383,7 @@ def make_page(c, lang="en"):
       href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700;9..144,800&family=Manrope:wght@400;500;600;700;800&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="../styles.css?v=20" />
+    <link rel="stylesheet" href="../styles.css?v=23" />
   </head>
   <body>
     <header class="detail-hero">

@@ -1,0 +1,7 @@
+name = "cenote-photos"
+main = "src/index.js"
+compatibility_date = "2025-01-01"
+account_id = "83f33c67294ca2f2f0869b63c1663b0e"
+
+# Places API key is a secret, NOT committed:
+#   echo "<AIza...>" | wrangler secret put PLACES_API_KEY
