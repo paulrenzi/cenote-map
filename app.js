@@ -637,10 +637,41 @@
     return { knownCost, unknownCount, hasKnown, driveMin, far, count: stops.length };
   }
 
+  // Town/state each region sits in. Appending it to the cenote name makes
+  // Google resolve the actual place *listing* (reviews + the operator's own
+  // hours/photos) instead of dropping a blank coordinate pin, while keeping
+  // duplicate names (Cenote Azul, Cristalino…) from matching the wrong one.
+  const REGION_LOCALITY = {
+    tulum: "Tulum, Quintana Roo",
+    puerto_morelos: "Puerto Morelos, Quintana Roo",
+    akumal: "Akumal, Quintana Roo",
+    riviera_central: "Riviera Maya, Quintana Roo",
+    puerto_aventuras: "Puerto Aventuras, Quintana Roo",
+    playa: "Playa del Carmen, Quintana Roo",
+    coba: "Cobá, Quintana Roo",
+    valladolid: "Valladolid, Yucatán",
+    homun: "Homún, Yucatán",
+    merida: "Mérida, Yucatán",
+    cuzama: "Cuzamá, Yucatán",
+    chichen_itza: "Chichén Itzá, Yucatán",
+    chichen: "Chichén Itzá, Yucatán",
+  };
+
+  // Google Maps destination text for a cenote: its name plus the town/state
+  // it sits in, so the link lands on the real listing the visitor can read
+  // reviews on before driving out.
+  function mapsDest(c) {
+    const loc = REGION_LOCALITY[c.region];
+    return encodeURIComponent(loc ? `${c.name_en}, ${loc}, Mexico` : `${c.name_en}, Mexico`);
+  }
+
   // Google Maps deep link for a single cenote — no origin, so Maps uses the
   // visitor's current location (works whether they're at the resort or already out driving).
+  // Optional per-cenote place_id pins the exact verified listing when we have it.
   function singleMapsUrl(c) {
-    return `https://www.google.com/maps/dir/?api=1&destination=${c.coords[0]},${c.coords[1]}&travelmode=driving`;
+    let url = `https://www.google.com/maps/dir/?api=1&destination=${mapsDest(c)}&travelmode=driving`;
+    if (c.place_id) url += `&destination_place_id=${encodeURIComponent(c.place_id)}`;
+    return url;
   }
 
   // Multi-stop Google Maps route for the whole day plan. Origin is left
@@ -652,11 +683,18 @@
   function planMapsUrl() {
     const { stops } = planLegs();
     if (stops.length === 0) return null;
-    const toStr = (coords) => `${coords[0]},${coords[1]}`;
-    const destination = toStr(stops[stops.length - 1].coords);
-    const waypoints = stops.slice(0, -1).map((c) => toStr(c.coords));
-    let url = `https://www.google.com/maps/dir/?api=1&destination=${destination}&travelmode=driving`;
-    if (waypoints.length) url += `&waypoints=${encodeURIComponent(waypoints.join("|"))}`;
+    const last = stops[stops.length - 1];
+    const waypoints = stops.slice(0, -1);
+    const PIPE = encodeURIComponent("|");
+    let url = `https://www.google.com/maps/dir/?api=1&destination=${mapsDest(last)}&travelmode=driving`;
+    if (last.place_id) url += `&destination_place_id=${encodeURIComponent(last.place_id)}`;
+    if (waypoints.length) {
+      url += `&waypoints=${waypoints.map(mapsDest).join(PIPE)}`;
+      // Google requires a place id for *every* waypoint or none — only send
+      // the aligned list when we have an id for each.
+      if (waypoints.every((c) => c.place_id))
+        url += `&waypoint_place_ids=${waypoints.map((c) => encodeURIComponent(c.place_id)).join(PIPE)}`;
+    }
     return url;
   }
 
