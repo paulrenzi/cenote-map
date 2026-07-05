@@ -274,7 +274,8 @@
     conditions: {},        // slug -> latest condition record
     photos: {},            // slug -> { file, credit, license, source }
     turnstileLoaded: false,
-    turnstileWidgetId: null
+    turnstileWidgetId: null,
+    liveCoords: null        // [lat, lng] from the last successful geolocation fix, if any
   };
 
   // ── Data load ──────────────────────────────────────────────────
@@ -336,6 +337,7 @@
   async function detectAndApplyLocationBase() {
     const coords = await detectBaseByLocation();
     if (!coords) return;
+    state.liveCoords = coords;
     const detected = nearestBaseId(coords);
     if (detected && detected !== state.baseId) {
       state.baseId = detected;
@@ -549,10 +551,18 @@
     renderMarkers(visibleCenotes());
   }
 
-  // Ordered coords for the day: base first (if chosen), then each stop.
+  // Ordered coords for the day: base first (if chosen), then each stop —
+  // furthest from the origin first, working back to the closest last. That
+  // way the loop pushes out to the far edge early and drifts back toward
+  // "home" as the day winds down, instead of doubling back and forth in
+  // whatever order stops were tapped in.
   function planLegs() {
     const base = state.bases.find((b) => b.id === state.baseId);
+    const origin = state.liveCoords || (base && base.coords) || null;
     const stops = state.plan.map(cenoteBySlug).filter(Boolean);
+    if (origin && stops.length > 1) {
+      stops.sort((a, b) => haversineKm(origin, b.coords) - haversineKm(origin, a.coords));
+    }
     const points = [];
     if (base) points.push({ coords: base.coords, name: base.label_en, isBase: true });
     stops.forEach((c) => points.push({ coords: c.coords, cenote: c }));
@@ -1228,7 +1238,7 @@
     if (!hadSavedBase) detectAndApplyLocationBase();
 
     if ("serviceWorker" in navigator && location.protocol === "https:") {
-      navigator.serviceWorker.register("sw.js?v=19").then((reg) => {
+      navigator.serviceWorker.register("sw.js?v=20").then((reg) => {
         // Force a real network check on every visit instead of waiting for the
         // browser's lazy periodic re-fetch, which can leave a stale worker
         // running for hours after a deploy.
