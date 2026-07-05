@@ -16,7 +16,22 @@ Users leave for **trust/proof** (Maps = "is it real, open now, what's it look li
 2. **Closest-to-you sorting** — `state.sortMode` ('base'|'me') + "Closest to me" button (`#locate-btn`). Click → `navigator.geolocation` → `state.liveCoords` → haversine sort; existing `_km` "km · ~min" label reused. Picking a "staying in" base resets to drive-time sort. Counter switches to "closest to you". Denied geolocation shows an inline hint.
 3. **Crowd hint** — `crowdPill()` renders "Fills up by 10am — go early" where `eco.crowd_pressure: high` (secondary meta row, distinct from live user-report `conditionPill`).
 
-### Tier 2 — the big unlock, needs Paul's Google login (5 min)
+### Tier 2 — ratings/reviews SHIPPED 2026-07-04 (v22) ✅ · photos PENDING a decision
+Places API (New) enabled on EmuNexus; key in gitignored `.env` as `PLACES_API_KEY`.
+`scripts/backfill_places.py` matched **59/82** (name-confirmed, coords are coarse so
+distance is only a 12km bound; 23 undocumented community cenotes stay null). Merged
+`place_id` + `google_rating` + `google_review_count` + `google_photo_name` into
+cenotes.json. `ratingPill()` shows "★ 4.3 · N reviews"; Maps links auto-pin place_id.
+Staging record: `data/places-backfill.json`. Re-run: `python scripts/backfill_places.py`
+(dry) then `--execute`.
+
+**Photos still not rendered** — `google_photo_name` is stored but unused. Displaying a
+Places photo needs the API key embedded in the static client + an HTTP-referrer
+restriction on the key + author attribution rendered per Google terms. That's a
+key-exposure decision for Paul (see below). Detail pages (`cenotes/*.html`, built by
+`generate-pages.py`) don't yet show ratings either — regenerate to propagate.
+
+### (original Tier 2 notes) needs Paul's Google login (5 min)
 4. **Photos + Google ratings/review-count per cenote** — THE #1 gap. A directory with no images loses to Maps' photo carousel every time. Same blocker for both: a **Google Places API key**. Enabling the Places API (New) requires authenticating AS Paul (project owner) — a security boundary; no SA/token/script bypasses it. Once enabled, one pass backfills `place_id`, rating, review count, and a photo reference for all 82. Then `singleMapsUrl`/`planMapsUrl` auto-upgrade to exact `destination_place_id` (code already checks for `c.place_id`).
    - Google Cloud projects on hand: **EmuNexus** (proj# 716109928961, has a working YouTube AIza key) and **umbrella-arcades-feed** (proj# 987413506322, GA4 SA — SA lacks serviceusage rights, dead end for auto-enable).
 
