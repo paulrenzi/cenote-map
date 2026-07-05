@@ -862,9 +862,6 @@
           ? `<span class="meta-pill kids">${t("card.kids")}</span>` : "";
         const activities = c.activities.slice(0, 3).map((a) =>
           `<span class="meta-pill">${t("activity." + a)}</span>`).join("");
-        const verified = c.verified
-          ? `<span class="verified"><span class="verified-dot ${freshnessClass(c.verified)}"></span>${t("card.verified", c.verified)}</span>`
-          : "";
         const reportBtn = CONFIG.API_BASE
           ? `<button type="button" class="report-btn" data-report-slug="${escapeHtml(c.slug)}" data-report-name="${escapeHtml(name)}">${t("card.report")}</button>`
           : "";
@@ -899,7 +896,7 @@
                 ${kids}
                 ${sunscreenPill(c)}
               </div>
-              <div class="card-foot">${verified}${directionsBtn}${reportBtn}${planButton(c.slug)}</div>
+              <div class="card-foot">${directionsBtn}${reportBtn}${planButton(c.slug)}</div>
             </div>
           </article>`;
       }).join("");
