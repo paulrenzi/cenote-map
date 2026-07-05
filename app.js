@@ -692,18 +692,13 @@
     return next ? next.slug : null;
   }
 
-  // Ordered coords for the day: base first (if chosen), then each stop —
-  // furthest from the origin first, working back to the closest last. That
-  // way the loop pushes out to the far edge early and drifts back toward
-  // "home" as the day winds down, instead of doubling back and forth in
-  // whatever order stops were tapped in.
+  // Ordered coords for the day: base first (if chosen), then each stop in the
+  // order the visitor picked them. "Up next" is therefore the first cenote
+  // they added, and stays that way until they reorder the plan by hand with
+  // the ▲▼ chip controls — their sequence, not an auto-sort, drives the route.
   function planLegs() {
     const base = state.bases.find((b) => b.id === state.baseId);
-    const origin = state.liveCoords || (base && base.coords) || null;
     const stops = state.plan.map(cenoteBySlug).filter(Boolean);
-    if (origin && stops.length > 1) {
-      stops.sort((a, b) => haversineKm(origin, b.coords) - haversineKm(origin, a.coords));
-    }
     const points = [];
     if (base) points.push({ coords: base.coords, name: base.label_en, isBase: true });
     stops.forEach((c) => points.push({ coords: c.coords, cenote: c }));
@@ -759,13 +754,18 @@
     return encodeURIComponent(loc ? `${c.name_en}, ${loc}, Mexico` : `${c.name_en}, Mexico`);
   }
 
-  // Google Maps deep link for a single cenote — no origin, so Maps uses the
-  // visitor's current location (works whether they're at the resort or already out driving).
-  // Optional per-cenote place_id pins the exact verified listing when we have it.
+  // Google Maps deep link for a single cenote. When we have a verified
+  // place_id we open the *place listing* (search endpoint + query_place_id),
+  // not a bare directions preview — so the visitor lands on the real Google
+  // card with photos, the formal address and reviews, and can confirm it's
+  // the right spot before tapping Google's own Directions button. Without a
+  // place_id we fall back to a directions link from the visitor's location.
   function singleMapsUrl(c) {
-    let url = `https://www.google.com/maps/dir/?api=1&destination=${mapsDest(c)}&travelmode=driving`;
-    if (c.place_id) url += `&destination_place_id=${encodeURIComponent(c.place_id)}`;
-    return url;
+    if (c.place_id) {
+      return `https://www.google.com/maps/search/?api=1&query=${mapsDest(c)}`
+        + `&query_place_id=${encodeURIComponent(c.place_id)}`;
+    }
+    return `https://www.google.com/maps/dir/?api=1&destination=${mapsDest(c)}&travelmode=driving`;
   }
 
   // Multi-stop Google Maps route for the whole day plan. Origin is left
