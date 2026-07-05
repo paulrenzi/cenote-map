@@ -1528,7 +1528,7 @@
       "wheelchair": false,
       "depth_m": null,
       "typical_visibility_m": null,
-      "opening_type": null,
+      "opening_type": "semi_open",
       "opening_orientation_deg": null,
       "hours": "08:00-17:00",
       "cost_mxn": 150,
@@ -1604,17 +1604,20 @@
       "wheelchair": false,
       "depth_m": null,
       "typical_visibility_m": null,
-      "opening_type": null,
+      "opening_type": "open_pool",
       "opening_orientation_deg": null,
       "hours": "08:00-17:00",
-      "cost_mxn": null,
+      "cost_mxn": 650,
       "access": {
         "road": "paved",
         "parking": true,
         "collectivo_stops": false,
         "four_wd_needed": false
       },
-      "amenities": [],
+      "amenities": [
+        "guide_available",
+        "life_vest_rental"
+      ],
       "ownership": "unknown",
       "eco": {
         "sunscreen_rule": "biodegradable_only",
@@ -1642,17 +1645,20 @@
       "wheelchair": false,
       "depth_m": null,
       "typical_visibility_m": null,
-      "opening_type": null,
+      "opening_type": "enclosed_cave",
       "opening_orientation_deg": null,
       "hours": "08:00-17:00",
-      "cost_mxn": null,
+      "cost_mxn": 650,
       "access": {
         "road": "paved",
         "parking": true,
         "collectivo_stops": false,
         "four_wd_needed": false
       },
-      "amenities": [],
+      "amenities": [
+        "guide_available",
+        "life_vest_rental"
+      ],
       "ownership": "unknown",
       "eco": {
         "sunscreen_rule": "biodegradable_only",
@@ -1680,10 +1686,10 @@
       "wheelchair": false,
       "depth_m": null,
       "typical_visibility_m": null,
-      "opening_type": null,
+      "opening_type": "enclosed_cave",
       "opening_orientation_deg": null,
       "hours": "08:00-17:00",
-      "cost_mxn": null,
+      "cost_mxn": 40,
       "access": {
         "road": "paved",
         "parking": true,
@@ -2670,7 +2676,7 @@
       "wheelchair": false,
       "depth_m": null,
       "typical_visibility_m": null,
-      "opening_type": null,
+      "opening_type": "open_pool",
       "opening_orientation_deg": null,
       "hours": "08:00-17:00",
       "cost_mxn": null,
@@ -2680,7 +2686,12 @@
         "collectivo_stops": false,
         "four_wd_needed": false
       },
-      "amenities": [],
+      "amenities": [
+        "restrooms",
+        "showers",
+        "lockers",
+        "life_vest_rental"
+      ],
       "ownership": "unknown",
       "eco": {
         "sunscreen_rule": "biodegradable_only",
@@ -2711,7 +2722,7 @@
       "opening_type": "open_pool",
       "opening_orientation_deg": null,
       "hours": "08:00-17:00",
-      "cost_mxn": null,
+      "cost_mxn": 350,
       "access": {
         "road": "paved",
         "parking": true,
@@ -2749,17 +2760,20 @@
       "wheelchair": false,
       "depth_m": null,
       "typical_visibility_m": null,
-      "opening_type": null,
+      "opening_type": "open_pool",
       "opening_orientation_deg": null,
       "hours": "08:00-17:00",
-      "cost_mxn": null,
+      "cost_mxn": 120,
       "access": {
         "road": "paved",
         "parking": true,
         "collectivo_stops": false,
         "four_wd_needed": false
       },
-      "amenities": [],
+      "amenities": [
+        "picnic_area",
+        "shallow_kids_area"
+      ],
       "ownership": "unknown",
       "eco": {
         "sunscreen_rule": "biodegradable_only",
