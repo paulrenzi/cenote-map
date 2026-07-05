@@ -278,6 +278,13 @@ button { font: inherit; cursor: pointer; }
 
 .locate-btn:disabled { opacity: 0.6; cursor: progress; }
 
+/* Google rating — trust signal, primary tier. Amber star, quiet chip. */
+.meta-pill.rating {
+  background: rgba(201, 138, 26, 0.14);
+  color: #8a5e0d;
+  white-space: nowrap;
+}
+
 /* Open-now — a live go/no-go fact, sits in the primary tier next to price. */
 .meta-pill.open.is-open {
   background: rgba(46, 139, 87, 0.16);

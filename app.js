@@ -51,6 +51,7 @@
       "card.open.now":    (close) => `Open now · closes ${close}`,
       "card.open.closed": (open) => `Closed · opens ${open}`,
       "card.crowd.high": "Fills up by 10am — go early",
+      "card.rating": (r, n) => `★ ${r} · ${n} Google reviews`,
       "locate.btn": "Closest to me",
       "locate.active": "Sorted by you",
       "locate.locating": "Locating…",
@@ -169,6 +170,7 @@
       "card.open.now":    (close) => `Abierto · cierra ${close}`,
       "card.open.closed": (open) => `Cerrado · abre ${open}`,
       "card.crowd.high": "Se llena para las 10am — ve temprano",
+      "card.rating": (r, n) => `★ ${r} · ${n} reseñas de Google`,
       "locate.btn": "Más cerca de mí",
       "locate.active": "Ordenado por ti",
       "locate.locating": "Ubicando…",
@@ -340,6 +342,15 @@
   function crowdPill(c) {
     if ((c.eco || {}).crowd_pressure !== "high") return "";
     return `<span class="meta-pill crowd">${escapeHtml(t("card.crowd.high"))}</span>`;
+  }
+
+  // Google rating + review count — the trust signal that keeps users from
+  // bouncing to Maps to check "is this real / any good". Backfilled per-cenote
+  // (data/cenotes.json); absent for undocumented community cenotes.
+  function ratingPill(c) {
+    if (c.google_rating == null || !c.google_review_count) return "";
+    const n = Number(c.google_review_count).toLocaleString(langPref === "es" ? "es-MX" : "en-US");
+    return `<span class="meta-pill rating">${escapeHtml(t("card.rating", c.google_rating, n))}</span>`;
   }
 
   // ── State ──────────────────────────────────────────────────────
@@ -1083,6 +1094,7 @@
               <p class="card-summary">${escapeHtml(summary)}</p>
               <div class="card-meta card-meta-primary">
                 <span class="meta-pill cost">${costLabel(c)}</span>
+                ${ratingPill(c)}
                 ${openPill(c)}
                 ${skillPill(c)}
               </div>

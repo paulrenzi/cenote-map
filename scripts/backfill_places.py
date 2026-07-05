@@ -26,8 +26,10 @@ import argparse
 import json
 import math
 import os
+import re
 import sys
 import time
+import unicodedata
 import urllib.error
 import urllib.request
 from pathlib import Path
@@ -40,8 +42,20 @@ FIELD_MASK = (
     "places.id,places.displayName,places.location,"
     "places.rating,places.userRatingCount,places.photos,places.formattedAddress"
 )
-MATCH_RADIUS_KM = 2.0
+# Our stored coords are coarse (some rounded to 2 decimals ≈ several km), so
+# distance is only a sanity bound — the real gate is name similarity. A
+# name-confirmed hit up to MATCH_RADIUS_KM away beats a merely-close neighbour,
+# which is what prevents dense clusters (Homún/Cuzamá) from cross-matching.
+MATCH_RADIUS_KM = 12.0
+NAME_MIN_CONTAINMENT = 0.6   # fraction of our significant tokens found in the candidate
+CLOSE_KM = 0.35              # near-exact coords: accept on weak name overlap
 R_KM = 6371.0
+
+# Dropped before token comparison — generic words that carry no identity.
+STOPWORDS = {
+    "cenote", "cenotes", "el", "la", "las", "los", "de", "del", "y",
+    "ecopark", "eco", "park", "parque", "salida", "entrada", "the",
+}
 
 # Locality hint per region so the text query disambiguates (mirrors the
 # REGION_LOCALITY map already used for Maps deep-links in app.js).
@@ -113,17 +127,46 @@ def search_place(key, cenote):
         return None
 
 
+def name_tokens(s):
+    s = unicodedata.normalize("NFKD", s or "")
+    s = "".join(ch for ch in s if not unicodedata.combining(ch)).lower()
+    toks = re.findall(r"[a-z0-9]+", s)
+    return {t for t in toks if t not in STOPWORDS}
+
+
+def containment(ours, theirs):
+    """Fraction of our significant tokens present in the candidate name."""
+    if not ours:
+        return 0.0
+    return len(ours & theirs) / len(ours)
+
+
 def best_match(cenote, places):
-    """Nearest place within MATCH_RADIUS_KM, else None (honest-null)."""
-    best, best_km = None, MATCH_RADIUS_KM
+    """Best name-confirmed candidate within MATCH_RADIUS_KM, else None.
+
+    Ranks by (name containment desc, distance asc). Distance is only a coarse
+    bound because our stored coords are approximate; identity comes from the
+    name so neighbouring cenotes in dense clusters don't cross-match.
+    """
+    ours = name_tokens(cenote["name_es"]) | name_tokens(cenote["name_en"])
+    ranked = []
     for p in places:
         loc = p.get("location") or {}
         if "latitude" not in loc:
             continue
         km = haversine_km(cenote["coords"], (loc["latitude"], loc["longitude"]))
-        if km <= best_km:
-            best, best_km = p, km
-    return best, best_km if best else (None, None)
+        if km > MATCH_RADIUS_KM:
+            continue
+        cand = name_tokens((p.get("displayName") or {}).get("text", ""))
+        cont = containment(ours, cand)
+        # Accept on a solid name overlap, OR on near-exact coords with any overlap.
+        if cont >= NAME_MIN_CONTAINMENT or (km <= CLOSE_KM and cont > 0):
+            ranked.append((cont, -km, p, km))
+    if not ranked:
+        return None, None
+    ranked.sort(key=lambda r: (r[0], r[1]), reverse=True)
+    cont, _neg, p, km = ranked[0]
+    return p, km
 
 
 def stage(key, cenotes):
@@ -186,6 +229,10 @@ def execute(cenotes_doc):
 
 
 def main():
+    try:
+        sys.stdout.reconfigure(encoding="utf-8", errors="replace")
+    except Exception:
+        pass
     ap = argparse.ArgumentParser()
     ap.add_argument("--execute", action="store_true",
                     help="merge staged results into cenotes.json")
