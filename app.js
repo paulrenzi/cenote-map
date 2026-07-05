@@ -109,6 +109,11 @@
       "itin.close": "Close",
       "itin.openMaps": "Preview whole route",
       "itin.navStop": "Navigate here",
+      "itin.upNext": "Up next",
+      "itin.markDone": "Mark done",
+      "itin.done": "Done",
+      "itin.allDone": "All stops done — enjoy the day!",
+      "plan.upNextTray": "Up next",
       "itin.prepHeading": "Before you go",
       "itin.prepBio": "Bring biodegradable sunscreen — required at some stops.",
       "itin.prepNoSun": "Sunscreen isn't allowed at some stops — rinse off before entry.",
@@ -214,6 +219,11 @@
       "itin.close": "Cerrar",
       "itin.openMaps": "Ver ruta completa",
       "itin.navStop": "Navegar aquí",
+      "itin.upNext": "Siguiente",
+      "itin.markDone": "Marcar hecho",
+      "itin.done": "Hecho",
+      "itin.allDone": "¡Todas las paradas completadas — disfruta el día!",
+      "plan.upNextTray": "Siguiente",
       "itin.prepHeading": "Antes de salir",
       "itin.prepBio": "Lleva bloqueador biodegradable — obligatorio en algunas paradas.",
       "itin.prepNoSun": "El bloqueador no está permitido en algunas paradas — enjuágate antes de entrar.",
@@ -270,6 +280,7 @@
     kidsOnly: false,
     query: "",
     plan: [],              // ordered array of slugs (max MAX_PLAN)
+    visited: [],           // slugs the visitor has checked off as done
     trayMinimized: false,
     map: null,
     markers: [],
@@ -501,6 +512,7 @@
   // ── Day plan ───────────────────────────────────────────────────
   const MAX_PLAN = 3;
   const PLAN_KEY = "cenote-plan";
+  const VISITED_KEY = "cenote-visited";
 
   const cenoteBySlug = (slug) => state.cenotes.find((c) => c.slug === slug);
 
@@ -528,7 +540,11 @@
 
   function togglePlan(slug) {
     const i = state.plan.indexOf(slug);
-    if (i >= 0) state.plan.splice(i, 1);
+    if (i >= 0) {
+      state.plan.splice(i, 1);
+      const v = state.visited.indexOf(slug);
+      if (v >= 0) { state.visited.splice(v, 1); saveVisited(); }
+    }
     else if (state.plan.length < MAX_PLAN) state.plan.push(slug);
     savePlan();
     renderCards();
@@ -547,10 +563,39 @@
 
   function clearPlan() {
     state.plan = [];
+    state.visited = [];
     savePlan();
+    saveVisited();
     renderCards();
     renderTray();
     renderMarkers(visibleCenotes());
+  }
+
+  function loadVisited() {
+    let slugs = [];
+    try { slugs = JSON.parse(localStorage.getItem(VISITED_KEY) || "[]"); } catch {}
+    // Only keep check-offs for stops still in the plan.
+    state.visited = slugs.filter((s) => state.plan.includes(s));
+  }
+
+  function saveVisited() {
+    try { localStorage.setItem(VISITED_KEY, JSON.stringify(state.visited)); } catch {}
+  }
+
+  function toggleVisited(slug) {
+    const i = state.visited.indexOf(slug);
+    if (i >= 0) state.visited.splice(i, 1);
+    else state.visited.push(slug);
+    saveVisited();
+    renderTray();
+    if (document.getElementById("itin-modal")?.classList.contains("is-open")) openItinerary();
+  }
+
+  // First stop, in day-plan order, the visitor hasn't checked off yet.
+  function nextStopSlug() {
+    const { stops } = planLegs();
+    const next = stops.find((c) => !state.visited.includes(c.slug));
+    return next ? next.slug : null;
   }
 
   // Ordered coords for the day: base first (if chosen), then each stop —
@@ -698,22 +743,34 @@
       return;
     }
 
+    const nextSlug = nextStopSlug();
     const chips = state.plan.map((slug, idx) => {
       const c = cenoteBySlug(slug);
       const name = langPref === "es" ? c.name_es : c.name_en;
+      const done = state.visited.includes(slug);
       const upBtn = idx > 0
         ? `<button type="button" class="tray-move" data-plan-up="${escapeHtml(slug)}" aria-label="${t("plan.moveUp")}">▲</button>`
         : "";
       const downBtn = idx < state.plan.length - 1
         ? `<button type="button" class="tray-move" data-plan-down="${escapeHtml(slug)}" aria-label="${t("plan.moveDown")}">▼</button>`
         : "";
-      return `<li class="tray-chip">
-        <span class="tray-num">${idx + 1}</span>
+      return `<li class="tray-chip${done ? " is-done" : ""}">
+        <button type="button" class="tray-num tray-num--check" data-plan-done="${escapeHtml(slug)}"
+          aria-pressed="${done}" aria-label="${t(done ? "itin.done" : "itin.markDone")}">${done ? "✓" : idx + 1}</button>
         <span class="tray-chip-name">${escapeHtml(name)}</span>
         ${upBtn}${downBtn}
         <button type="button" class="tray-x" data-plan-remove="${escapeHtml(slug)}" aria-label="${t("plan.remove")}">×</button>
       </li>`;
     }).join("");
+    const nextStop = nextSlug ? cenoteBySlug(nextSlug) : null;
+    const nextName = nextStop ? (langPref === "es" ? nextStop.name_es : nextStop.name_en) : "";
+    const upNextHtml = nextStop
+      ? `<div class="tray-upnext">
+          <span class="tray-upnext-k">${t("plan.upNextTray")}</span>
+          <span class="tray-upnext-name">${escapeHtml(nextName)}</span>
+          <a class="tray-upnext-nav" href="${singleMapsUrl(nextStop)}" target="_blank" rel="noreferrer">${t("itin.navStop")}</a>
+        </div>`
+      : `<div class="tray-upnext tray-upnext--done">${t("itin.allDone")}</div>`;
     const costText = s.hasKnown
       ? t("plan.costFrom", s.knownCost) + (s.unknownCount ? t("plan.costUnknown", s.unknownCount) : "")
       : t("plan.costNone");
@@ -726,6 +783,7 @@
           ${minimizeBtn}
         </div>
         <ul class="tray-chips">${chips}</ul>
+        ${upNextHtml}
         <div class="tray-foot">
           <div class="tray-stats">
             <span class="tray-stat"><span class="tray-stat-k">${t("plan.costTotal")}</span> ${escapeHtml(costText)}</span>
@@ -743,6 +801,8 @@
       b.addEventListener("click", () => movePlan(b.dataset.planUp, -1)));
     tray.querySelectorAll("[data-plan-down]").forEach((b) =>
       b.addEventListener("click", () => movePlan(b.dataset.planDown, 1)));
+    tray.querySelectorAll("[data-plan-done]").forEach((b) =>
+      b.addEventListener("click", () => toggleVisited(b.dataset.planDone)));
     tray.querySelector("[data-plan-clear]")?.addEventListener("click", clearPlan);
     tray.querySelector("[data-plan-view]")?.addEventListener("click", openItinerary);
     tray.querySelector("[data-plan-minimize]")?.addEventListener("click", () => {
@@ -767,6 +827,7 @@
     const baseName = base ? (langPref === "es" ? base.label_es : base.label_en) : "";
     const s = planStats();
 
+    const nextSlug = nextStopSlug();
     const rows = stops.map((c, i) => {
       const name = langPref === "es" ? c.name_es : c.name_en;
       const leg = legs[i]; // leg i is the drive INTO stop i (base->s0, s0->s1, …)
@@ -776,14 +837,22 @@
         : (typeof c.cost_mxn === "number" ? t("card.cost.mxn", c.cost_mxn) : t("plan.costNone"));
       const hours = c.hours ? ` · ${escapeHtml(c.hours)}` : "";
       const href = `cenotes/${encodeURIComponent(c.slug)}.html${langPref === "es" ? "?lang=es" : ""}`;
-      return `<li class="itin-stop">
-        <span class="itin-num">${i + 1}</span>
+      const done = state.visited.includes(c.slug);
+      const isNext = c.slug === nextSlug;
+      const cls = `itin-stop${done ? " is-done" : ""}${isNext ? " is-next" : ""}`;
+      return `<li class="${cls}">
+        <button type="button" class="itin-check" data-stop-done="${escapeHtml(c.slug)}"
+          aria-pressed="${done}" aria-label="${t(done ? "itin.done" : "itin.markDone")}">${done ? "✓" : i + 1}</button>
         <div class="itin-stop-body">
+          ${isNext ? `<span class="itin-badge">${t("itin.upNext")}</span>` : ""}
           ${legTxt ? `<span class="itin-leg">${escapeHtml(legTxt)}</span>` : ""}
           <a class="itin-name" href="${href}">${escapeHtml(name)}</a>
           <span class="itin-meta">${escapeHtml(cost)}${hours}</span>
         </div>
-        <a class="itin-nav" href="${singleMapsUrl(c)}" target="_blank" rel="noreferrer">${t("itin.navStop")}</a>
+        <div class="itin-stop-actions">
+          <a class="itin-nav${isNext ? " itin-nav--next" : ""}" href="${singleMapsUrl(c)}" target="_blank" rel="noreferrer">${t("itin.navStop")}</a>
+          <button type="button" class="itin-done-btn" data-stop-done="${escapeHtml(c.slug)}">${t(done ? "itin.done" : "itin.markDone")}</button>
+        </div>
       </li>`;
     }).join("");
 
@@ -828,6 +897,9 @@
       </div>`;
     modal.classList.add("is-open");
     modal.setAttribute("aria-hidden", "false");
+
+    document.getElementById("itin-body").querySelectorAll("[data-stop-done]").forEach((b) =>
+      b.addEventListener("click", () => toggleVisited(b.dataset.stopDone)));
 
     document.getElementById("itin-share")?.addEventListener("click", async () => {
       savePlan();
@@ -1230,6 +1302,7 @@
     applyI18n();
     await loadData();
     loadPlan();
+    loadVisited();
     const hadSavedBase = applySavedBase();
     renderBases();
     wireControls();
