@@ -888,13 +888,15 @@
               <div class="card-meta card-meta-primary">
                 <span class="meta-pill cost">${costLabel(c)}</span>
                 ${skillPill(c)}
-                ${transitPill(c)}
               </div>
               <div class="card-meta card-meta-secondary">
                 ${conditionPill(c.slug)}
                 ${activities}
                 ${kids}
                 ${sunscreenPill(c)}
+              </div>
+              <div class="card-meta card-meta-transit">
+                ${transitPill(c)}
               </div>
               <div class="card-foot">${directionsBtn}${reportBtn}${planButton(c.slug)}</div>
             </div>
